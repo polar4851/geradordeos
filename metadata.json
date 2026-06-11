@@ -1,0 +1,6 @@
+{
+  "name": "Gerador de Ordem de Serviço - Comunicação Visual",
+  "description": "Sistema para criação, visualização e impressão de Ordens de Serviço (O.S.) A4 para empresas de comunicação visual, com suporte a colagem de imagens (Ctrl+V), seleção de materiais, dimensões e observações técnicas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
