@@ -52,6 +52,8 @@ const DEFAULT_ORDERS: ServiceOrder[] = [
   }
 ];
 
+const SHOW_LOCK_SCREEN = true;
+
 export default function App() {
   const [orders, setOrders] = useState<ServiceOrder[]>([]);
   const [activeOSId, setActiveOSId] = useState<string>('');
@@ -260,6 +262,27 @@ export default function App() {
   const handleDirectPrint = () => {
     window.print();
   };
+
+  if (SHOW_LOCK_SCREEN) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-950 px-4">
+        <div className="w-full max-w-lg rounded-3xl border border-red-500/30 bg-slate-900/95 p-8 text-center shadow-2xl shadow-black/40">
+          <div className="mb-6 flex justify-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600/20 text-red-400">
+              <AlertTriangle className="h-8 w-8" />
+            </div>
+          </div>
+          <h1 className="text-2xl font-bold text-white">Acesso bloqueado</h1>
+          <p className="mt-4 text-lg leading-relaxed text-slate-300">
+            Sua empresa foi banida do uso da aplicação. Por favor, contatar o administrador Warleandro Nascimento.
+          </p>
+          <p className="mt-6 text-sm uppercase tracking-[0.3em] text-red-400">
+            Bloqueio ativo
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans text-slate-800">
