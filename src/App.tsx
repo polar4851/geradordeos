@@ -52,7 +52,7 @@ const DEFAULT_ORDERS: ServiceOrder[] = [
   }
 ];
 
-const SHOW_LOCK_SCREEN = true;
+const SHOW_LOCK_SCREEN = false;
 
 export default function App() {
   const [orders, setOrders] = useState<ServiceOrder[]>([]);
