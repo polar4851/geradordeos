@@ -124,7 +124,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
   const areaTotal = areaUnitaria * activeOS.quantidade;
 
   return (
-    <div className="space-y-6">
+    <div className="os-form space-y-6">
       {/* 1. ADMIN & COMPANY METADATA */}
       <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
         <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
