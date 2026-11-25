@@ -576,3 +576,297 @@ body { margin: 0; overflow-x: hidden; }
     left: 0 !important;
   }
 }
+
+
+/* TRAÇO OS — AMOLED NEON NIGHT
+   Interface em preto real, superfícies profundas e acentos elétricos.
+   A ficha #a4-job-ticket continua branca e não recebe estes estilos. */
+@media screen {
+  :root { color-scheme: light; }
+  .app-shell.dark {
+    --amoled-bg: #000000;
+    --amoled-panel: #080b12;
+    --amoled-panel-2: #0d1220;
+    --amoled-panel-3: #111a2d;
+    --amoled-line: rgba(115, 145, 210, .19);
+    --amoled-muted: #8493ad;
+    --amoled-text: #edf4ff;
+    --amoled-blue: #4d8dff;
+    --amoled-cyan: #24d7f2;
+    --amoled-violet: #a78bfa;
+    --amoled-green: #42f5a1;
+    background: var(--amoled-bg) !important;
+    color: var(--amoled-text) !important;
+    color-scheme: dark;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 12% 0%, rgba(35, 91, 190, .15), transparent 34%),
+      radial-gradient(ellipse at 92% 18%, rgba(104, 45, 210, .11), transparent 28%) !important;
+  }
+  .app-shell.dark > header {
+    background: rgba(3, 5, 10, .92) !important;
+    border-color: rgba(77, 141, 255, .24) !important;
+    box-shadow: 0 1px 0 rgba(36, 215, 242, .08), 0 12px 40px rgba(0,0,0,.55) !important;
+    backdrop-filter: blur(22px) saturate(1.5);
+  }
+  .app-shell.dark > header > div:first-child > div:first-child {
+    background: linear-gradient(145deg, #183c83, #5424a8) !important;
+    border: 1px solid rgba(124, 174, 255, .35);
+    box-shadow: 0 0 24px rgba(63, 125, 255, .3), inset 0 1px rgba(255,255,255,.16) !important;
+  }
+  .app-shell.dark header h1 { color: #f4f8ff !important; }
+  .app-shell.dark header h1 span {
+    color: #56dfff !important;
+    text-shadow: 0 0 18px rgba(36,215,242,.45);
+  }
+  .app-shell.dark .theme-toggle {
+    color: #ffe16a !important;
+    background: #171326 !important;
+    border-color: rgba(255, 225, 106, .3) !important;
+    box-shadow: 0 0 18px rgba(255, 205, 75, .08);
+  }
+  .app-shell.dark header button:not(.theme-toggle):not(.about-tab) {
+    border-color: rgba(112, 145, 205, .24) !important;
+    background: #0c1220 !important;
+    color: #c7d8f5 !important;
+    box-shadow: inset 0 1px rgba(255,255,255,.035);
+  }
+  .app-shell.dark header button:not(.theme-toggle):not(.about-tab):hover {
+    border-color: rgba(36,215,242,.5) !important;
+    background: #101d32 !important;
+    color: #fff !important;
+  }
+  .app-shell.dark header button[aria-pressed="true"],
+  .app-shell.dark .about-tab-active {
+    background: linear-gradient(115deg,#285de0,#713de0) !important;
+    color: #fff !important;
+    border-color: rgba(153,190,255,.5) !important;
+    box-shadow: 0 0 22px rgba(82,105,255,.25) !important;
+  }
+  .app-shell.dark main:not(.about-page) {
+    color: var(--amoled-text);
+  }
+  .app-shell.dark main:not(.about-page) > section:first-child h2 {
+    color: #f4f8ff !important;
+    letter-spacing: -.035em;
+  }
+  .app-shell.dark main:not(.about-page) > section:first-child p {
+    color: #94a8c8 !important;
+  }
+  .app-shell.dark main:not(.about-page) > section > .bg-white,
+  .app-shell.dark main:not(.about-page) > section.bg-white,
+  .app-shell.dark main:not(.about-page) > .grid > section > .bg-white,
+  .app-shell.dark .os-form > div,
+  .app-shell.dark .workspace-preview,
+  .app-shell.dark .os-form,
+  .app-shell.dark main:not(.about-page) > section:nth-child(3) {
+    background: linear-gradient(145deg, #0c111c 0%, #070a10 100%) !important;
+    border-color: var(--amoled-line) !important;
+    color: var(--amoled-text) !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.025) !important;
+  }
+  .app-shell.dark .os-form > div {
+    position: relative;
+    overflow: hidden;
+  }
+  .app-shell.dark .os-form > div::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #3f83ff, #a855f7, #22d3ee);
+    opacity: .8;
+  }
+  .app-shell.dark .os-form h3,
+  .app-shell.dark .os-form h2,
+  .app-shell.dark main:not(.about-page) h2,
+  .app-shell.dark main:not(.about-page) h3 {
+    color: #eaf2ff !important;
+  }
+  .app-shell.dark .os-form label,
+  .app-shell.dark main:not(.about-page) .text-slate-500,
+  .app-shell.dark main:not(.about-page) .text-slate-400 {
+    color: #8fa2c1 !important;
+  }
+  .app-shell.dark .os-form input,
+  .app-shell.dark .os-form select,
+  .app-shell.dark .os-form textarea,
+  .app-shell.dark main:not(.about-page) input,
+  .app-shell.dark main:not(.about-page) select,
+  .app-shell.dark main:not(.about-page) textarea {
+    color: #edf5ff !important;
+    background: #05080e !important;
+    border-color: rgba(111,145,205,.28) !important;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.35);
+  }
+  .app-shell.dark .os-form input::placeholder,
+  .app-shell.dark main:not(.about-page) input::placeholder,
+  .app-shell.dark main:not(.about-page) textarea::placeholder {
+    color: #586985 !important;
+  }
+  .app-shell.dark .os-form input:focus,
+  .app-shell.dark .os-form select:focus,
+  .app-shell.dark .os-form textarea:focus,
+  .app-shell.dark main:not(.about-page) input:focus {
+    border-color: #398bff !important;
+    box-shadow: 0 0 0 3px rgba(57,139,255,.16), 0 0 20px rgba(57,139,255,.1) !important;
+  }
+  .app-shell.dark .os-form option { background: #080d18; color: #edf5ff; }
+  .app-shell.dark .os-form .bg-slate-50,
+  .app-shell.dark .os-form .bg-slate-100,
+  .app-shell.dark main:not(.about-page) .bg-slate-50,
+  .app-shell.dark main:not(.about-page) .bg-slate-100 {
+    background: #101827 !important;
+    border-color: var(--amoled-line) !important;
+    color: #d8e6ff !important;
+  }
+  .app-shell.dark .os-form .text-slate-950,
+  .app-shell.dark .os-form .text-slate-900,
+  .app-shell.dark .os-form .text-slate-850,
+  .app-shell.dark .os-form .text-slate-800,
+  .app-shell.dark .os-form .text-slate-700,
+  .app-shell.dark main:not(.about-page) .text-slate-950,
+  .app-shell.dark main:not(.about-page) .text-slate-900,
+  .app-shell.dark main:not(.about-page) .text-slate-850,
+  .app-shell.dark main:not(.about-page) .text-slate-800,
+  .app-shell.dark main:not(.about-page) .text-slate-700 {
+    color: #dce8fc !important;
+  }
+  .app-shell.dark .os-form .text-indigo-600,
+  .app-shell.dark .os-form .text-indigo-650,
+  .app-shell.dark .os-form .text-indigo-700 {
+    color: #8daeff !important;
+  }
+  .app-shell.dark .os-form .bg-indigo-50,
+  .app-shell.dark main:not(.about-page) .bg-indigo-50 {
+    background: rgba(49,91,190,.17) !important;
+    border-color: rgba(89,139,255,.3) !important;
+    color: #c7dcff !important;
+  }
+  .app-shell.dark .os-form button[class*="bg-slate-950"] {
+    background: linear-gradient(130deg,#285de0,#713de0) !important;
+    border-color: #6b91ff !important;
+    color: #fff !important;
+    box-shadow: 0 0 22px rgba(74,104,255,.26), inset 0 1px rgba(255,255,255,.18) !important;
+  }
+  .app-shell.dark .os-form button[class*="bg-white"] {
+    background: #0d1422 !important;
+    border-color: rgba(113,145,200,.26) !important;
+    color: #c6d6ef !important;
+  }
+  .app-shell.dark .os-form button[class*="bg-white"]:hover {
+    background: #14223a !important;
+    border-color: rgba(36,215,242,.45) !important;
+    color: #fff !important;
+  }
+  .app-shell.dark .os-form .bg-rose-50,
+  .app-shell.dark main:not(.about-page) .bg-rose-50 {
+    background: rgba(190,35,80,.14) !important;
+    border-color: rgba(255,91,132,.28) !important;
+    color: #ff9db5 !important;
+  }
+  .app-shell.dark .os-form .text-rose-700,
+  .app-shell.dark .os-form .text-rose-600 { color: #ff8ca9 !important; }
+  .app-shell.dark .os-form .bg-emerald-50,
+  .app-shell.dark main:not(.about-page) .bg-emerald-50 {
+    background: rgba(16,185,129,.13) !important;
+    border-color: rgba(66,245,161,.25) !important;
+    color: #75f5ba !important;
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div {
+    background: linear-gradient(145deg,#0d1421,#070a10) !important;
+    border-color: rgba(104,145,220,.2) !important;
+    box-shadow: 0 10px 28px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.035) !important;
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(1) > div:first-child {
+    color: #8fb6ff !important; background: rgba(59,130,246,.17) !important;
+    box-shadow: 0 0 20px rgba(59,130,246,.12);
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(2) > div:first-child {
+    color: #c4a5ff !important; background: rgba(168,85,247,.16) !important;
+    box-shadow: 0 0 20px rgba(168,85,247,.12);
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(3) > div:first-child {
+    color: #65edbd !important; background: rgba(16,185,129,.15) !important;
+    box-shadow: 0 0 20px rgba(16,185,129,.1);
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(4) > div:first-child {
+    color: #ff8aa7 !important; background: rgba(244,63,94,.15) !important;
+    box-shadow: 0 0 20px rgba(244,63,94,.1);
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div > div:nth-child(2) {
+    color: #f2f7ff !important;
+    text-shadow: 0 0 18px rgba(77,141,255,.13);
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(3) {
+    background: linear-gradient(105deg,#0b1322,#0b0b18) !important;
+    border-color: rgba(77,141,255,.23) !important;
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(3) button {
+    background: linear-gradient(130deg,#174a9e,#5130a8) !important;
+    border: 1px solid rgba(113,164,255,.34) !important;
+    color: #fff !important;
+    box-shadow: 0 0 18px rgba(62,115,255,.14);
+  }
+  .app-shell.dark main:not(.about-page) > section:nth-child(3) button:hover {
+    filter: brightness(1.22);
+    box-shadow: 0 0 24px rgba(36,215,242,.2);
+  }
+  .app-shell.dark .compact-preview-control button {
+    background: linear-gradient(110deg,#102d58,#27164b) !important;
+    border-color: rgba(89,151,255,.42) !important;
+    color: #d9eaff !important;
+    box-shadow: 0 0 20px rgba(61,121,255,.12);
+  }
+  .app-shell.dark .workspace-preview {
+    background: linear-gradient(145deg,#0b1220,#080b12) !important;
+    border-color: rgba(77,141,255,.2) !important;
+  }
+  .app-shell.dark .workspace-preview > .no-print {
+    color: #9eb5d8 !important;
+  }
+  .app-shell.dark .workspace-preview > .no-print span {
+    background: #17233b !important;
+    color: #9cc7ff !important;
+  }
+  .app-shell.dark footer.no-print {
+    background: #020307 !important;
+    border-color: rgba(77,141,255,.18) !important;
+    color: #7889a6 !important;
+  }
+  .app-shell.dark .os-form > div .border-slate-200,
+  .app-shell.dark main:not(.about-page) .border-slate-200,
+  .app-shell.dark main:not(.about-page) .border-slate-300 {
+    border-color: var(--amoled-line) !important;
+  }
+  .app-shell.dark ::selection {
+    background: #285de0;
+    color: #fff;
+  }
+  .app-shell.dark ::-webkit-scrollbar-track { background: #03050a; }
+  .app-shell.dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg,#315fe0,#713de0);
+    border: 2px solid #03050a;
+    border-radius: 99px;
+  }
+  .app-shell.dark ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg,#4b8fff,#a855f7);
+  }
+  .app-shell.dark .about-page {
+    color: #eaf2ff;
+  }
+  .app-shell.dark .about-info-card,
+  .app-shell.dark .about-content-card {
+    background: linear-gradient(145deg,#0d1421,#06080d) !important;
+    border-color: rgba(100,140,220,.2) !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.025);
+  }
+  .app-shell.dark .about-hero {
+    box-shadow: 0 18px 55px rgba(32,75,190,.18), 0 0 0 1px rgba(120,160,255,.14);
+  }
+  .app-shell.dark .about-icon {
+    background: rgba(68,110,255,.16) !important;
+    color: #83b5ff !important;
+    box-shadow: 0 0 18px rgba(68,110,255,.13);
+  }
+}
