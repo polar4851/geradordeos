@@ -13,7 +13,7 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f4f6fb;
 }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
@@ -68,3 +68,45 @@
   }
 }
 
+
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #f4f6fb;
+}
+
+::selection {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, .2);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1023px) {
+  #a4-job-ticket {
+    transform-origin: top center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
