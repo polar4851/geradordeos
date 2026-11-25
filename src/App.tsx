@@ -15,7 +15,7 @@ import {
   HelpCircle,
   Copy,
   FolderOpen,
-  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3, PenTool, ShieldCheck, ChevronRight, Moon, Sun
+  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3, PenTool, ShieldCheck, ChevronRight, Moon, Sun, BookOpen, ArrowLeft, Database, ClipboardList, PrinterCheck
 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { toPng } from 'html-to-image';
@@ -62,6 +62,7 @@ export default function App() {
   const importInputRef = useRef<HTMLInputElement>(null);
   const [storageError, setStorageError] = useState(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => localStorage.getItem('traco-os-theme') === 'dark');
+  const [activeTab, setActiveTab] = useState<'workspace' | 'about'>('workspace');
 
   useEffect(() => {
     localStorage.setItem('traco-os-theme', darkMode ? 'dark' : 'light');
@@ -346,6 +347,15 @@ export default function App() {
         {/* Core App Actions */}
         {activeOS && (
           <div className="flex items-center gap-2 md:gap-3">
+            <button
+              type="button"
+              onClick={() => { setActiveTab(activeTab === 'about' ? 'workspace' : 'about'); setShowHelp(false); }}
+              aria-pressed={activeTab === 'about'}
+              className={`about-tab inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-xs font-extrabold transition ${activeTab === 'about' ? 'about-tab-active' : ''}`}
+            >
+              {activeTab === 'about' ? <ArrowLeft className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
+              {activeTab === 'about' ? 'Voltar ao painel' : 'Sobre & créditos'}
+            </button>
 
             <button
               type="button"
@@ -396,7 +406,7 @@ export default function App() {
       </header>
 
       {/* QUICK INSTRUCTIONS BANNER */}
-      {showHelp && (
+      {showHelp && activeTab === 'workspace' && (
         <div className="no-print bg-indigo-50/75 border-b border-indigo-100 px-6 py-4 animate-fadeIn transition-all">
           <div className="max-w-[1400px] mx-auto flex items-start gap-3 text-indigo-955 text-xs">
             <Info className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
@@ -421,7 +431,84 @@ export default function App() {
 
       {/* DETAILED SERVICE WORKSPACE BOARD */}
 
-      <main className="flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-7 flex flex-col gap-6 overflow-y-auto">
+      {activeTab === 'about' && (
+        <main className="about-page flex-1 w-full max-w-[1240px] mx-auto px-4 py-7 md:px-8 md:py-10">
+          <section className="about-hero relative overflow-hidden rounded-[2rem] p-7 md:p-12 text-white">
+            <div className="relative z-10 max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.2em]">Manual do projeto · Traço OS</span>
+              <h2 className="mt-5 text-4xl md:text-6xl font-black tracking-tight">Produção visual, <span className="text-indigo-300">sem bagunça.</span></h2>
+              <p className="mt-4 max-w-2xl text-sm md:text-base leading-relaxed text-slate-300">Um sistema leve para organizar ordens de serviço de comunicação visual, reunir as informações técnicas e entregar uma ficha de produção pronta para imprimir.</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <button type="button" onClick={() => setActiveTab('workspace')} className="rounded-xl bg-white px-5 py-3 text-xs font-black text-slate-950 hover:bg-indigo-100 transition">Abrir o painel <ArrowLeft className="ml-2 inline h-4 w-4 rotate-180" /></button>
+                <a href="https://github.com/polar4851/geradordeos" target="_blank" rel="noreferrer" className="rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-xs font-bold text-white hover:bg-white/15 transition">Ver código no GitHub ↗</a>
+              </div>
+            </div>
+            <div className="about-hero-pokemon" aria-hidden="true"><img src="https://media.giphy.com/media/pUh8KWBxCjMeMI3S3y/giphy.gif" alt="" /></div>
+          </section>
+
+          <section className="mt-8 grid gap-4 md:grid-cols-3">
+            <article className="about-info-card"><div className="about-icon"><ClipboardList /></div><h3>Ordens de serviço</h3><p>Cadastro de cliente, material, medidas, quantidade, acabamento, aplicação e observações para orientar a produção.</p></article>
+            <article className="about-info-card"><div className="about-icon"><PrinterCheck /></div><h3>Ficha A4</h3><p>Prévia da ordem com referência visual e dados técnicos, pronta para impressão direta ou exportação em PDF A4.</p></article>
+            <article className="about-info-card"><div className="about-icon"><Database /></div><h3>Dados locais</h3><p>Os registros ficam armazenados no navegador deste dispositivo. Exporte backups JSON para guardar uma cópia ou transferir seus dados manualmente.</p></article>
+          </section>
+
+          <section className="about-content-card mt-6 grid gap-8 p-6 md:grid-cols-[1.1fr_.9fr] md:p-9">
+            <div>
+              <p className="about-eyebrow">README · VISÃO GERAL</p>
+              <h3 className="mt-2 text-2xl font-black tracking-tight">O que é o Traço OS?</h3>
+              <p className="mt-3 text-sm leading-7 about-muted">O Traço OS foi pensado para o dia a dia de gráficas e empresas de comunicação visual. A proposta é centralizar os detalhes de cada trabalho em uma ordem clara, reduzindo dúvidas entre atendimento, arte-final e produção.</p>
+              <h4 className="mt-7 text-sm font-extrabold">Fluxo de trabalho</h4>
+              <ol className="about-steps mt-3">
+                <li><b>1.</b><span>Crie uma ordem e preencha os dados do cliente e do serviço.</span></li>
+                <li><b>2.</b><span>Selecione o material e informe medidas, quantidade e acabamentos.</span></li>
+                <li><b>3.</b><span>Copie uma imagem do layout e use Ctrl + V para anexá-la à ordem.</span></li>
+                <li><b>4.</b><span>Confira a ficha A4 e imprima ou gere o PDF para a equipe.</span></li>
+              </ol>
+              <h4 className="mt-7 text-sm font-extrabold">Recursos principais</h4>
+              <ul className="about-bullets mt-3">
+                <li>Histórico de ordens, duplicação e exclusão.</li>
+                <li>Prévia da ficha de produção em formato A4.</li>
+                <li>Importação e exportação de backup em JSON.</li>
+                <li>Modo claro e modo escuro.</li>
+                <li>Uso local, sem exigir conta para operar.</li>
+              </ul>
+            </div>
+            <aside className="about-side-panel">
+              <div className="flex items-center justify-between gap-3"><span className="about-eyebrow">NA PRÁTICA</span><span className="text-2xl">⚡</span></div>
+              <h4 className="mt-2 text-xl font-black">Feito para quem produz.</h4>
+              <p className="mt-2 text-sm leading-6 about-muted">Menos informação perdida no caminho. Mais clareza para quem vai imprimir, recortar, aplicar, montar e finalizar.</p>
+              <div className="about-gif-strip mt-5">
+                <img src="https://media.giphy.com/media/USt7gn6Y52m8GWvMPO/giphy.gif" alt="Pokémon dançando" loading="lazy" />
+                <img src="https://media.giphy.com/media/rFBoIFurssZMq4VzbJ/giphy.gif" alt="Pokémon dançando" loading="lazy" />
+                <img src="https://media.giphy.com/media/tDJfaLVF0gHV90lxZj/giphy.gif" alt="Eevee dançando" loading="lazy" />
+              </div>
+              <p className="mt-3 text-[10px] about-muted">Animações incorporadas de páginas do GIPHY.</p>
+            </aside>
+          </section>
+
+          <section className="mt-6 rounded-2xl border border-indigo-400/20 bg-indigo-500/5 p-5 md:p-6">
+            <h3 className="text-sm font-black">Tecnologia e transparência</h3>
+            <p className="mt-2 text-sm leading-6 about-muted">Interface construída com React, TypeScript, Tailwind CSS e Vite. Os dados de ordens são mantidos no localStorage do navegador. Isso significa que não há sincronização automática entre computadores: mantenha backups atualizados para evitar perda de informações.</p>
+          </section>
+
+          <section className="about-gif-gallery mt-8">
+            <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon também entrou na produção.</h3></div><a href="https://giphy.com/pokemon" target="_blank" rel="noreferrer" className="text-xs font-bold text-indigo-500 hover:underline">Mais GIFs no GIPHY ↗</a></div>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <div><img src="https://media.giphy.com/media/pUh8KWBxCjMeMI3S3y/giphy.gif" alt="Pikachu em uma fila dançante" loading="lazy" /><span>Pikachu no ritmo</span></div>
+              <div><img src="https://media.giphy.com/media/USt7gn6Y52m8GWvMPO/giphy.gif" alt="Pokémon dançando" loading="lazy" /><span>Energia para produzir</span></div>
+              <div><img src="https://media.giphy.com/media/rFBoIFurssZMq4VzbJ/giphy.gif" alt="Slurpuff dançando" loading="lazy" /><span>Acabamento caprichado</span></div>
+              <div><img src="https://media.giphy.com/media/tDJfaLVF0gHV90lxZj/giphy.gif" alt="Eevee dançando" loading="lazy" /><span>Ordem finalizada!</span></div>
+            </div>
+          </section>
+
+          <section className="about-credit-callout mt-8">
+            <div><p className="about-eyebrow">QUEM FEZ ACONTECER</p><h3 className="mt-1 text-2xl font-black">Desenvolvido por Warleandro Nascimento.</h3><p className="mt-2 text-sm about-muted">A autoria e os contatos continuam disponíveis no rodapé do sistema.</p></div>
+            <div className="text-4xl" aria-hidden="true">✦</div>
+          </section>
+        </main>
+      )}
+
+      <main className={`${activeTab === 'about' ? 'hidden' : ''} flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-7 flex flex-col gap-6 overflow-y-auto`}>
         <section className="no-print flex flex-col md:flex-row md:items-end justify-between gap-3 pt-1">
           <div><p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600 mb-2">CENTRAL DE OPERAÇÕES</p><h2 className="text-2xl md:text-[28px] font-extrabold tracking-tight text-slate-950">Sua produção, em ordem.</h2><p className="text-sm text-slate-500 mt-1">Gerencie serviços, acompanhe prazos e prepare a ficha para a equipe.</p></div>
           <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 rounded-full px-3.5 py-2 shadow-sm"><ShieldCheck className="w-4 h-4 text-emerald-600"/> Seus dados ficam neste navegador</div>
