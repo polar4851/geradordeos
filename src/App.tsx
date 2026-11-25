@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ServiceOrder, MaterialType } from './types';
 import OSForm from './components/OSForm';
 import OSPreview from './components/OSPreview';
@@ -15,7 +15,7 @@ import {
   HelpCircle,
   Copy,
   FolderOpen,
-  Info
+  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3
 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { toPng } from 'html-to-image';
@@ -29,7 +29,7 @@ const DEFAULT_ORDERS: ServiceOrder[] = [
     osNumber: 'OS-1001',
     dataEmissao: new Date().toISOString().split('T')[0],
     dataEntrega: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    clienteNome: 'Nome do Cliente',
+    clienteNome: '',
     clienteContato: '',
     vendedor: '',
     designer: '',
@@ -46,7 +46,7 @@ const DEFAULT_ORDERS: ServiceOrder[] = [
     pastedImage: null,
     imageFit: 'contain',
     imageRotation: 0,
-    companyName: 'SUL SINALIZAÇÃO',
+    companyName: 'Sua empresa',
     companyPhone: '',
     status: 'producao'
   }
@@ -59,6 +59,8 @@ export default function App() {
   const [activeOSId, setActiveOSId] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [showHelp, setShowHelp] = useState<boolean>(false);
+  const importInputRef = useRef<HTMLInputElement>(null);
+  const [storageError, setStorageError] = useState(false);
 
   // 1. Load data from localStorage on startup
   useEffect(() => {
@@ -87,7 +89,7 @@ export default function App() {
   // 2. Sync to localStorage when orders change
   useEffect(() => {
     if (orders.length > 0) {
-      localStorage.setItem('visual_comm_os_list', JSON.stringify(orders));
+      try { localStorage.setItem('visual_comm_os_list', JSON.stringify(orders)); setStorageError(false); } catch (error) { console.error('Falha ao salvar', error); setStorageError(true); }
     }
   }, [orders]);
 
@@ -142,6 +144,43 @@ export default function App() {
     };
   }, [activeOSId, orders]);
 
+
+  const handleExportBackup = () => {
+    const payload = { app: 'Gerador de OS', version: 1, exportedAt: new Date().toISOString(), orders };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'backup-gerador-de-os-' + new Date().toISOString().slice(0, 10) + '.json';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+  const handleImportBackup = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result));
+        const imported = Array.isArray(parsed) ? parsed : parsed.orders;
+        if (!Array.isArray(imported) || imported.some((item: any) => !item || typeof item.id !== 'string' || typeof item.osNumber !== 'string' || typeof item.clienteNome !== 'string' || typeof item.material !== 'string')) throw new Error('Formato inválido');
+        if (!window.confirm('Importar ' + imported.length + ' ordem(ns)? Os dados atuais deste navegador serão substituídos.')) return;
+        setOrders(imported); setActiveOSId(imported[0]?.id || '');
+        localStorage.setItem('visual_comm_os_list', JSON.stringify(imported)); setStorageError(false);
+        alert('Backup importado com sucesso.');
+      } catch (error) { alert('Não foi possível importar. Selecione um backup JSON válido deste sistema.'); }
+      finally { event.target.value = ''; }
+    };
+    reader.readAsText(file);
+  };
+  const counts = {
+    total: orders.length,
+    draft: orders.filter((order) => order.status === 'rascunho').length,
+    production: orders.filter((order) => order.status === 'producao').length,
+    completed: orders.filter((order) => order.status === 'concluido').length,
+    overdue: orders.filter((order) => order.status !== 'concluido' && order.dataEntrega && new Date(order.dataEntrega + 'T23:59:59') < new Date()).length
+  };
+
   // Find active Service Order payload
   const activeOS = orders.find((ord) => ord.id === activeOSId) || orders[0];
 
@@ -158,8 +197,8 @@ export default function App() {
       : 'OS-1001';
 
     // Copy branding details from active one if exists
-    const currentCompany = activeOS?.companyName || 'SUL SINALIZAÇÃO';
-    const currentPhone = activeOS?.companyPhone || '(11) 4004-9876';
+    const currentCompany = activeOS?.companyName || 'Sua empresa';
+    const currentPhone = activeOS?.companyPhone || '';
 
     const newOS: ServiceOrder = {
       id: `os-${timestamp}`,
@@ -305,6 +344,12 @@ export default function App() {
         {/* Core App Actions */}
         {activeOS && (
           <div className="flex items-center gap-3">
+
+            <div className="hidden xl:flex items-center gap-2 mr-2">
+              <button type="button" onClick={handleExportBackup} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-600 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Save className="w-3.5 h-3.5" /> Backup</button>
+              <button type="button" onClick={() => importInputRef.current?.click()} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-600 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Upload className="w-3.5 h-3.5" /> Restaurar</button>
+              <input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup} />
+            </div>
             <button
               type="button"
               onClick={() => setShowHelp(!showHelp)}
@@ -368,7 +413,20 @@ export default function App() {
       )}
 
       {/* DETAILED SERVICE WORKSPACE BOARD */}
-      <main className="flex-1 max-w-[1640px] w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start overflow-y-auto">
+
+      <main className="flex-1 max-w-[1640px] w-full mx-auto p-4 md:p-6 flex flex-col gap-5 overflow-y-auto">
+        <section className="no-print grid grid-cols-2 md:grid-cols-5 gap-3">
+          {[
+            { label: 'Ordens cadastradas', value: counts.total, icon: FileText, tone: 'text-indigo-600 bg-indigo-50' },
+            { label: 'Em rascunho', value: counts.draft, icon: Clipboard, tone: 'text-slate-600 bg-slate-100' },
+            { label: 'Na produção', value: counts.production, icon: Layers, tone: 'text-amber-600 bg-amber-50' },
+            { label: 'Concluídas', value: counts.completed, icon: CheckCircle2, tone: 'text-emerald-600 bg-emerald-50' },
+            { label: 'Prazo vencido', value: counts.overdue, icon: Clock3, tone: counts.overdue ? 'text-rose-600 bg-rose-50' : 'text-slate-500 bg-slate-100' }
+          ].map((item) => { const Icon = item.icon; return <div key={item.label} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex items-center gap-3"><div className={'w-9 h-9 rounded-lg flex items-center justify-center ' + item.tone}><Icon className="w-4 h-4" /></div><div><div className="text-xl font-black text-slate-900 leading-none">{item.value}</div><div className="text-[10px] text-slate-500 font-semibold mt-1">{item.label}</div></div></div>; })}
+        </section>
+        {storageError && <div className="no-print rounded-lg border border-rose-200 bg-rose-50 text-rose-800 px-4 py-3 text-xs font-semibold">O navegador não conseguiu salvar as alterações. Exporte um backup e libere espaço antes de continuar.</div>}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
         
         {/* SIDEBAR Column 1: DB History & Actions (col-span-3) */}
         <section className="no-print lg:col-span-3 space-y-4 h-full">
@@ -434,6 +492,7 @@ export default function App() {
           )}
         </section>
 
+      </div>
       </main>
 
       {/* Bottom Status Bar */}
@@ -441,12 +500,17 @@ export default function App() {
         <div className="flex gap-4">
           <span>SISTEMA: ONLINE</span>
           <span>PILOTO COPIADO (CTRL+V): MONITORANDO</span>
-          <span>ESTOQUE DE CHAPA: REGULADO</span>
+          <span>ARMAZENAMENTO: NESTE NAVEGADOR</span>
         </div>
         <div className="flex gap-2 items-center font-semibold text-slate-300">
           <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-          SINCRONIZADO COM BANCO DE PROVEC LOCAL
+          SALVAMENTO LOCAL ATIVO
         </div>
+      </footer>
+
+      <footer className="no-print bg-white border-t border-slate-200 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div className="text-center sm:text-left"><p className="font-semibold text-slate-700">Desenvolvido por <span className="text-indigo-600">Warleandro Nascimento</span></p><p className="text-[11px] mt-0.5">Gerador de OS · Ferramenta independente para comunicação visual</p></div>
+        <div className="flex items-center gap-4"><a href="https://instagram.com/warleandro._" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-indigo-600 transition"><Instagram className="w-4 h-4" /> @warleandro._</a><a href="https://wa.me/5563999318046" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-emerald-600 transition"><MessageCircle className="w-4 h-4" /> WhatsApp</a></div>
       </footer>
     </div>
   );
