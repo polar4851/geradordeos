@@ -93,11 +93,19 @@ export default function App() {
     }
   }, []);
 
-  // 2. Sync to localStorage when orders change
+  // 2. Persist after a short pause, avoiding JSON serialization on every keystroke.
   useEffect(() => {
-    if (orders.length > 0) {
-      try { localStorage.setItem('visual_comm_os_list', JSON.stringify(orders)); setStorageError(false); } catch (error) { console.error('Falha ao salvar', error); setStorageError(true); }
-    }
+    if (orders.length === 0) return;
+    const timeoutId = window.setTimeout(() => {
+      try {
+        localStorage.setItem('visual_comm_os_list', JSON.stringify(orders));
+        setStorageError(false);
+      } catch (error) {
+        console.error('Falha ao salvar', error);
+        setStorageError(true);
+      }
+    }, 350);
+    return () => window.clearTimeout(timeoutId);
   }, [orders]);
 
   // 3. LISTEN TO GLOBAL PASTE (CTRL+V) EVENT
@@ -149,7 +157,7 @@ export default function App() {
     return () => {
       window.removeEventListener('paste', handleGlobalPaste);
     };
-  }, [activeOSId, orders]);
+  }, [activeOSId]);
 
 
   const handleExportBackup = () => {
