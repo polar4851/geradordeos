@@ -493,11 +493,13 @@ export default function App() {
 
           <section className="about-gif-gallery mt-8">
             <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon também entrou na produção.</h3></div><a href="https://giphy.com/pokemon" target="_blank" rel="noreferrer" className="text-xs font-bold text-indigo-500 hover:underline">Mais GIFs no GIPHY ↗</a></div>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
               <div><img src="https://media.giphy.com/media/pUh8KWBxCjMeMI3S3y/giphy.gif" alt="Pikachu em uma fila dançante" loading="lazy" /><span>Pikachu no ritmo</span></div>
               <div><img src="https://media.giphy.com/media/USt7gn6Y52m8GWvMPO/giphy.gif" alt="Pokémon dançando" loading="lazy" /><span>Energia para produzir</span></div>
               <div><img src="https://media.giphy.com/media/rFBoIFurssZMq4VzbJ/giphy.gif" alt="Slurpuff dançando" loading="lazy" /><span>Acabamento caprichado</span></div>
               <div><img src="https://media.giphy.com/media/tDJfaLVF0gHV90lxZj/giphy.gif" alt="Eevee dançando" loading="lazy" /><span>Ordem finalizada!</span></div>
+              <div><img src="https://media.giphy.com/media/FOViXL2Rwt1fDhkIwY/giphy.gif" alt="Pikachu em animação" loading="lazy" /><span>Conferência final</span></div>
+              <div><img src="https://media.giphy.com/media/PmWfoXFGj9uTaEmMJt/giphy.gif" alt="Pikachu sorrindo" loading="lazy" /><span>Missão cumprida</span></div>
             </div>
           </section>
 
