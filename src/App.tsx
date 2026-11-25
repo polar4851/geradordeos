@@ -15,7 +15,7 @@ import {
   HelpCircle,
   Copy,
   FolderOpen,
-  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3
+  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3, PenTool, ShieldCheck, ChevronRight
 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { toPng } from 'html-to-image';
@@ -146,12 +146,12 @@ export default function App() {
 
 
   const handleExportBackup = () => {
-    const payload = { app: 'Gerador de OS', version: 1, exportedAt: new Date().toISOString(), orders };
+    const payload = { app: 'Traço OS', version: 1, exportedAt: new Date().toISOString(), orders };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'backup-gerador-de-os-' + new Date().toISOString().slice(0, 10) + '.json';
+    link.download = 'backup-traco-os-' + new Date().toISOString().slice(0, 10) + '.json';
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -324,21 +324,18 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col font-sans text-slate-800">
+    <div className="min-h-screen bg-[#f4f6fb] flex flex-col font-sans text-slate-800">
       {/* NAVIGATION HEADER BAR */}
-      <header className="no-print flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 shadow-sm z-10">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 bg-indigo-600 rounded flex items-center justify-center text-white font-bold text-xl shadow-inner italic">
-            V
+      <header className="no-print sticky top-0 flex flex-wrap items-center justify-between gap-4 px-5 md:px-8 py-4 bg-white/95 backdrop-blur border-b border-slate-200/80 shadow-[0_2px_16px_rgba(15,23,42,0.04)] z-20">
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 bg-slate-950 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/15">
+            <PenTool className="w-5 h-5" strokeWidth={2.2} />
           </div>
           <div>
-            <h1 className="text-lg font-bold tracking-tight text-slate-900">
-              VisualPro <span className="text-indigo-600">OS</span>
-            </h1>
-            <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold">
-              Módulo de Produção v4.2
-            </p>
+            <h1 className="text-[21px] leading-none font-extrabold tracking-tight text-slate-950">Traço<span className="text-indigo-600">OS</span></h1>
+            <p className="text-[10px] text-slate-500 mt-1.5 font-bold uppercase tracking-[0.18em]">Gestão de produção visual</p>
           </div>
+          <div className="hidden md:flex items-center gap-2 ml-5 pl-5 border-l border-slate-200 text-[11px] text-slate-500 font-medium"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Ambiente local</div>
         </div>
 
         {/* Core App Actions */}
@@ -348,7 +345,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setShowHelp(!showHelp)}
-              className="px-3.5 py-2 hover:bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-semibold tracking-tight transition"
+              className="px-3.5 py-2.5 hover:bg-slate-50 text-slate-600 border border-slate-200 rounded-xl text-xs font-semibold tracking-tight transition"
             >
               Ajuda / Tutorial Ctrl+V
             </button>
@@ -356,7 +353,7 @@ export default function App() {
             <button
               type="button"
               onClick={handleDirectPrint}
-              className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition active:scale-95"
+              className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition active:scale-95 shadow-sm"
             >
               Imprimir Direto
             </button>
@@ -365,7 +362,7 @@ export default function App() {
               type="button"
               disabled={isGenerating}
               onClick={handleExportPDF}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 text-white rounded-lg text-xs font-bold shadow-md transition active:scale-95 flex items-center gap-1.5"
+              className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/15 transition active:scale-95 flex items-center gap-1.5"
             >
               {isGenerating ? (
                 <>
@@ -409,18 +406,23 @@ export default function App() {
 
       {/* DETAILED SERVICE WORKSPACE BOARD */}
 
-      <main className="flex-1 max-w-[1640px] w-full mx-auto p-4 md:p-6 flex flex-col gap-5 overflow-y-auto">
-        <section className="no-print grid grid-cols-2 md:grid-cols-5 gap-3">
+      <main className="flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-7 flex flex-col gap-6 overflow-y-auto">
+        <section className="no-print flex flex-col md:flex-row md:items-end justify-between gap-3 pt-1">
+          <div><p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600 mb-2">CENTRAL DE OPERAÇÕES</p><h2 className="text-2xl md:text-[28px] font-extrabold tracking-tight text-slate-950">Sua produção, em ordem.</h2><p className="text-sm text-slate-500 mt-1">Gerencie serviços, acompanhe prazos e prepare a ficha para a equipe.</p></div>
+          <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 rounded-full px-3.5 py-2 shadow-sm"><ShieldCheck className="w-4 h-4 text-emerald-600"/> Seus dados ficam neste navegador</div>
+        </section>
+
+        <section className="no-print grid grid-cols-2 xl:grid-cols-5 gap-3">
           {[
             { label: 'Ordens cadastradas', value: counts.total, icon: FileText, tone: 'text-indigo-600 bg-indigo-50' },
             { label: 'Em rascunho', value: counts.draft, icon: Clipboard, tone: 'text-slate-600 bg-slate-100' },
             { label: 'Na produção', value: counts.production, icon: Layers, tone: 'text-amber-600 bg-amber-50' },
             { label: 'Concluídas', value: counts.completed, icon: CheckCircle2, tone: 'text-emerald-600 bg-emerald-50' },
             { label: 'Prazo vencido', value: counts.overdue, icon: Clock3, tone: counts.overdue ? 'text-rose-600 bg-rose-50' : 'text-slate-500 bg-slate-100' }
-          ].map((item) => { const Icon = item.icon; return <div key={item.label} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex items-center gap-3"><div className={'w-9 h-9 rounded-lg flex items-center justify-center ' + item.tone}><Icon className="w-4 h-4" /></div><div><div className="text-xl font-black text-slate-900 leading-none">{item.value}</div><div className="text-[10px] text-slate-500 font-semibold mt-1">{item.label}</div></div></div>; })}
+          ].map((item) => { const Icon = item.icon; return <div key={item.label} className="bg-white border border-slate-200/80 rounded-2xl p-4 md:p-5 shadow-[0_3px_14px_rgba(15,23,42,0.035)] flex items-center gap-3.5 hover:-translate-y-0.5 hover:shadow-md transition-all"><div className={'w-9 h-9 rounded-lg flex items-center justify-center ' + item.tone}><Icon className="w-4 h-4" /></div><div><div className="text-xl font-black text-slate-900 leading-none">{item.value}</div><div className="text-[10px] text-slate-500 font-semibold mt-1">{item.label}</div></div></div>; })}
         </section>
 
-        <section className="no-print flex flex-wrap items-center justify-between gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3 shadow-sm">
+        <section className="no-print flex flex-wrap items-center justify-between gap-3 bg-white border border-slate-200/80 rounded-2xl px-5 py-4 shadow-[0_3px_14px_rgba(15,23,42,0.035)]">
           <div><p className="text-xs font-bold text-slate-800">Segurança dos seus registros</p><p className="text-[11px] text-slate-500 mt-0.5">Exporte uma cópia ou restaure um backup salvo anteriormente.</p></div>
           <div className="flex items-center gap-2">
             <button type="button" onClick={handleExportBackup} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Save className="w-3.5 h-3.5" /> Exportar backup</button>
@@ -429,11 +431,11 @@ export default function App() {
           </div>
         </section>
         {storageError && <div className="no-print rounded-lg border border-rose-200 bg-rose-50 text-rose-800 px-4 py-3 text-xs font-semibold">O navegador não conseguiu salvar as alterações. Exporte um backup e libere espaço antes de continuar.</div>}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 xl:gap-6 items-start">
 
         
         {/* SIDEBAR Column 1: DB History & Actions (col-span-3) */}
-        <section className="no-print lg:col-span-3 space-y-4 h-full">
+        <section className="no-print lg:col-span-3 space-y-4 h-full min-w-0">
           {orders.length > 0 && (
             <OSHistory
               orders={orders}
@@ -462,7 +464,7 @@ export default function App() {
         </section>
 
         {/* Column 2: O.S Dynamic Inputs Editor (col-span-5) */}
-        <section className="no-print lg:col-span-5 space-y-4">
+        <section className="no-print lg:col-span-5 space-y-4 min-w-0">
           {activeOS ? (
             <OSForm 
               activeOS={activeOS} 
@@ -476,7 +478,7 @@ export default function App() {
         </section>
 
         {/* Column 3: Live Printable A4 Simulation Preview Panel (col-span-4) */}
-        <section className="lg:col-span-4 bg-slate-200/50 p-2 md:p-4 rounded-xl border border-slate-200 w-full overflow-hidden flex flex-col items-center">
+        <section className="lg:col-span-4 bg-[#e9edf5] p-3 md:p-4 rounded-2xl border border-slate-200 w-full overflow-hidden flex flex-col items-center min-w-0">
           <div className="no-print mb-2.5 text-center">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest bg-slate-200 px-2 py-1 rounded">
               📃 GABARITO IMPRESSÃO A4 (100%)
@@ -500,7 +502,7 @@ export default function App() {
       </main>
 
       {/* Bottom Status Bar */}
-      <footer className="no-print px-6 py-2.5 bg-slate-900 text-slate-400 flex justify-between items-center text-[10px] font-medium border-t border-slate-950 mt-auto">
+      <footer className="no-print px-6 py-3 bg-slate-950 text-slate-400 flex flex-wrap gap-2 justify-between items-center text-[10px] font-medium border-t border-slate-900 mt-auto">
         <div className="flex gap-4">
           <span>SISTEMA: ONLINE</span>
           <span>PILOTO COPIADO (CTRL+V): MONITORANDO</span>
@@ -513,7 +515,7 @@ export default function App() {
       </footer>
 
       <footer className="no-print bg-white border-t border-slate-200 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <div className="text-center sm:text-left"><p className="font-semibold text-slate-700">Desenvolvido por <span className="text-indigo-600">Warleandro Nascimento</span></p><p className="text-[11px] mt-0.5">Gerador de OS · Ferramenta independente para comunicação visual</p></div>
+        <div className="text-center sm:text-left"><p className="font-semibold text-slate-700">Desenvolvido por <span className="text-indigo-600">Warleandro Nascimento</span></p><p className="text-[11px] mt-0.5">Traço OS · Gestão de ordens para comunicação visual</p></div>
         <div className="flex items-center gap-4"><a href="https://instagram.com/warleandro._" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-indigo-600 transition"><Instagram className="w-4 h-4" /> @warleandro._</a><a href="https://wa.me/5563999318046" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-emerald-600 transition"><MessageCircle className="w-4 h-4" /> WhatsApp</a></div>
       </footer>
     </div>
