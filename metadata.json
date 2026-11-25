@@ -1,6 +1,6 @@
 {
-  "name": "Gerador de OS - Comunicação Visual",
-  "description": "Aplicação para cadastrar, organizar, acompanhar e imprimir ordens de serviço A4 para comunicação visual, com anexos de referência, especificações técnicas e backup local.",
+  "name": "Traço OS - Gestão de produção visual",
+  "description": "Sistema para organizar ordens de serviço, acompanhar etapas de produção e gerar fichas A4 para empresas de comunicação visual.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
