@@ -1,8 +1,10 @@
 <div align="center">
 
-# Gerador de OS
+# Traço OS
 
-**Organização de ordens de serviço para empresas de comunicação visual.**
+**Gestão de ordens de serviço para comunicação visual.**
+
+Organize pedidos, acompanhe prazos e entregue à produção uma ficha técnica clara, com medidas, materiais e referência da arte.
 
 ![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
@@ -12,33 +14,27 @@
 
 ---
 
-## Sobre o projeto
+## O que é
 
-O Gerador de OS reúne em uma única tela as informações necessárias para encaminhar um trabalho da etapa de atendimento e arte-final para a produção. A ordem pode ser conferida em uma prévia A4, exportada em PDF ou impressa.
+O **Traço OS** foi pensado para a rotina de gráficas e empresas de comunicação visual. Ele centraliza as informações do serviço desde o atendimento até a execução: cliente, responsáveis, prazo, material, dimensões, acabamentos e imagem de referência.
 
 ## Recursos
 
 - Cadastro, edição, duplicação e exclusão de ordens de serviço.
-- Histórico com pesquisa por cliente, número da O.S., vendedor e material.
-- Indicadores de ordens cadastradas, rascunhos, produção, concluídas e prazos vencidos.
-- Dados da empresa, cliente, contato, vendedor, arte-finalista e datas.
-- Materiais e especificações de dimensões, quantidade, recorte, acabamento e aplicação.
-- Inclusão de imagem por upload, arrastar e soltar ou colagem com **Ctrl + V**.
-- Ajustes de rotação e enquadramento da imagem.
-- Pré-visualização em folha A4.
+- Histórico pesquisável por cliente, número da O.S., vendedor e material.
+- Painel com totais, rascunhos, ordens em produção, concluídas e prazos vencidos.
+- Cadastro de empresa, cliente, contato, vendedor, arte-finalista e datas.
+- Seleção de materiais como adesivo, lona, PVC, acrílico, MDF e banner.
+- Medidas, quantidade, cálculo de área, recorte, acabamento e aplicação.
+- Imagem de referência por upload, arrastar e soltar ou colagem com **Ctrl + V**.
+- Pré-visualização da ficha em formato A4.
 - Exportação em PDF e impressão pelo navegador.
-- Backup das ordens em arquivo JSON e restauração a partir desse arquivo.
-- Salvamento automático no armazenamento local do navegador.
+- Backup e restauração dos registros em JSON.
+- Salvamento local automático no navegador.
 
 ## Tecnologias
 
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS
-- jsPDF
-- html-to-image
-- Lucide React
+React 19, TypeScript, Vite, Tailwind CSS, jsPDF, html-to-image e Lucide React.
 
 ## Executar localmente
 
@@ -51,33 +47,31 @@ npm install
 npm run dev
 ```
 
-Abra o endereço exibido no terminal. O servidor de desenvolvimento utiliza a porta 3000 por padrão.
+O endereço local será exibido no terminal. O servidor Vite utiliza a porta 3000 por padrão.
 
 ## Scripts
 
 | Comando | Descrição |
 | --- | --- |
 | `npm run dev` | Inicia o ambiente de desenvolvimento. |
-| `npm run build` | Gera a versão de produção em `dist`. |
-| `npm run preview` | Executa uma prévia da versão de produção. |
+| `npm run build` | Gera os arquivos de produção em `dist`. |
+| `npm run preview` | Visualiza a versão de produção. |
 | `npm run lint` | Verifica os tipos TypeScript. |
 
-## Armazenamento e privacidade
+## Armazenamento: leia antes de usar
 
-As ordens são armazenadas no `localStorage` do navegador. Não existe sincronização automática entre computadores ou navegadores, nem banco de dados remoto nesta versão.
+Nesta versão, as ordens ficam no `localStorage` do navegador. Isso significa que **não há sincronização entre computadores ou navegadores**, nem banco de dados remoto.
 
-**Atenção:** limpar os dados do navegador, trocar de dispositivo ou usar outro perfil pode fazer as ordens deixarem de ficar disponíveis. Use regularmente a opção **Backup** para baixar um arquivo JSON e guarde-o em um local seguro. A opção **Restaurar** substitui os registros atuais pelos dados do backup selecionado.
+Faça backups regularmente usando **Exportar backup**. A restauração substitui os registros existentes no navegador pelos dados do arquivo escolhido. Guarde os backups em local seguro, pois podem conter informações de clientes.
 
-As ordens podem conter dados de clientes. Proteja os arquivos de backup e evite armazenar informações desnecessárias.
+## Fluxo de trabalho
 
-## Fluxo recomendado
-
-1. Crie uma nova O.S. e informe os dados da empresa e do cliente.
-2. Preencha responsável, prazo, material, medidas e quantidade.
-3. Anexe a imagem de referência do trabalho.
-4. Confira as especificações e a prévia A4 antes de encaminhar à produção.
-5. Gere o PDF ou imprima a ordem.
-6. Faça backups periódicos dos registros.
+1. Crie uma ordem e informe empresa, cliente e responsáveis.
+2. Escolha o material e preencha medidas, quantidade e acabamentos.
+3. Adicione a imagem de referência da arte.
+4. Revise a ficha A4 antes de encaminhar o serviço para produção.
+5. Exporte o PDF ou imprima.
+6. Faça backup dos registros periodicamente.
 
 ---
 
@@ -87,4 +81,3 @@ Desenvolvido por **Warleandro Nascimento**.
 
 - Instagram: [@warleandro._](https://instagram.com/warleandro._)
 - WhatsApp: [63 99931-8046](https://wa.me/5563999318046)
-
