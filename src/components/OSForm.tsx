@@ -447,7 +447,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
             <div>
               <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Acabamento de Impressão</label>
               <select
-                value={activeOS.detalhes.acabamento || 'Bastão e Cordão'}
+                value={activeOS.detalhes.acabamento || 'Bastão de madeira superior'}
                 onChange={(e) => updateDetail('acabamento', e.target.value)}
                 className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-2.5 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium"
               >
@@ -465,6 +465,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 <option value="Velcro para fixação">Velcro para fixação</option>
                 <option value="Refile sem acabamento">Refile / corte rente</option>
                 <option value="Sem acabamento">Sem acabamento</option>
+                <option value="Bastão e Cordão">Bastão + cordão (opção de versões anteriores)</option>
+                <option value="Bainha e Ilhós">Bainha + ilhós (opção de versões anteriores)</option>
               </select>
             </div>
 
