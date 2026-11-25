@@ -410,10 +410,14 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 onChange={(e) => updateDetail('acabamento', e.target.value)}
                 className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-2.5 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium"
               >
-                <option value="Brilho">✨ Verniz / Brilho</option>
-                <option value="Fosco">🌑 Fosco Antireflexo</option>
-                <option value="Laminado Protetivo">🛡️ Laminado de Proteção</option>
-                <option value="Sem Acabamento">🚫 Sem Acabamento / Padrão</option>
+                <option value="Brilho">Vinil brilho</option>
+                <option value="Fosco">Vinil fosco</option>
+                <option value="Laminado brilho">Laminação brilho (proteção)</option>
+                <option value="Laminado fosco">Laminação fosca (proteção)</option>
+                <option value="Laminado jateado">Laminação jateada</option>
+                <option value="Proteção UV">Película / proteção UV</option>
+                <option value="Sem laminação">Sem laminação</option>
+                <option value="Sem acabamento">Sem acabamento adicional</option>
               </select>
             </div>
 
@@ -447,11 +451,20 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 onChange={(e) => updateDetail('acabamento', e.target.value)}
                 className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-2.5 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium"
               >
-                <option value="Bainha e Ilhós">🕳️ Bainha Dobrada e Ilhós para Amarras</option>
-                <option value="Bastão e Cordão">🪵 Bastão de Madeira, Ponteira e Cordão</option>
-                <option value="Bainha Sem Ilhós">🧵 Bainha sem Reforço</option>
-                <option value="Refile Rente">📐 Refile Rente (Sem Sobras)</option>
-                <option value="Com Sobra de 5cm">📏 Com Sobras laterais para esticar</option>
+                <option value="Bainha simples costurada">Bainha simples costurada (sem ilhós)</option>
+                <option value="Bainha reforçada">Bainha reforçada para fixação</option>
+                <option value="Bainha soldada">Bainha soldada por alta frequência</option>
+                <option value="Ilhós em todo o perímetro">Ilhós em todo o perímetro</option>
+                <option value="Ilhós nos cantos">Ilhós somente nos cantos</option>
+                <option value="Bainha e ilhós">Bainha + ilhós em todo o perímetro</option>
+                <option value="Bastão de madeira superior">Bastão de madeira superior</option>
+                <option value="Bastão de madeira superior e inferior">Bastões de madeira superior e inferior</option>
+                <option value="Bastão de alumínio">Bastão de alumínio</option>
+                <option value="Bastão e cordão">Bastão + ponteiras + cordão</option>
+                <option value="Canaleta para tubo">Canaleta para tubo</option>
+                <option value="Velcro para fixação">Velcro para fixação</option>
+                <option value="Refile sem acabamento">Refile / corte rente</option>
+                <option value="Sem acabamento">Sem acabamento</option>
               </select>
             </div>
 
@@ -512,10 +525,37 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 onChange={(e) => updateDetail('acabamento', e.target.value)}
                 className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-2.5 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium"
               >
-                <option value="Adesivado por cima">🖼️ Vinil Adesivo Aplicado Na Frente</option>
-                <option value="Adesivado Verso (Inverso)">💎 Vinil Reverso (Vidro/Acrílico Cristal)</option>
-                <option value="Impressão Direta UV">☀️ Impressão UV direta na chapa</option>
-                <option value="Apenas chapa sem impressão">🚫 Sem Impressão / Placa virgem</option>
+                {activeOS.material === 'Acrílico' ? (
+                  <>
+                    <option value="Polimento de bordas">Polimento de bordas</option>
+                    <option value="Borda sem polimento">Borda sem polimento</option>
+                    <option value="Adesivado por cima">Vinil adesivo aplicado na frente</option>
+                    <option value="Adesivado Verso (Inverso)">Adesivo aplicado pelo verso</option>
+                    <option value="Impressão Direta UV">Impressão UV direta</option>
+                    <option value="Espaçador para parede">Furação + espaçadores</option>
+                    <option value="Sem acabamento adicional">Sem acabamento adicional</option>
+                  </>
+                ) : activeOS.material === 'MDF' ? (
+                  <>
+                    <option value="Pintura">Pintura</option>
+                    <option value="Seladora">Aplicação de seladora</option>
+                    <option value="Verniz">Verniz</option>
+                    <option value="Adesivado por cima">Vinil adesivo aplicado na frente</option>
+                    <option value="Impressão Direta UV">Impressão UV direta</option>
+                    <option value="Furação e fixação">Furação para fixação</option>
+                    <option value="Sem acabamento adicional">Sem acabamento adicional</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="Adesivado por cima">Vinil adesivo aplicado na frente</option>
+                    <option value="Adesivado Verso (Inverso)">Adesivo aplicado pelo verso</option>
+                    <option value="Impressão Direta UV">Impressão UV direta na chapa</option>
+                    <option value="Furação para fixação">Furação para fixação</option>
+                    <option value="Cantos arredondados">Cantos arredondados</option>
+                    <option value="Sem acabamento adicional">Sem acabamento adicional</option>
+                    <option value="Apenas chapa sem impressão">Somente chapa, sem impressão</option>
+                  </>
+                )}
               </select>
             </div>
           </div>
