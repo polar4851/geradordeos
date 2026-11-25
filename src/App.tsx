@@ -464,7 +464,7 @@ export default function App() {
         </section>
 
         {/* Column 2: O.S Dynamic Inputs Editor (col-span-5) */}
-        <section className="no-print lg:col-span-5 space-y-4 min-w-0">
+        <section className="no-print lg:col-span-9 space-y-4 min-w-0">
           {activeOS ? (
             <OSForm 
               activeOS={activeOS} 
@@ -478,15 +478,15 @@ export default function App() {
         </section>
 
         {/* Column 3: Live Printable A4 Simulation Preview Panel (col-span-4) */}
-        <section className="lg:col-span-4 bg-[#e9edf5] p-3 md:p-4 rounded-2xl border border-slate-200 w-full overflow-hidden flex flex-col items-center min-w-0">
+        <section className="lg:col-span-12 bg-[#e9edf5] p-3 md:p-5 rounded-2xl border border-slate-200 w-full min-w-0 flex flex-col items-center">
           <div className="no-print mb-2.5 text-center">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest bg-slate-200 px-2 py-1 rounded">
               📃 GABARITO IMPRESSÃO A4 (100%)
             </span>
           </div>
           {activeOS ? (
-            <div className="w-full overflow-x-auto pb-4 scrollbar-thin flex justify-center">
-              <div className="min-w-[794px] w-[794px]">
+            <div className="preview-viewport w-full flex justify-center">
+              <div className="preview-scaled-page w-[794px] shrink-0">
                 {/* Printable Area component */}
                 <OSPreview activeOS={activeOS} />
               </div>
