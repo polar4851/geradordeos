@@ -1,45 +1,38 @@
-<!-- anime header: só para dar um pouco de personalidade ao README -->
-
 <div align="center">
-  <img src="https://raw.githubusercontent.com/ZekaiDev/anime-reaction-gif/main/wink/1.gif" width="150" alt="Anime piscando">
-  <img src="https://raw.githubusercontent.com/ZekaiDev/anime-reaction-gif/main/dance/1.gif" width="150" alt="Anime dançando">
-  <img src="https://raw.githubusercontent.com/ZekaiDev/anime-reaction-gif/main/cool/1.gif" width="150" alt="Anime estilo cool">
 
-  <h1>VisualPro OS</h1>
-  <p>Organização de ordens de serviço para quem trabalha com comunicação visual.</p>
+# Gerador de OS
 
-  ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-  ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+**Organização de ordens de serviço para empresas de comunicação visual.**
+
+![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+
 </div>
 
 ---
 
-<!-- sobre o projeto -->
+## Sobre o projeto
 
-## Sobre
+O Gerador de OS reúne em uma única tela as informações necessárias para encaminhar um trabalho da etapa de atendimento e arte-final para a produção. A ordem pode ser conferida em uma prévia A4, exportada em PDF ou impressa.
 
-Fiz esse projeto pensando em deixar a criação e a organização das ordens de serviço mais simples no dia a dia da comunicação visual.
+## Recursos
 
-A ideia é reunir em um só lugar os dados do cliente, as informações da produção e a imagem de referência da arte. No final, dá para conferir tudo em uma folha A4, gerar o PDF ou imprimir.
-
-## O que já tem por aqui
-
-- Cadastro e edição de ordens de serviço.
-- Histórico de ordens, com opções para criar, duplicar e excluir registros.
-- Informações do cliente, prazos, responsáveis e dados da empresa.
-- Especificação de materiais, dimensões, quantidade, recorte, acabamento e aplicação.
-- Inclusão de imagem da arte por seleção ou usando **Ctrl + V**.
-- Pré-visualização da ordem em formato A4.
-- Exportação da ordem de serviço em PDF.
-- Impressão direta pelo navegador.
-- Salvamento dos registros no armazenamento local do navegador.
-
-<!-- tecnologias utilizadas -->
+- Cadastro, edição, duplicação e exclusão de ordens de serviço.
+- Histórico com pesquisa por cliente, número da O.S., vendedor e material.
+- Indicadores de ordens cadastradas, rascunhos, produção, concluídas e prazos vencidos.
+- Dados da empresa, cliente, contato, vendedor, arte-finalista e datas.
+- Materiais e especificações de dimensões, quantidade, recorte, acabamento e aplicação.
+- Inclusão de imagem por upload, arrastar e soltar ou colagem com **Ctrl + V**.
+- Ajustes de rotação e enquadramento da imagem.
+- Pré-visualização em folha A4.
+- Exportação em PDF e impressão pelo navegador.
+- Backup das ordens em arquivo JSON e restauração a partir desse arquivo.
+- Salvamento automático no armazenamento local do navegador.
 
 ## Tecnologias
 
-- React
+- React 19
 - TypeScript
 - Vite
 - Tailwind CSS
@@ -47,56 +40,51 @@ A ideia é reunir em um só lugar os dados do cliente, as informações da produ
 - html-to-image
 - Lucide React
 
-## Rodando na máquina
+## Executar localmente
 
-**Antes de começar:** tenha Node.js e npm instalados.
+Requisitos: Node.js e npm.
 
 ```bash
-# Baixar o projeto
 git clone https://github.com/polar4851/geradordeos.git
-
-# Entrar na pasta
 cd geradordeos
-
-# Instalar as dependências
 npm install
-
-# Iniciar o projeto
 npm run dev
 ```
 
-Depois é só abrir o endereço que aparecer no terminal. Por padrão, o Vite utiliza a porta **3000**.
+Abra o endereço exibido no terminal. O servidor de desenvolvimento utiliza a porta 3000 por padrão.
 
-## Comandos disponíveis
+## Scripts
 
-| Comando | Para que serve |
+| Comando | Descrição |
 | --- | --- |
 | `npm run dev` | Inicia o ambiente de desenvolvimento. |
-| `npm run build` | Gera a versão de produção na pasta `dist`. |
-| `npm run preview` | Abre uma prévia da versão de produção. |
+| `npm run build` | Gera a versão de produção em `dist`. |
+| `npm run preview` | Executa uma prévia da versão de produção. |
 | `npm run lint` | Verifica os tipos TypeScript. |
 
-## Como funciona o armazenamento
+## Armazenamento e privacidade
 
-Atualmente, as ordens ficam salvas no `localStorage` do navegador. Isso significa que os registros ficam vinculados ao navegador e ao dispositivo utilizados.
+As ordens são armazenadas no `localStorage` do navegador. Não existe sincronização automática entre computadores ou navegadores, nem banco de dados remoto nesta versão.
 
-**Importante:** limpar os dados do navegador pode apagar as informações salvas. O armazenamento local não substitui um backup ou um banco de dados centralizado, então é bom manter cópias das informações importantes.
+**Atenção:** limpar os dados do navegador, trocar de dispositivo ou usar outro perfil pode fazer as ordens deixarem de ficar disponíveis. Use regularmente a opção **Backup** para baixar um arquivo JSON e guarde-o em um local seguro. A opção **Restaurar** substitui os registros atuais pelos dados do backup selecionado.
 
-## Fluxo básico
+As ordens podem conter dados de clientes. Proteja os arquivos de backup e evite armazenar informações desnecessárias.
 
-1. Criar uma nova ordem de serviço.
-2. Preencher os dados do cliente e as informações da produção.
-3. Adicionar a imagem da arte. Também dá para copiar uma imagem e colar com **Ctrl + V**.
-4. Conferir a pré-visualização em A4.
-5. Gerar o PDF ou imprimir diretamente.
+## Fluxo recomendado
+
+1. Crie uma nova O.S. e informe os dados da empresa e do cliente.
+2. Preencha responsável, prazo, material, medidas e quantidade.
+3. Anexe a imagem de referência do trabalho.
+4. Confira as especificações e a prévia A4 antes de encaminhar à produção.
+5. Gere o PDF ou imprima a ordem.
+6. Faça backups periódicos dos registros.
 
 ---
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/ZekaiDev/anime-reaction-gif/main/yay/1.gif" width="125" alt="Anime comemorando">
+## Criador
 
-  <p>Feito para facilitar a rotina entre atendimento, arte-final e produção.</p>
-  <sub>Se encontrar algum problema ou tiver uma sugestão, pode abrir uma issue.</sub>
-</div>
+Desenvolvido por **Warleandro Nascimento**.
 
-<!-- gifs de reação: https://github.com/ZekaiDev/anime-reaction-gif -->
+- Instagram: [@warleandro._](https://instagram.com/warleandro._)
+- WhatsApp: [63 99931-8046](https://wa.me/5563999318046)
+
