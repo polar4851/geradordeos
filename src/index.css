@@ -284,3 +284,91 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
   .about-hero-pokemon { right: -5%; bottom: -2%; width: 42%; opacity: .28; }
   .about-gif-gallery img { height: 115px; }
 }
+
+
+/* Pokémon: sprites animados em GIF, transparentes e organizados sem cortes. */
+.about-hero { isolation: isolate; }
+.about-hero > .relative { max-width: min(68%, 760px); }
+.about-hero-pokemon {
+  z-index: 0;
+  right: 3%;
+  bottom: 0;
+  width: min(27%, 260px);
+  height: 88%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,.18));
+}
+.about-hero-pokemon img {
+  width: 100%;
+  height: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.about-gif-strip {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: .6rem;
+  align-items: center;
+}
+.about-gif-strip img {
+  width: 100%;
+  height: 112px;
+  padding: .5rem;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: .85rem;
+  background: radial-gradient(circle,rgba(148,163,184,.12),transparent 72%);
+}
+.about-gif-gallery > div:last-child > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  background: #fff;
+}
+.about-gif-gallery img {
+  display: block;
+  width: 100%;
+  height: 158px;
+  padding: .7rem;
+  object-fit: contain;
+  image-rendering: pixelated;
+  background: radial-gradient(circle,rgba(148,163,184,.12),transparent 72%);
+}
+.about-gif-gallery span {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: .55rem .45rem;
+  border-top: 1px solid #e2e8f0;
+}
+.app-shell.dark .about-gif-strip img,
+.app-shell.dark .about-gif-gallery img {
+  background: radial-gradient(circle,rgba(148,163,184,.14),transparent 72%);
+}
+.app-shell.dark .about-gif-gallery > div:last-child > div {
+  background: #111a2b;
+  border-color: #26344b;
+}
+.app-shell.dark .about-gif-gallery span { border-color: #26344b; }
+@media (max-width: 700px) {
+  .about-hero > .relative { max-width: 100%; }
+  .about-hero-pokemon { right: -2%; bottom: 0; width: 35%; height: 55%; opacity: .32; }
+  .about-gif-strip img { height: 90px; }
+  .about-gif-gallery img { height: 125px; }
+}
+@media (max-width: 420px) {
+  .about-gif-gallery > div:last-child { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
