@@ -443,7 +443,7 @@ export default function App() {
                 <a href="https://github.com/polar4851/geradordeos" target="_blank" rel="noreferrer" className="rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-xs font-bold text-white hover:bg-white/15 transition">Ver código no GitHub ↗</a>
               </div>
             </div>
-            <div className="about-hero-pokemon" aria-hidden="true"><img src="https://media.giphy.com/media/pUh8KWBxCjMeMI3S3y/giphy.gif" alt="" /></div>
+            <div className="about-hero-pokemon" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="" /></div>
           </section>
 
           <section className="mt-8 grid gap-4 md:grid-cols-3">
@@ -478,11 +478,11 @@ export default function App() {
               <h4 className="mt-2 text-xl font-black">Feito para quem produz.</h4>
               <p className="mt-2 text-sm leading-6 about-muted">Menos informação perdida no caminho. Mais clareza para quem vai imprimir, recortar, aplicar, montar e finalizar.</p>
               <div className="about-gif-strip mt-5">
-                <img src="https://media.giphy.com/media/USt7gn6Y52m8GWvMPO/giphy.gif" alt="Pokémon dançando" loading="lazy" />
-                <img src="https://media.giphy.com/media/rFBoIFurssZMq4VzbJ/giphy.gif" alt="Pokémon dançando" loading="lazy" />
-                <img src="https://media.giphy.com/media/tDJfaLVF0gHV90lxZj/giphy.gif" alt="Eevee dançando" loading="lazy" />
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png" alt="Eevee em pixel art" loading="lazy" />
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png" alt="Pokémon dançando" loading="lazy" />
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png" alt="Gengar em pixel art" loading="lazy" />
               </div>
-              <p className="mt-3 text-[10px] about-muted">Animações incorporadas de páginas do GIPHY.</p>
+              <p className="mt-3 text-[10px] about-muted">Sprites clássicos de Pokémon em pixel art (PNG).</p>
             </aside>
           </section>
 
@@ -492,14 +492,14 @@ export default function App() {
           </section>
 
           <section className="about-gif-gallery mt-8">
-            <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon também entrou na produção.</h3></div><a href="https://giphy.com/pokemon" target="_blank" rel="noreferrer" className="text-xs font-bold text-indigo-500 hover:underline">Mais GIFs no GIPHY ↗</a></div>
+            <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon em pixel art também entrou na produção.</h3></div><span className="text-xs font-semibold text-indigo-500">Sprites PNG · pixel art</span></div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-              <div><img src="https://media.giphy.com/media/pUh8KWBxCjMeMI3S3y/giphy.gif" alt="Pikachu em uma fila dançante" loading="lazy" /><span>Pikachu no ritmo</span></div>
-              <div><img src="https://media.giphy.com/media/USt7gn6Y52m8GWvMPO/giphy.gif" alt="Pokémon dançando" loading="lazy" /><span>Energia para produzir</span></div>
-              <div><img src="https://media.giphy.com/media/rFBoIFurssZMq4VzbJ/giphy.gif" alt="Slurpuff dançando" loading="lazy" /><span>Acabamento caprichado</span></div>
-              <div><img src="https://media.giphy.com/media/tDJfaLVF0gHV90lxZj/giphy.gif" alt="Eevee dançando" loading="lazy" /><span>Ordem finalizada!</span></div>
-              <div><img src="https://media.giphy.com/media/FOViXL2Rwt1fDhkIwY/giphy.gif" alt="Pikachu em animação" loading="lazy" /><span>Conferência final</span></div>
-              <div><img src="https://media.giphy.com/media/PmWfoXFGj9uTaEmMJt/giphy.gif" alt="Pikachu sorrindo" loading="lazy" /><span>Missão cumprida</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu em pixel art" loading="lazy" /><span>Pikachu no ritmo</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png" alt="Pokémon dançando" loading="lazy" /><span>Energia para produzir</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png" alt="Jigglypuff em pixel art" loading="lazy" /><span>Acabamento caprichado</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png" alt="Eevee dançando" loading="lazy" /><span>Ordem finalizada!</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur em pixel art" loading="lazy" /><span>Conferência final</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png" alt="Mewtwo em pixel art" loading="lazy" /><span>Missão cumprida</span></div>
             </div>
           </section>
 
