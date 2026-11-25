@@ -372,3 +372,81 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
 @media (max-width: 420px) {
   .about-gif-gallery > div:last-child { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+
+
+/* RESPONSIVIDADE GLOBAL — celular, tablet e desktop */
+html, body, #root { width: 100%; min-width: 320px; min-height: 100%; }
+body { margin: 0; overflow-x: hidden; }
+.app-shell { width: 100%; max-width: 100%; min-width: 0; overflow-x: clip; }
+.app-shell * { min-width: 0; }
+.app-shell main { min-width: 0; }
+.app-shell > header { width: 100%; min-width: 0; }
+.app-shell > header > div:last-child { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; min-width:0; }
+.app-shell > main:not(.about-page) { overflow-y: visible; }
+.os-form { width:100%; min-width:0; }
+.os-form > div { min-width:0; }
+.os-form input, .os-form select, .os-form textarea { min-width:0; max-width:100%; }
+.about-page { min-width:0; }
+.about-hero, .about-content-card, .about-credit-callout { min-width:0; }
+.about-hero h2 { overflow-wrap:anywhere; }
+.about-gif-gallery > div:last-child { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:.75rem; }
+.about-gif-gallery > div:last-child > div { min-width:0; }
+.preview-viewport { width:100%; max-width:100%; }
+.preview-scaled-page { width:794px; flex:0 0 794px; transform-origin:top center; }
+.app-shell footer { min-width:0; }
+.app-shell footer > div { min-width:0; flex-wrap:wrap; }
+
+@media (max-width: 1023px) {
+  .app-shell > header { position:relative; align-items:flex-start; }
+  .app-shell > header > div:first-child { width:100%; }
+  .app-shell > header > div:last-child { width:100%; justify-content:flex-start; }
+  .app-shell > main:not(.about-page) { padding:1rem; }
+  .app-shell > main:not(.about-page) > .grid.grid-cols-1.lg\\:grid-cols-12 { grid-template-columns:minmax(0,1fr); }
+  .app-shell > main:not(.about-page) > .grid > section { grid-column:1 / -1; width:100%; }
+  .about-page { padding:1.25rem; }
+  .about-gif-gallery > div:last-child { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+
+@media (max-width: 700px) {
+  .app-shell > header { padding: .85rem 1rem; gap:.85rem; }
+  .app-shell > header > div:last-child { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+  .app-shell > header > div:last-child button { width:100%; min-height:42px; justify-content:center; padding:.6rem .5rem; font-size:11px; }
+  .app-shell > header > div:last-child .theme-toggle { width:100%; }
+  .app-shell > main:not(.about-page) { padding:.75rem; gap:1rem; }
+  .app-shell > main:not(.about-page) > section:first-child h2 { font-size:1.45rem; }
+  .app-shell > main:not(.about-page) > section:nth-child(2) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .os-form > div { padding:1rem; border-radius:1rem; }
+  .os-form .grid.grid-cols-2,
+  .os-form .grid.grid-cols-3 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .os-form .grid.grid-cols-2 > *,
+  .os-form .grid.grid-cols-3 > * { min-width:0; }
+  .about-page { padding:1rem; }
+  .about-hero { padding:1.5rem; border-radius:1.35rem; }
+  .about-hero h2 { font-size:clamp(2rem,8vw,3rem); line-height:1.08; }
+  .about-hero > .relative { max-width:100%; }
+  .about-hero-pokemon { opacity:.18; width:38%; }
+  .about-page > section.grid { grid-template-columns:1fr; }
+  .about-content-card { grid-template-columns:1fr; padding:1.15rem; gap:1.5rem; }
+  .about-gif-gallery > div:last-child { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .about-credit-callout { align-items:flex-start; padding:1rem; }
+  .app-shell footer { padding:.85rem 1rem; }
+  .app-shell footer > div { gap:.5rem 1rem; }
+}
+
+@media (max-width: 420px) {
+  .os-form .grid.grid-cols-2,
+  .os-form .grid.grid-cols-3 { grid-template-columns:minmax(0,1fr); }
+  .os-form .grid.grid-cols-2 > *,
+  .os-form .grid.grid-cols-3 > * { grid-column:1 / -1; }
+  .os-form .grid.grid-cols-2.sm\\:grid-cols-4 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .app-shell > main:not(.about-page) > section:nth-child(2) { grid-template-columns:1fr 1fr; }
+  .app-shell > main:not(.about-page) > section:nth-child(2) > div { padding:.75rem; gap:.5rem; }
+  .app-shell > main:not(.about-page) > section:nth-child(2) > div > div:first-child { width:2rem; height:2rem; }
+  .about-gif-gallery img { height:110px; }
+}
+
+@media (min-width: 701px) and (max-width: 1023px) {
+  .os-form .grid.grid-cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .os-form .grid.grid-cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .about-page > section.grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
