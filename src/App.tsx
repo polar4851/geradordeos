@@ -15,7 +15,7 @@ import {
   HelpCircle,
   Copy,
   FolderOpen,
-  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3, PenTool, ShieldCheck, ChevronRight
+  Info, Save, Upload, Instagram, MessageCircle, Layers, CheckCircle2, Clock3, PenTool, ShieldCheck, ChevronRight, Moon, Sun
 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { toPng } from 'html-to-image';
