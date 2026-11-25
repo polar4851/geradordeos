@@ -110,3 +110,21 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Responsive A4 preview: preserve the real A4 canvas and scale it to the available width. */
+.preview-viewport {
+  container-type: inline-size;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.preview-scaled-page {
+  zoom: clamp(0.32, calc(100cqw / 794), 1);
+}
+
+@media (max-width: 640px) {
+  .preview-viewport {
+    border-radius: 0.5rem;
+  }
+}
