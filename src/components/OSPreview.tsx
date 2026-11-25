@@ -54,7 +54,7 @@ export default function OSPreview({ activeOS }: OSPreviewProps) {
           <div className="flex justify-between items-center border-b-2 border-slate-900 pb-3">
             <div>
               <h1 className="text-lg font-black tracking-tight text-slate-950 uppercase">
-                {activeOS.companyName || 'SUL SINALIZAÇÃO'}
+                {activeOS.companyName || 'Sua empresa'}
               </h1>
               {activeOS.companyPhone && (
                 <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
@@ -80,7 +80,7 @@ export default function OSPreview({ activeOS }: OSPreviewProps) {
               </span>
             </div>
             <div className="p-2.5 bg-rose-50 flex flex-col justify-center">
-              <span className="block text-[8px] font-black text-rose-500 uppercase tracking-wider">ENTREGA URGENÇÃO</span>
+              <span className="block text-[8px] font-black text-rose-500 uppercase tracking-wider">PRAZO DE ENTREGA</span>
               <span className="font-mono font-black text-rose-700 text-sm block">
                 {formatDate(activeOS.dataEntrega)}
               </span>
@@ -135,7 +135,7 @@ export default function OSPreview({ activeOS }: OSPreviewProps) {
                     <span className="font-bold text-sky-400">{activeOS.detalhes.tipoCorte || 'Reto'}</span>
                   </div>
                   <div className="text-right">
-                    <span className="block text-[8px] text-slate-400 uppercase font-black">FINISHING</span>
+                    <span className="block text-[8px] text-slate-400 uppercase font-black">ACABAMENTO</span>
                     <span className="font-bold text-sky-400">{activeOS.detalhes.acabamento || 'Adesivado'}</span>
                   </div>
                 </div>
