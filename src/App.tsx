@@ -61,6 +61,11 @@ export default function App() {
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const importInputRef = useRef<HTMLInputElement>(null);
   const [storageError, setStorageError] = useState(false);
+  const [darkMode, setDarkMode] = useState<boolean>(() => localStorage.getItem('traco-os-theme') === 'dark');
+
+  useEffect(() => {
+    localStorage.setItem('traco-os-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   // 1. Load data from localStorage on startup
   useEffect(() => {
@@ -324,7 +329,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f4f6fb] flex flex-col font-sans text-slate-800">
+    <div className={`app-shell min-h-screen flex flex-col font-sans text-slate-800 ${darkMode ? 'dark' : ''}`}>
       {/* NAVIGATION HEADER BAR */}
       <header className="no-print sticky top-0 flex flex-wrap items-center justify-between gap-4 px-5 md:px-8 py-4 bg-white/95 backdrop-blur border-b border-slate-200/80 shadow-[0_2px_16px_rgba(15,23,42,0.04)] z-20">
         <div className="flex items-center gap-3.5">
@@ -340,7 +345,17 @@ export default function App() {
 
         {/* Core App Actions */}
         {activeOS && (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
+
+            <button
+              type="button"
+              onClick={() => setDarkMode((value) => !value)}
+              aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"}
+              title={darkMode ? "Modo claro" : "Modo escuro"}
+              className="theme-toggle inline-flex items-center justify-center gap-2 w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition"
+            >
+              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
 
             <button
               type="button"
