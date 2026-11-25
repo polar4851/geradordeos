@@ -872,36 +872,68 @@ body { margin: 0; overflow-x: hidden; }
 }
 
 
-/* Performance pass: keep the AMOLED look without expensive paint effects. */
+/* AMOLED neon: preserve saturated color and glow with cheaper, localized paints. */
 @media screen {
-  .app-shell,
-  .app-shell * {
-    scroll-behavior: auto;
-  }
   .app-shell header.no-print {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
   }
+
+  /* Keep gradients and neon accents; limit large blurred shadows to compact halos. */
   .app-shell.dark .os-form > div,
   .app-shell.dark .workspace-preview,
   .app-shell.dark main:not(.about-page) > section:nth-child(2) > div,
   .app-shell.dark .about-info-card,
-  .app-shell.dark .about-content-card,
-  .app-shell.dark .about-hero,
-  .app-shell.dark .about-icon,
+  .app-shell.dark .about-content-card {
+    box-shadow: 0 4px 14px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.025) !important;
+  }
+
+  .app-shell.dark .os-form > div::before {
+    width: 2px;
+    opacity: .9;
+  }
+
+  .app-shell.dark .theme-toggle,
+  .app-shell.dark .about-tab-active,
+  .app-shell.dark .os-form button[class*="bg-slate-950"],
+  .app-shell.dark main:not(.about-page) > section:nth-child(3) button,
+  .app-shell.dark .compact-preview-control button {
+    box-shadow: 0 0 7px rgba(70,130,255,.18) !important;
+  }
+
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div > div:first-child {
+    box-shadow: 0 0 6px currentColor !important;
+  }
+
+  .app-shell.dark .os-form input:focus,
+  .app-shell.dark .os-form select:focus,
+  .app-shell.dark .os-form textarea:focus,
+  .app-shell.dark main:not(.about-page) input:focus {
+    box-shadow: 0 0 0 2px rgba(57,139,255,.18) !important;
+  }
+
+  .app-shell.dark main:not(.about-page) > section:nth-child(3) button:hover {
+    filter: none !important;
+    box-shadow: 0 0 9px rgba(36,215,242,.22) !important;
+  }
+
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div > div:nth-child(2) {
+    text-shadow: none !important;
+  }
+
   .app-shell.dark button,
   .app-shell.dark input,
   .app-shell.dark select,
   .app-shell.dark textarea {
-    box-shadow: none !important;
-    filter: none !important;
-    text-shadow: none !important;
+    transition-property: background-color, border-color, color, box-shadow, transform !important;
+    transition-duration: 120ms !important;
   }
-  .app-shell.dark .os-form > div::before {
-    display: none !important;
+
+  .app-shell.dark .about-hero {
+    box-shadow: 0 6px 18px rgba(32,75,190,.14), 0 0 0 1px rgba(120,160,255,.12) !important;
   }
-  .app-shell.dark *,
-  .app-shell * {
-    transition-duration: 0.08s !important;
+
+  .app-shell.dark .about-icon {
+    box-shadow: 0 0 7px rgba(68,110,255,.16) !important;
   }
 }
