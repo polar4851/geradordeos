@@ -126,8 +126,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
   return (
     <div className="space-y-6">
       {/* 1. ADMIN & COMPANY METADATA */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
-        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
+        <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
           <span className="w-1.5 h-4 bg-indigo-600 rounded"></span>
           Identificação da Ordem de Serviço
         </h3>
@@ -139,7 +139,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
               type="text" 
               value={activeOS.companyName}
               onChange={(e) => updateField('companyName', e.target.value)}
-              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-3 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-xl px-3.5 py-2.5 text-slate-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
               placeholder="Ex: Alfa Comunicação Visual"
             />
           </div>
@@ -149,7 +149,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
               type="text" 
               value={activeOS.companyPhone || ''}
               onChange={(e) => updateField('companyPhone', e.target.value)}
-              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-3 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-xl px-3.5 py-2.5 text-slate-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
               placeholder="Ex: (11) 98765-4321"
             />
           </div>
@@ -201,8 +201,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
       </div>
 
       {/* 2. CLIENT DATA */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
-        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
+        <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
           <User className="w-4 h-4 text-indigo-500" />
           Dados do Cliente & Prazos
         </h3>
@@ -237,7 +237,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
               type="date" 
               value={activeOS.dataEmissao}
               onChange={(e) => updateField('dataEmissao', e.target.value)}
-              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-3 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-xl px-3.5 py-2.5 text-slate-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
           <div>
@@ -253,9 +253,9 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
       </div>
 
       {/* 3. MATERIAL SELECTION */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
         <div className="flex justify-between items-center">
-          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+          <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
             <span className="w-1.5 h-4 bg-indigo-600 rounded"></span>
             Selecione o Material <span className="text-[11px] text-indigo-600 font-bold font-mono">(Marcado no Gabarito)</span>
           </h3>
@@ -287,8 +287,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
       </div>
 
       {/* 4. MEASUREMENTS & DIMENSIONS */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
-        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
+        <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
           <span className="w-1.5 h-4 bg-emerald-600 rounded"></span>
           Dimensões & Quantidade de Produção
         </h3>
@@ -379,8 +379,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
         </div>
       </div>
          {/* 5. MATERIAL SPECIFIC CONFIG (DYNAMIC FIELDS) */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
-        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
+        <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
           <span className="w-1.5 h-4 bg-indigo-600 rounded"></span>
           Especificações do Material: <span className="text-indigo-650 font-extrabold">{activeOS.material}</span>
         </h3>
@@ -523,9 +523,9 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
       </div>
 
       {/* 6. UPLOAD / COLAR PRINT - CTRL+V */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
         <div className="flex justify-between items-center">
-          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+          <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
             <span className="w-1.5 h-4 bg-indigo-600 rounded"></span>
             Imagem do Layout (Representação Central)
           </h3>
@@ -616,8 +616,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
       </div>
 
       {/* 7. OBSERVATIONS */}
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
-        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+      <div className="bg-white p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] space-y-5">
+        <h3 className="text-sm font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
           <span className="w-1.5 h-4 bg-indigo-600 rounded"></span>
           Observações Técnicas de Acabamento & Produção
         </h3>
