@@ -209,3 +209,78 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
     min-height: 0;
   }
 }
+
+
+/* Sobre / README do Traço OS */
+.about-tab {
+  color: #4f46e5;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+}
+.about-tab:hover, .about-tab-active {
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(79,70,229,.24);
+}
+.about-hero {
+  background: radial-gradient(circle at 82% 15%, rgba(99,102,241,.34), transparent 30%), linear-gradient(125deg,#0b1224 0%,#172554 55%,#312e81 100%);
+  box-shadow: 0 24px 70px rgba(15,23,42,.18);
+}
+.about-hero-pokemon {
+  position: absolute;
+  right: 2.5%;
+  bottom: -10%;
+  width: min(34%, 330px);
+  opacity: .92;
+  pointer-events: none;
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,.25));
+}
+.about-hero-pokemon img {
+  display: block;
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+}
+.about-info-card, .about-content-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 8px 28px rgba(15,23,42,.045);
+}
+.about-info-card { padding: 1.35rem; }
+.about-info-card h3 { margin-top: 1rem; font-size: 1rem; font-weight: 900; letter-spacing: -.02em; }
+.about-info-card p { margin-top: .45rem; color: #64748b; font-size: .78rem; line-height: 1.65; }
+.about-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 2.7rem; height: 2.7rem; border-radius: .9rem;
+  color: #4f46e5; background: #eef2ff;
+}
+.about-icon svg { width: 1.25rem; height: 1.25rem; }
+.about-muted { color: #64748b; }
+.about-eyebrow { color: #6366f1; font-size: .65rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+.about-steps { display: grid; gap: .75rem; }
+.about-steps li { display: flex; align-items: flex-start; gap: .75rem; color: #64748b; font-size: .8rem; line-height: 1.6; }
+.about-steps b { display: inline-flex; width: 1.5rem; height: 1.5rem; flex: 0 0 1.5rem; align-items: center; justify-content: center; border-radius: .5rem; color: #4f46e5; background: #eef2ff; font-size: .7rem; }
+.about-bullets { display: grid; gap: .55rem; padding-left: 1rem; list-style: disc; color: #64748b; font-size: .8rem; }
+.about-side-panel { align-self: stretch; padding: 1.35rem; border: 1px solid #e0e7ff; border-radius: 1rem; background: linear-gradient(160deg,#f8faff,#eef2ff); color: #0f172a; }
+.about-gif-strip { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .5rem; }
+.about-gif-strip img { width: 100%; height: 105px; object-fit: cover; border-radius: .75rem; background: #e2e8f0; }
+.about-gif-gallery > div:last-child > div { overflow: hidden; border: 1px solid #e2e8f0; border-radius: 1rem; background: #fff; }
+.about-gif-gallery img { display: block; width: 100%; height: 150px; object-fit: cover; background: #e2e8f0; }
+.about-gif-gallery span { display: block; padding: .7rem .8rem; color: #475569; font-size: .72rem; font-weight: 800; }
+.about-credit-callout { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem; border: 1px solid #c7d2fe; border-radius: 1.25rem; background: linear-gradient(110deg,#eef2ff,#faf5ff); color: #1e1b4b; }
+.app-shell.dark .about-tab { color: #c7d2fe; background: #1b2940; border-color: #34445f; }
+.app-shell.dark .about-tab:hover, .app-shell.dark .about-tab-active { color: #fff; background: linear-gradient(135deg,#4338ca,#6d28d9); border-color: transparent; }
+.app-shell.dark .about-info-card, .app-shell.dark .about-content-card { background: #111a2b; border-color: #26344b; color: #e5eaf5; }
+.app-shell.dark .about-info-card p, .app-shell.dark .about-muted, .app-shell.dark .about-steps li, .app-shell.dark .about-bullets { color: #9aabc4; }
+.app-shell.dark .about-icon, .app-shell.dark .about-steps b { color: #c7d2fe; background: #202d49; }
+.app-shell.dark .about-side-panel { background: linear-gradient(160deg,#17233a,#1c2542); border-color: #34445f; color: #e5eaf5; }
+.app-shell.dark .about-gif-gallery > div:last-child > div { background: #111a2b; border-color: #26344b; }
+.app-shell.dark .about-gif-gallery span { color: #cbd5e1; }
+.app-shell.dark .about-credit-callout { background: linear-gradient(110deg,#1b2940,#282044); border-color: #3d4770; color: #e5eaf5; }
+@media (max-width: 700px) {
+  .about-hero-pokemon { right: -5%; bottom: -2%; width: 42%; opacity: .28; }
+  .about-gif-gallery img { height: 115px; }
+}
