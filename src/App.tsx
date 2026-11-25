@@ -479,7 +479,7 @@ export default function App() {
               <p className="mt-2 text-sm leading-6 about-muted">Menos informação perdida no caminho. Mais clareza para quem vai imprimir, recortar, aplicar, montar e finalizar.</p>
               <div className="about-gif-strip mt-5">
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="Eevee em pixel art" loading="lazy" />
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif" alt="Pokémon dançando" loading="lazy" />
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif" alt="Jigglypuff animado em pixel art" loading="lazy" />
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Gengar em pixel art" loading="lazy" />
               </div>
               <p className="mt-3 text-[10px] about-muted">Pokémon em pixel art animado com fundo transparente.</p>
@@ -492,10 +492,10 @@ export default function App() {
           </section>
 
           <section className="about-gif-gallery mt-8">
-            <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon em pixel art também entrou na produção.</h3></div><span className="text-xs font-semibold text-indigo-500">Sprites PNG · pixel art</span></div>
+            <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon em pixel art também entrou na produção.</h3></div><span className="text-xs font-semibold text-indigo-500">GIFs animados · pixel art</span></div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
               <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pikachu em pixel art" loading="lazy" /><span>Pikachu no ritmo</span></div>
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="Pokémon dançando" loading="lazy" /><span>Energia para produzir</span></div>
+              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="Eevee animado em pixel art" loading="lazy" /><span>Energia para produzir</span></div>
               <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif" alt="Jigglypuff em pixel art" loading="lazy" /><span>Acabamento caprichado</span></div>
               <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Eevee dançando" loading="lazy" /><span>Ordem finalizada!</span></div>
               <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif" alt="Bulbasaur em pixel art" loading="lazy" /><span>Conferência final</span></div>
