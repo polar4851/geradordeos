@@ -45,17 +45,17 @@ export default function OSHistory({
   });
 
   return (
-    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col h-full max-h-[820px]">
+    <div className="bg-white p-5 md:p-5 rounded-2xl border border-slate-200/80 shadow-[0_3px_16px_rgba(15,23,42,0.04)] flex flex-col h-full max-h-[820px]">
       {/* Upper header action */}
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h2 className="text-sm font-extrabold text-slate-900 uppercase tracking-tight">Histórico de O.S.</h2>
+          <h2 className="text-sm font-extrabold text-slate-950 tracking-tight">Histórico de O.S.</h2>
           <p className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Salvos no navegador</p>
         </div>
         <button
           type="button"
           onClick={onCreateNew}
-          className="flex items-center gap-1 text-[11px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1.5 px-3 rounded-lg shadow-sm transition-all"
+          className="flex items-center gap-1 text-[11px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3.5 rounded-xl shadow-sm shadow-indigo-600/15 transition-all"
         >
           <Plus className="w-3.5 h-3.5" />
           Nova O.S.
@@ -103,8 +103,8 @@ export default function OSHistory({
                 onClick={() => onSelect(order.id)}
                 className={`group border rounded-lg p-3 text-left cursor-pointer transition-all ${
                   isActive 
-                  ? 'bg-slate-950 border-slate-950 shadow-md text-white' 
-                  : 'bg-white border-slate-200 hover:border-slate-350 hover:bg-slate-50/50 text-slate-800'
+                  ? 'bg-indigo-700 border-indigo-700 shadow-md shadow-indigo-900/10 text-white' 
+                  : 'bg-white border-slate-200 hover:border-indigo-200 hover:bg-indigo-50/30 text-slate-800'
                 }`}
               >
                 <div className="flex justify-between items-start gap-2 mb-1">
@@ -142,7 +142,7 @@ export default function OSHistory({
                 </div>
 
                 {/* Hover actions inside list item (duplicate / delete) */}
-                <div className="flex justify-end gap-1 mt-2.5 pt-2 border-t border-dashed border-slate-100/15 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex justify-end gap-1 mt-2.5 pt-2 border-t border-dashed border-slate-100/15 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                   <button
                     type="button"
                     onClick={(e) => {
