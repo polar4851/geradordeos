@@ -448,7 +448,7 @@ export default function App() {
               Agilidade na Fábrica
             </h4>
             <p className="text-[11px] leading-relaxed text-slate-500">
-              Gerar a folha A4 com a <b>foto da arte</b> e <b>caixas marcadas</b> economiza erros de produção de comunicação visual em até 80%! Evite que colaboradores façam cortes com as medidas trocadas.
+              Gerar a folha A4 com a <b>referência visual</b> e as <b>especificações preenchidas</b> ajuda a equipe a conferir medidas, materiais e acabamentos antes de iniciar a produção.
             </p>
             <div className="bg-indigo-50/50 p-2.5 rounded-lg text-[10px] text-indigo-950 flex items-center gap-2 border border-indigo-100">
               <Sparkles className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
@@ -503,8 +503,8 @@ export default function App() {
           <span>ARMAZENAMENTO: NESTE NAVEGADOR</span>
         </div>
         <div className="flex gap-2 items-center font-semibold text-slate-300">
-          <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-          SALVAMENTO LOCAL ATIVO
+          <span className={`w-2 h-2 ${storageError ? 'bg-rose-500' : 'bg-emerald-500'} rounded-full`}></span>
+          {storageError ? 'FALHA AO SALVAR' : 'SALVAMENTO LOCAL ATIVO'}
         </div>
       </footer>
 
