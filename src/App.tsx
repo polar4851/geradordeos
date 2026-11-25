@@ -163,7 +163,7 @@ export default function App() {
       try {
         const parsed = JSON.parse(String(reader.result));
         const imported = Array.isArray(parsed) ? parsed : parsed.orders;
-        if (!Array.isArray(imported) || imported.some((item: any) => !item || typeof item.id !== 'string' || typeof item.osNumber !== 'string' || typeof item.clienteNome !== 'string' || typeof item.material !== 'string')) throw new Error('Formato inválido');
+        if (!Array.isArray(imported) || imported.length === 0 || imported.some((item: any) => !item || typeof item.id !== 'string' || typeof item.osNumber !== 'string' || typeof item.clienteNome !== 'string' || typeof item.material !== 'string')) throw new Error('Formato inválido');
         if (!window.confirm('Importar ' + imported.length + ' ordem(ns)? Os dados atuais deste navegador serão substituídos.')) return;
         setOrders(imported); setActiveOSId(imported[0]?.id || '');
         localStorage.setItem('visual_comm_os_list', JSON.stringify(imported)); setStorageError(false);
@@ -345,11 +345,6 @@ export default function App() {
         {activeOS && (
           <div className="flex items-center gap-3">
 
-            <div className="hidden xl:flex items-center gap-2 mr-2">
-              <button type="button" onClick={handleExportBackup} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-600 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Save className="w-3.5 h-3.5" /> Backup</button>
-              <button type="button" onClick={() => importInputRef.current?.click()} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-600 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Upload className="w-3.5 h-3.5" /> Restaurar</button>
-              <input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup} />
-            </div>
             <button
               type="button"
               onClick={() => setShowHelp(!showHelp)}
@@ -423,6 +418,15 @@ export default function App() {
             { label: 'Concluídas', value: counts.completed, icon: CheckCircle2, tone: 'text-emerald-600 bg-emerald-50' },
             { label: 'Prazo vencido', value: counts.overdue, icon: Clock3, tone: counts.overdue ? 'text-rose-600 bg-rose-50' : 'text-slate-500 bg-slate-100' }
           ].map((item) => { const Icon = item.icon; return <div key={item.label} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex items-center gap-3"><div className={'w-9 h-9 rounded-lg flex items-center justify-center ' + item.tone}><Icon className="w-4 h-4" /></div><div><div className="text-xl font-black text-slate-900 leading-none">{item.value}</div><div className="text-[10px] text-slate-500 font-semibold mt-1">{item.label}</div></div></div>; })}
+        </section>
+
+        <section className="no-print flex flex-wrap items-center justify-between gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3 shadow-sm">
+          <div><p className="text-xs font-bold text-slate-800">Segurança dos seus registros</p><p className="text-[11px] text-slate-500 mt-0.5">Exporte uma cópia ou restaure um backup salvo anteriormente.</p></div>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={handleExportBackup} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Save className="w-3.5 h-3.5" /> Exportar backup</button>
+            <button type="button" onClick={() => importInputRef.current?.click()} className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5"><Upload className="w-3.5 h-3.5" /> Restaurar backup</button>
+            <input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup} />
+          </div>
         </section>
         {storageError && <div className="no-print rounded-lg border border-rose-200 bg-rose-50 text-rose-800 px-4 py-3 text-xs font-semibold">O navegador não conseguiu salvar as alterações. Exporte um backup e libere espaço antes de continuar.</div>}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
