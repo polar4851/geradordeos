@@ -63,6 +63,7 @@ export default function App() {
   const [storageError, setStorageError] = useState(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => localStorage.getItem('traco-os-theme') === 'dark');
   const [activeTab, setActiveTab] = useState<'workspace' | 'about'>('workspace');
+  const [showCompactPreview, setShowCompactPreview] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('traco-os-theme', darkMode ? 'dark' : 'light');
@@ -581,8 +582,10 @@ export default function App() {
           )}
         </section>
 
+        <div className="compact-preview-control no-print"><button type="button" onClick={() => setShowCompactPreview((value) => !value)} aria-expanded={showCompactPreview}>{showCompactPreview ? "Ocultar prévia A4" : "Visualizar ficha A4"}<span>{showCompactPreview ? "−" : "+"}</span></button></div>
+
         {/* Column 3: Live Printable A4 Simulation Preview Panel (col-span-4) */}
-        <section className="lg:col-span-12 bg-[#e9edf5] p-3 md:p-5 rounded-2xl border border-slate-200 w-full min-w-0 flex flex-col items-center">
+        <section className={"workspace-preview lg:col-span-12 bg-[#e9edf5] p-3 md:p-5 rounded-2xl border border-slate-200 w-full min-w-0 flex flex-col items-center " + (showCompactPreview ? "workspace-preview-open" : "")}>
           <div className="no-print mb-2.5 text-center">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest bg-slate-200 px-2 py-1 rounded">
               📃 GABARITO IMPRESSÃO A4 (100%)
