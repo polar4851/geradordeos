@@ -128,3 +128,23 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-
     border-radius: 0.5rem;
   }
 }
+
+/* Traço OS · interface dark premium. A folha A4 permanece branca para impressão. */
+.app-shell { background:#f4f6fb; transition:background-color .25s ease,color .25s ease; }
+.app-shell.dark { background:#090e1a; color:#e5eaf5; color-scheme:dark; }
+.app-shell.dark .no-print { color:#dbe4f3; }
+.app-shell.dark header.no-print, .app-shell.dark .no-print .bg-white, .app-shell.dark .no-print.bg-white { background-color:#111a2b !important; border-color:#26344b !important; color:#e5eaf5; }
+.app-shell.dark .no-print [class*='bg-slate-50'], .app-shell.dark .no-print [class*='bg-slate-100'] { background-color:#182338 !important; }
+.app-shell.dark .no-print [class*='border-slate-100'], .app-shell.dark .no-print [class*='border-slate-200'], .app-shell.dark .no-print [class*='border-slate-300'] { border-color:#2b3a52 !important; }
+.app-shell.dark .no-print [class*='text-slate-950'], .app-shell.dark .no-print [class*='text-slate-900'], .app-shell.dark .no-print [class*='text-slate-850'], .app-shell.dark .no-print [class*='text-slate-800'], .app-shell.dark .no-print [class*='text-slate-700'] { color:#e5eaf5 !important; }
+.app-shell.dark .no-print [class*='text-slate-600'], .app-shell.dark .no-print [class*='text-slate-500'], .app-shell.dark .no-print [class*='text-slate-400'] { color:#91a1ba !important; }
+.app-shell.dark .no-print input, .app-shell.dark .no-print select, .app-shell.dark .no-print textarea { background-color:#0d1728 !important; border-color:#30415c !important; color:#edf3ff !important; }
+.app-shell.dark .no-print input::placeholder, .app-shell.dark .no-print textarea::placeholder { color:#71829d !important; }
+.app-shell.dark .no-print .bg-slate-950 { background-color:#080d17 !important; }
+.app-shell.dark .no-print .bg-indigo-50, .app-shell.dark .no-print .bg-indigo-50\\/50 { background-color:#1a2540 !important; }
+.app-shell.dark .no-print .text-indigo-950, .app-shell.dark .no-print .text-indigo-900 { color:#c7d2fe !important; }
+.app-shell.dark .theme-toggle { background:#1b2940; color:#fbbf24; border-color:#34445f; }
+.app-shell.dark footer.no-print { background-color:#080d17 !important; border-color:#26344b !important; }
+.app-shell.dark .no-print .bg-rose-50 { background-color:#351d2b !important; border-color:#633047 !important; }
+.app-shell.dark .no-print .text-rose-700, .app-shell.dark .no-print .text-rose-600 { color:#fda4af !important; }
+@media (prefers-reduced-motion: reduce) { .app-shell { transition:none; } }
