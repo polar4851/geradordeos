@@ -870,3 +870,38 @@ body { margin: 0; overflow-x: hidden; }
     box-shadow: 0 0 18px rgba(68,110,255,.13);
   }
 }
+
+
+/* Performance pass: keep the AMOLED look without expensive paint effects. */
+@media screen {
+  .app-shell,
+  .app-shell * {
+    scroll-behavior: auto;
+  }
+  .app-shell header.no-print {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .app-shell.dark .os-form > div,
+  .app-shell.dark .workspace-preview,
+  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div,
+  .app-shell.dark .about-info-card,
+  .app-shell.dark .about-content-card,
+  .app-shell.dark .about-hero,
+  .app-shell.dark .about-icon,
+  .app-shell.dark button,
+  .app-shell.dark input,
+  .app-shell.dark select,
+  .app-shell.dark textarea {
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+  .app-shell.dark .os-form > div::before {
+    display: none !important;
+  }
+  .app-shell.dark *,
+  .app-shell * {
+    transition-duration: 0.08s !important;
+  }
+}
