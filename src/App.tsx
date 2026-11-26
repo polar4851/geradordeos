@@ -395,8 +395,8 @@ export default function App() {
   return (
     <div className={`app-shell min-h-screen flex flex-col font-sans text-slate-800 ${darkMode ? 'dark' : ''}`}>
       {/* NAVIGATION HEADER BAR */}
-      <header className="no-print sticky top-0 flex flex-wrap items-center justify-between gap-4 px-5 md:px-8 py-4 bg-white/95 backdrop-blur border-b border-slate-200/80 shadow-[0_2px_16px_rgba(15,23,42,0.04)] z-20">
-        <div className="flex items-center gap-3.5">
+      <header className="app-header no-print sticky top-0 z-30 px-5 md:px-8 py-3 bg-white/95 border-b border-slate-200/80">
+        <div className="app-header-brand flex items-center gap-3.5">
           <div className="w-11 h-11 bg-slate-950 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/15">
             <PenTool className="w-5 h-5" strokeWidth={2.2} />
           </div>
@@ -407,16 +407,17 @@ export default function App() {
           <div className="hidden md:flex items-center gap-2 ml-5 pl-5 border-l border-slate-200 text-[11px] text-slate-500 font-medium"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Ambiente local</div>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+        <nav className="app-header-nav flex items-center gap-2 md:gap-3 flex-wrap" aria-label="Navegação principal">
           <button type="button" onClick={() => setActiveTab('home')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'home' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Início</button>
           <button type="button" onClick={() => setActiveTab('workspace')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'workspace' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Painel</button>
           <button type="button" onClick={() => setActiveTab('about')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'about' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Pokédex / Projeto</button>
           <button type="button" onClick={() => setDarkMode((value) => !value)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} title={darkMode ? "Modo claro" : "Modo escuro"} className="theme-toggle inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition">{darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}</button>
+        </nav>
         </div>
 
         {/* Core App Actions */}
         {activeOS && activeTab !== 'home' && (
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="app-header-tools flex items-center gap-2 md:gap-3">
             <button
               type="button"
               onClick={() => setShowHelp(!showHelp)}
