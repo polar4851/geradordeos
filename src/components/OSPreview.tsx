@@ -5,7 +5,7 @@ interface OSPreviewProps {
   activeOS: ServiceOrder;
 }
 
-export default function OSPreview({ activeOS }: OSPreviewProps) {
+function OSPreview({ activeOS }: OSPreviewProps) {
   const areaUnitaria = activeOS.largura * activeOS.altura;
   const areaTotal = areaUnitaria * activeOS.quantidade;
 
@@ -236,3 +236,6 @@ export default function OSPreview({ activeOS }: OSPreviewProps) {
     </div>
   );
 }
+
+
+export default React.memo(OSPreview);
