@@ -329,7 +329,7 @@ export default function App() {
 
     setOrders((prev) => [duplicated, ...prev]);
     setActiveOSId(duplicated.id);
-  }, [orders]);
+  }, []);
 
   // EXPORT TO HIGH-DENSITY A4 PDF
   const handleExportPDF = async () => {
