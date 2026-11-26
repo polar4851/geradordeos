@@ -230,7 +230,7 @@ function OSPreview({ activeOS }: OSPreviewProps) {
           <div className="grid grid-cols-3 gap-3 pt-2">
             <div className="border-t border-slate-300 pt-1.5"><span className="block text-[8px] font-black text-slate-500 uppercase tracking-wider">Vendedor</span><span className="block text-[10px] font-bold text-slate-900">{activeOS.vendedor || "Não informado"}</span></div>
             <div className="border-t border-slate-300 pt-1.5"><span className="block text-[8px] font-black text-slate-500 uppercase tracking-wider">Arte-finalista</span><span className="block text-[10px] font-bold text-slate-900">{activeOS.designer || "Não informado"}</span></div>
-            <div className="border-t border-slate-300 pt-1.5"><span className="block text-[8px] font-black text-slate-500 uppercase tracking-wider">Impressor</span><span className="block text-[10px] font-bold text-slate-900">{activeOS.impressor || "Não informado"}</span></div>
+            <div className="border-2 border-indigo-600 bg-indigo-50 rounded-lg px-3 py-2"><span className="block text-[9px] font-black text-indigo-700 uppercase tracking-widest">Impressor responsável</span><span className="block text-sm font-black text-indigo-950 mt-0.5">{activeOS.impressor || "Não informado"}</span></div>
           </div>
           <div className="flex justify-between items-center text-[8px] text-slate-400 font-mono mt-0.5 pt-1.5 border-t border-slate-100">
             <span>Ficha de Trabalho do Operador - Fábrica</span>
