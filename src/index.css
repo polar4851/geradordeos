@@ -2103,60 +2103,65 @@ body { margin: 0; overflow-x: hidden; }
 
 
 
-/* Prévia A4 compacta: mantém a escala reduzida e a posição no painel. */
+
+
+/* PREVIEW A4 — escala aplicada à folha, não ao wrapper.
+   A altura do viewport acompanha exatamente a escala da folha (1123px). */
 .workspace-preview-panel .preview-panel-content {
-  container-type:inline-size;
+  width:100%;
   min-width:0;
+  container-type:inline-size;
 }
 .workspace-preview-panel .preview-viewport {
-  display:block;
-  width:100%;
-  max-width:100%;
-  height:auto;
-  overflow:hidden;
-  padding:0;
+  --a4-preview-scale:clamp(.32, calc(100cqw / 794), .58);
+  display:flex !important;
+  align-items:flex-start;
+  justify-content:center;
+  width:100% !important;
+  height:calc(1123px * var(--a4-preview-scale)) !important;
+  min-height:calc(1123px * var(--a4-preview-scale)) !important;
+  max-height:none !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
   border:1px solid var(--t-line);
   border-radius:5px;
   background:#e7e4eb;
 }
 .workspace-preview-panel .preview-scaled-page {
-  width:794px;
-  max-width:none;
-  flex:0 0 794px;
-  transform-origin:top left;
-  zoom:clamp(.32, calc(100cqw / 794), .58);
+  display:block !important;
+  width:794px !important;
+  height:1123px !important;
+  min-width:794px !important;
+  max-width:794px !important;
+  margin:0 auto !important;
+  flex:none !important;
+  transform:none !important;
+  zoom:var(--a4-preview-scale) !important;
+}
+.workspace-preview-panel .preview-scaled-page > .flex.flex-col.items-center {
+  display:block !important;
+  width:794px !important;
+}
+.workspace-preview-panel .preview-scaled-page .no-print {
+  display:none !important;
 }
 .workspace-preview-panel #a4-job-ticket {
+  display:flex !important;
   width:794px !important;
   min-width:794px !important;
   max-width:794px !important;
   height:1123px !important;
   min-height:1123px !important;
   max-height:1123px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
   background:#fff !important;
   color:#111827 !important;
 }
-
-/* Documento de produção: cores fixas, sem herdar tema ou esquema escuro. */
-#a4-job-ticket,
-#a4-job-ticket * {
-  color-scheme:light !important;
-}
-#a4-job-ticket {
-  background:#fff !important;
-  color:#111827 !important;
-}
-@media print {
-  :root, html, body, #root, .app-shell {
-    color-scheme:light !important;
-    background:#fff !important;
-    color:#111827 !important;
+@media (max-width:1250px) {
+  .workspace-preview-panel .preview-viewport {
+    --a4-preview-scale:clamp(.32, calc(100cqw / 794), .58);
   }
-  #a4-job-ticket,
-  #a4-job-ticket * {
-    color-scheme:light !important;
-    -webkit-print-color-adjust:exact !important;
-    print-color-adjust:exact !important;
-  }
-  #a4-job-ticket { background:#fff !important; color:#111827 !important; }
 }
