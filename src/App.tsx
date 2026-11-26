@@ -337,39 +337,45 @@ export default function App() {
   const handleExportPDF = async () => {
     if (!activeOS) return;
     setIsGenerating(true);
-    
+    const appShell = document.querySelector('.app-shell');
+    const wasDark = appShell?.classList.contains('dark') ?? false;
+    // Exportação é um documento de produção: captura sempre em tema claro.
+    appShell?.classList.remove('dark');
+
     try {
       const element = document.getElementById('a4-job-ticket');
-      if (!element) {
-        throw new Error('Elemento de preview A4 não encontrado.');
-      }
+      if (!element) throw new Error('Elemento de preview A4 não encontrado.');
 
-      // Converte o elemento HTML diretamente para PNG em alta resolução
-      // O html-to-image captura o elemento em seu tamanho real (794x1123px), sem distorções ou esmagamentos!
       const imgData = await toPng(element, {
-        pixelRatio: 3, // Resolução 3x ultra-nítida de nível profissional para impressão industrial
+        pixelRatio: 3,
         backgroundColor: '#ffffff',
         cacheBust: true,
       });
-      
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const imgHeight = 297; // Proporção perfeita A4 (210mm x 297mm)
 
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
       const fileNameStr = (activeOS.clienteNome || 'sem_nome').trim().replace(/[^a-zA-Z0-9]/g, '_');
       pdf.save(`${activeOS.osNumber}_${fileNameStr}_producao.pdf`);
     } catch (err) {
       console.error('Falha ao exportar PDF:', err);
       alert('Houve um erro ao renderizar o PDF. Dica: você também pode usar o botão "IMPRIMIR DIRETO" (Ctrl+P) escolhendo "Salvar como PDF" no navegador.');
     } finally {
+      if (wasDark) appShell?.classList.add('dark');
       setIsGenerating(false);
     }
   };
 
-  // Direct Browser Printing (Triggers optimized A4 native print sheet)
+  // A impressão nativa também ignora o tema visual da aplicação.
   const handleDirectPrint = () => {
+    const appShell = document.querySelector('.app-shell');
+    const wasDark = appShell?.classList.contains('dark') ?? false;
+    appShell?.classList.remove('dark');
+
+    const restoreTheme = () => {
+      if (wasDark) appShell?.classList.add('dark');
+      window.removeEventListener('afterprint', restoreTheme);
+    };
+    window.addEventListener('afterprint', restoreTheme);
     window.print();
   };
 
