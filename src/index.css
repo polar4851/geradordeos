@@ -1212,3 +1212,36 @@ body { margin: 0; overflow-x: hidden; }
   border-color: #2a3a57 !important;
   color: #bdcbed !important;
 }
+
+
+/* Home main navigation menu */
+.home-menu-section { margin-top: 24px; }
+.home-menu-heading h3 { margin-top: 10px; color: #172033; font: 900 25px/1.1 "Outfit",sans-serif; letter-spacing: -.035em; }
+.home-menu-heading p { margin-top: 6px; color: #6b7890; font-size: 12px; }
+.home-menu-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; margin-top:16px; }
+.home-menu-card {
+  display:flex; align-items:center; gap:13px; min-width:0; width:100%; padding:16px;
+  border:1px solid #dce3f0; border-radius:14px; background:#fff; color:#27334b;
+  text-align:left; transition:transform .15s ease,border-color .15s ease,background-color .15s ease;
+}
+.home-menu-card:hover { transform:translateY(-2px); border-color:#9bb4ef; background:#f9fbff; }
+.home-menu-card > svg { width:16px; height:16px; margin-left:auto; flex-shrink:0; color:#8492aa; }
+.home-menu-icon { display:grid; place-items:center; width:42px; height:42px; flex-shrink:0; border-radius:12px; background:#eaf0ff; color:#315fe0; }
+.home-menu-icon svg { width:19px; height:19px; }
+.home-menu-copy { display:flex; flex-direction:column; gap:4px; min-width:0; }
+.home-menu-copy b { color:#1d2940; font-size:12px; font-weight:900; }
+.home-menu-copy small { color:#78849a; font-size:10px; line-height:1.4; }
+.home-menu-create { border-color:#a9bdf1; background:#f2f6ff; }
+.home-menu-create .home-menu-icon { background:#315fe0; color:#fff; }
+.app-shell.dark .home-menu-heading h3 { color:#eef3ff; }
+.app-shell.dark .home-menu-heading p { color:#9baac4; }
+.app-shell.dark .home-menu-card { background:#0d1421; border-color:#263650; color:#e7efff; }
+.app-shell.dark .home-menu-card:hover { background:#121d31; border-color:#5277c8; }
+.app-shell.dark .home-menu-copy b { color:#eef3ff; }
+.app-shell.dark .home-menu-copy small { color:#9baac4; }
+.app-shell.dark .home-menu-create { background:#111e38; border-color:#4568b2; }
+@media (max-width:640px) {
+  .home-menu-grid { grid-template-columns:1fr; gap:8px; }
+  .home-menu-card { padding:13px; }
+  .home-menu-icon { width:38px; height:38px; }
+}
