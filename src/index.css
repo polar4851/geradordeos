@@ -2178,3 +2178,118 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell,.app-shell.sidebar-collapsed { padding-left:0 !important; }
   .app-shell .sidebar-mobile-toggle,.app-shell .sidebar-backdrop { display:none !important; }
 }
+
+
+/* Final interaction + A4 preview corrections. */
+.app-shell .theme-toggle,
+.app-shell .sidebar-theme {
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  min-width:36px !important;
+  min-height:36px !important;
+  padding:0 10px !important;
+  border:1px solid var(--t-line, #d8d2df) !important;
+  border-radius:7px !important;
+  background:var(--t-panel, #fff) !important;
+  color:var(--t-text, #211c29) !important;
+  box-shadow:none !important;
+  cursor:pointer !important;
+  opacity:1 !important;
+  filter:none !important;
+  transform:none !important;
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease !important;
+}
+.app-shell .theme-toggle:hover,
+.app-shell .sidebar-theme:hover {
+  background:var(--t-panel-2, #f5f2f8) !important;
+  border-color:var(--t-purple, #7024dc) !important;
+  color:var(--t-purple, #7024dc) !important;
+  box-shadow:none !important;
+}
+.app-shell .theme-toggle:focus-visible,
+.app-shell .sidebar-theme:focus-visible {
+  outline:2px solid var(--t-purple, #7024dc) !important;
+  outline-offset:2px !important;
+}
+.app-shell .theme-toggle svg,
+.app-shell .sidebar-theme svg {
+  display:block !important;
+  width:16px !important;
+  height:16px !important;
+  flex:0 0 16px !important;
+  stroke:currentColor !important;
+}
+.app-shell.dark .theme-toggle,
+.app-shell.dark .sidebar-theme {
+  background:#17131f !important;
+  border-color:#40334f !important;
+  color:#d6b8ff !important;
+  box-shadow:none !important;
+}
+.app-shell.dark .theme-toggle:hover,
+.app-shell.dark .sidebar-theme:hover {
+  background:#21172e !important;
+  border-color:#8750cf !important;
+  color:#fff !important;
+}
+
+/* The preview scales the entire A4 sheet to the available column width.
+   No fixed-height clipping on the viewport or its wrappers. */
+.workspace-preview-panel,
+.workspace-preview-panel .preview-panel-content,
+.workspace-preview-panel .preview-viewport {
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+.workspace-preview-panel .preview-panel-content {
+  display:block !important;
+  width:100% !important;
+  container-type:inline-size !important;
+}
+.workspace-preview-panel .preview-viewport {
+  display:block !important;
+  width:100% !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+  container-type:inline-size !important;
+  background:#e7e4eb !important;
+}
+.workspace-preview-panel .preview-viewport > .preview-scaled-page {
+  display:block !important;
+  width:794px !important;
+  min-width:794px !important;
+  max-width:794px !important;
+  height:auto !important;
+  max-height:none !important;
+  flex:none !important;
+  transform:none !important;
+  transform-origin:top left !important;
+  zoom:clamp(.25, calc((100cqw - 2px) / 794), 1) !important;
+}
+.workspace-preview-panel #a4-job-ticket {
+  display:flex !important;
+  width:794px !important;
+  min-width:794px !important;
+  max-width:794px !important;
+  height:1123px !important;
+  min-height:1123px !important;
+  max-height:1123px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+@media (max-width:1250px) {
+  .workspace-preview-panel .preview-viewport > .preview-scaled-page {
+    zoom:clamp(.25, calc((100cqw - 2px) / 794), 1) !important;
+  }
+}
+@media print {
+  .app-shell .theme-toggle,
+  .app-shell .sidebar-theme { display:none !important; }
+}
