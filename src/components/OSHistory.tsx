@@ -190,3 +190,6 @@ export default function OSHistory({
     </div>
   );
 }
+
+
+export default React.memo(OSHistory);
