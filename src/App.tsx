@@ -393,6 +393,7 @@ export default function App() {
           <button type="button" onClick={() => setActiveTab('home')} className={`rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'home' ? 'bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Início</button>
           <button type="button" onClick={() => setActiveTab('workspace')} className={`rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'workspace' ? 'bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Painel</button>
           <button type="button" onClick={() => setActiveTab('about')} className={`rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'about' ? 'bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Pokédex / Projeto</button>
+          <button type="button" onClick={() => setDarkMode((value) => !value)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} title={darkMode ? "Modo claro" : "Modo escuro"} className="theme-toggle inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition">{darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}</button>
         </div>
 
         {/* Core App Actions */}
@@ -406,16 +407,6 @@ export default function App() {
             >
               {activeTab === 'about' ? <ArrowLeft className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
               {activeTab === 'about' ? 'Voltar ao painel' : 'Sobre & créditos'}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setDarkMode((value) => !value)}
-              aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"}
-              title={darkMode ? "Modo claro" : "Modo escuro"}
-              className="theme-toggle inline-flex items-center justify-center gap-2 w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition"
-            >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
             <button
