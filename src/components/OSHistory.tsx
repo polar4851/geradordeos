@@ -23,7 +23,7 @@ interface OSHistoryProps {
   onDuplicate: (id: string) => void;
 }
 
-export default function OSHistory({
+function OSHistory({
   orders,
   activeId,
   onSelect,
