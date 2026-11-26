@@ -2097,5 +2097,5 @@ body { margin: 0; overflow-x: hidden; }
 }
 @media print {
   .app-shell { padding-left:0 !important; background:#fff !important; }
-  .app-shell>footer,.app-sidebar,.app-header,.workspace-page,.traco-home,.about-page { display:none !important; }
+  .app-shell>footer,.app-sidebar,.app-header,.traco-home,.about-page { display:none !important; }
 }
