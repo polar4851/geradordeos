@@ -225,6 +225,11 @@ export default function App() {
     return () => window.clearTimeout(timer);
   }, [orders]);
 
+  const activeOSRef = useRef(activeOS);
+  const ordersRef = useRef(orders);
+  activeOSRef.current = activeOS;
+  ordersRef.current = orders;
+
   // Helper updating the active O.S. details
   const handleOSChange = useCallback((updated: ServiceOrder) => {
     setOrders((prev) => prev.map((o) => (o.id === updated.id ? updated : o)));
@@ -234,14 +239,16 @@ export default function App() {
 
   // Create a brand new blank Service Order
   const handleCreateNew = useCallback(() => {
+    const currentOrders = ordersRef.current;
+    const currentOS = activeOSRef.current;
     const timestamp = Date.now();
-    const nextNum = orders.length > 0 
-      ? `OS-${1000 + orders.length + 1}`
+    const nextNum = currentOrders.length > 0
+      ? `OS-${1000 + currentOrders.length + 1}`
       : 'OS-1001';
 
     // Copy branding details from active one if exists
-    const currentCompany = activeOS?.companyName || 'Sua empresa';
-    const currentPhone = activeOS?.companyPhone || '';
+    const currentCompany = currentOS?.companyName || 'Sua empresa';
+    const currentPhone = currentOS?.companyPhone || '';
 
     const newOS: ServiceOrder = {
       id: `os-${timestamp}`,
@@ -250,8 +257,8 @@ export default function App() {
       dataEntrega: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 5 days from now
       clienteNome: '',
       clienteContato: '',
-      vendedor: activeOS?.vendedor || '',
-      designer: activeOS?.designer || '',
+      vendedor: currentOS?.vendedor || '',
+      designer: currentOS?.designer || '',
       material: 'Adesivo',
       largura: 1.0,
       altura: 1.0,
@@ -272,25 +279,26 @@ export default function App() {
 
     setOrders((prev) => [newOS, ...prev]);
     setActiveOSId(newOS.id);
-  }, [orders.length, activeOS]);
+  }, []);
 
   // Delete Service Order from local state
   const handleDeleteOS = useCallback((id: string) => {
-    if (orders.length <= 1) {
+    const currentOrders = ordersRef.current;
+    if (currentOrders.length <= 1) {
       alert('Você deve manter no mínimo 1 Ordem de Serviço cadastrada.');
       return;
     }
     const confirmDelete = window.confirm('Tem certeza que deseja apagar permanentemente esta Ordem de Serviço?');
     if (confirmDelete) {
-      const remaining = orders.filter((o) => o.id !== id);
+      const remaining = currentOrders.filter((o) => o.id !== id);
       setOrders(remaining);
       setActiveOSId(remaining[0].id);
     }
-  }, [orders]);
+  }, []);
 
   // Duplicate Service Order to quick draft matching specifications/client
   const handleDuplicateOS = useCallback((id: string) => {
-    const target = orders.find((o) => o.id === id);
+    const target = ordersRef.current.find((o) => o.id === id);
     if (!target) return;
 
     const duplicated: ServiceOrder = {
