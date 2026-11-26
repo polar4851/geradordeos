@@ -417,66 +417,21 @@ export default function App() {
         </button>
         <div className="sidebar-profile"><div className="sidebar-avatar">W</div><div><strong>Warleandro</strong><small>Administrador</small></div></div>
       </aside>
-      {/* NAVIGATION HEADER BAR */}
-      <header className="app-header no-print sticky top-0 z-30 px-5 md:px-8 py-3 bg-white/95 border-b border-slate-200/80">
-        <div className="app-header-brand flex items-center gap-3.5">
+      {/* HEADER PRINCIPAL */}
+      <header className="app-header no-print">
+        <div className="app-header-brand">
           <button type="button" className="sidebar-mobile-toggle" aria-label={sidebarOpen ? "Fechar menu" : "Abrir menu"} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <X /> : <Menu />}</button>
-          <div className="w-11 h-11 bg-slate-950 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/15">
-            <PenTool className="w-5 h-5" strokeWidth={2.2} />
-          </div>
-          <div>
-            <h1 className="text-[21px] leading-none font-extrabold tracking-tight text-slate-950">Traço<span className="text-indigo-600">OS</span></h1>
-            <p className="text-[10px] text-slate-500 mt-1.5 font-bold uppercase tracking-[0.18em]">Gestão de produção visual</p>
-          </div>
-          <div className="hidden md:flex items-center gap-2 ml-5 pl-5 border-l border-slate-200 text-[11px] text-slate-500 font-medium"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Ambiente local</div>
+          <div className="header-wordmark"><span className="header-mark"><PenTool /></span><div><h1>Traço<span>OS</span></h1><p>{activeTab === 'home' ? 'Visão geral' : activeTab === 'workspace' ? 'Painel de produção' : 'Sobre o projeto'}</p></div></div>
         </div>
-
-        <nav className="app-header-nav flex items-center gap-2 md:gap-3 flex-wrap" aria-label="Navegação principal">
-          <button type="button" onClick={() => setActiveTab('home')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'home' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Início</button>
-          <button type="button" onClick={() => setActiveTab('workspace')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'workspace' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Painel</button>
-          <button type="button" onClick={() => setActiveTab('about')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'about' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Projeto / Créditos</button>
-          <button type="button" onClick={() => setDarkMode((value) => !value)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} title={darkMode ? "Modo claro" : "Modo escuro"} className="theme-toggle inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition">{darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}</button>
-        </nav>
-
-        {/* Core App Actions */}
-        {activeOS && activeTab !== 'home' && (
-          <div className="app-header-tools flex items-center gap-2 md:gap-3">
-            <button
-              type="button"
-              onClick={() => setShowHelp(!showHelp)}
-              className="px-3.5 py-2.5 hover:bg-slate-50 text-slate-600 border border-slate-200 rounded-xl text-xs font-semibold tracking-tight transition"
-            >
-              Ajuda / Tutorial Ctrl+V
-            </button>
-
-            <button
-              type="button"
-              onClick={handleDirectPrint}
-              className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition active:scale-95 shadow-sm"
-            >
-              Imprimir Direto
-            </button>
-
-            <button
-              type="button"
-              disabled={isGenerating}
-              onClick={handleExportPDF}
-              className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 text-white rounded-xl text-xs font-bold shadow-md shadow-indigo-600/15 transition active:scale-95 flex items-center gap-1.5"
-            >
-              {isGenerating ? (
-                <>
-                  <RotateCw className="w-3.5 h-3.5 animate-spin" />
-                  Gerando...
-                </>
-              ) : (
-                <>
-                  <Download className="w-3.5 h-3.5" />
-                  Gerar PDF (A4)
-                </>
-              )}
-            </button>
-          </div>
-        )}
+        <div className="app-header-tools">
+          <span className="header-local-status"><i /> Sistema local</span>
+          {activeOS && activeTab === 'workspace' && <>
+            <button type="button" onClick={() => setShowHelp(!showHelp)} className="header-quiet-action"><Info className="w-4 h-4"/> Ajuda</button>
+            <button type="button" onClick={handleDirectPrint} className="header-quiet-action"><Printer className="w-4 h-4"/> Imprimir</button>
+            <button type="button" disabled={isGenerating} onClick={handleExportPDF} className="header-primary-action">{isGenerating ? <RotateCw className="w-4 h-4 animate-spin"/> : <Download className="w-4 h-4"/>}{isGenerating ? 'Gerando...' : 'Exportar PDF'}</button>
+          </>}
+          <button type="button" onClick={() => setDarkMode((value) => !value)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} className="theme-toggle">{darkMode ? <Sun className="w-4 h-4"/> : <Moon className="w-4 h-4"/>}</button>
+        </div>
       </header>
 
       {/* QUICK INSTRUCTIONS BANNER */}
@@ -503,55 +458,49 @@ export default function App() {
         </div>
       )}
 
-      {/* HOME / TRAÇO OS LANDING PAGE */}
+      {/* DASHBOARD */}
       {activeTab === 'home' && (
-        <main className="traco-home flex-1 w-full max-w-[1380px] mx-auto px-4 py-7 md:px-8 md:py-10">
-          <section className="home-hero relative overflow-hidden rounded-[2rem] p-7 md:p-12">
-            <div className="home-hero-copy relative z-10 max-w-2xl">
-              <span className="home-kicker">TRAÇO OS · CENTRAL DE PRODUÇÃO</span>
-              <h2>Organize sua produção.<br/><span>Tudo no seu ritmo.</span></h2>
-              <p>Ordens de serviço, materiais, medidas e referências visuais em um só lugar. Menos retrabalho entre atendimento, arte-final e produção.</p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <button type="button" onClick={() => setActiveTab('workspace')} className="home-primary">Abrir painel <ChevronRight className="w-4 h-4"/></button>
-                <button type="button" onClick={() => setActiveTab('about')} className="home-secondary">Conhecer o projeto</button>
+        <main className="traco-home app-page">
+          <section className="dashboard-hero">
+            <div className="dashboard-hero-content">
+              <span className="dashboard-eyebrow">TRAÇO OS <b>/</b> PRODUÇÃO VISUAL</span>
+              <h2>Produção organizada.<br/><span>Do atendimento à impressão.</span></h2>
+              <p>Centralize ordens, acompanhe cada etapa e entregue informações claras para quem está na produção.</p>
+              <div className="dashboard-hero-actions">
+                <button type="button" onClick={() => { handleCreateNew(); setActiveTab('workspace'); }} className="dashboard-primary"><PlusIconFallback/> Criar ordem de serviço</button>
+                <button type="button" onClick={() => setActiveTab('workspace')} className="dashboard-secondary">Abrir painel <ChevronRight className="w-4 h-4"/></button>
               </div>
-              <div className="home-stats"><span><b>{counts.total}</b> ordens registradas</span><span><b>{counts.production}</b> em produção</span><span><b>{counts.completed}</b> concluídas</span></div>
             </div>
-            <div className="home-hero-art" aria-hidden="true">
-              <div className="home-art-ring home-art-ring-one"></div>
-              <div className="home-art-ring home-art-ring-two"></div>
-              <div className="home-art-icon"><PrinterCheck /></div>
-              <div className="home-art-chip home-art-chip-one"><ClipboardList /></div>
-              <div className="home-art-chip home-art-chip-two"><Layers /></div>
+            <div className="dashboard-hero-visual" aria-hidden="true"><div className="hero-arc"></div><div className="hero-document"><FileText/><span>ORDEM DE PRODUÇÃO</span><strong>OS-{String(1000 + orders.length).padStart(4,'0')}</strong><i></i><i></i><i></i></div></div>
+          </section>
+
+          <section className="dashboard-metrics" aria-label="Resumo da produção">
+            <div className="metric-intro"><span className="dashboard-eyebrow">ACOMPANHAMENTO</span><h3>Seu ritmo de produção</h3><p>Resumo atualizado das ordens cadastradas.</p></div>
+            <div className="metric-item"><span>Total de ordens</span><strong>{counts.total}</strong><small>Registros salvos</small></div>
+            <div className="metric-item"><span>Em produção</span><strong>{counts.production}</strong><small>Em andamento</small></div>
+            <div className="metric-item"><span>Concluídas</span><strong>{counts.completed}</strong><small>Finalizadas</small></div>
+            <div className="metric-item"><span>Prazo vencido</span><strong>{counts.overdue}</strong><small>Atenção necessária</small></div>
+          </section>
+
+          <section className="dashboard-section">
+            <div className="dashboard-section-heading"><div><span className="dashboard-eyebrow">FERRAMENTAS</span><h3>O que você precisa fazer?</h3><p>Acesse rapidamente as principais áreas do sistema.</p></div><button type="button" className="text-link" onClick={() => setActiveTab('workspace')}>Ver painel completo <ChevronRight className="w-4 h-4"/></button></div>
+            <div className="dashboard-feature-grid">
+              <button type="button" className="dashboard-feature-card feature-highlight" onClick={() => { handleCreateNew(); setActiveTab('workspace'); }}><span className="feature-icon"><FileText/></span><span className="feature-title">Nova ordem de serviço</span><span className="feature-description">Cadastre cliente, material, medidas e responsáveis.</span><span className="feature-link">Criar ordem <ChevronRight/></span></button>
+              <button type="button" className="dashboard-feature-card" onClick={() => setActiveTab('workspace')}><span className="feature-icon"><ClipboardList/></span><span className="feature-title">Ordens e histórico</span><span className="feature-description">Encontre, edite, duplique ou atualize uma ordem.</span><span className="feature-link">Acessar histórico <ChevronRight/></span></button>
+              <button type="button" className="dashboard-feature-card" onClick={() => setActiveTab('workspace')}><span className="feature-icon"><PrinterCheck/></span><span className="feature-title">Ficha de produção</span><span className="feature-description">Confira a prévia técnica e prepare a impressão A4.</span><span className="feature-link">Abrir ficha <ChevronRight/></span></button>
+              <button type="button" className="dashboard-feature-card" onClick={handleExportBackup}><span className="feature-icon"><Download/></span><span className="feature-title">Exportar backup</span><span className="feature-description">Guarde uma cópia dos registros deste navegador.</span><span className="feature-link">Baixar backup <ChevronRight/></span></button>
+              <button type="button" className="dashboard-feature-card" onClick={() => importInputRef.current?.click()}><span className="feature-icon"><Upload/></span><span className="feature-title">Restaurar backup</span><span className="feature-description">Importe um arquivo JSON salvo anteriormente.</span><span className="feature-link">Importar arquivo <ChevronRight/></span></button>
+              <button type="button" className="dashboard-feature-card" onClick={() => setActiveTab('about')}><span className="feature-icon"><BookOpen/></span><span className="feature-title">Sobre o Traço OS</span><span className="feature-description">Consulte informações, recursos e créditos do projeto.</span><span className="feature-link">Conhecer projeto <ChevronRight/></span></button>
             </div>
           </section>
-          <section className="home-menu-section">
-            <div className="home-menu-heading"><div><span className="home-kicker">MENU PRINCIPAL</span><h3>O que você precisa fazer?</h3><p>Acesse direto as ferramentas do Traço OS.</p></div></div>
-            <div className="home-menu-grid">
-              <button type="button" className="home-menu-card home-menu-create" onClick={() => { handleCreateNew(); setActiveTab('workspace'); }}>
-                <span className="home-menu-icon"><FileText/></span><span className="home-menu-copy"><b>Nova ordem de serviço</b><small>Começar uma ficha do zero</small></span><ChevronRight/>
-              </button>
-              <button type="button" className="home-menu-card" onClick={() => setActiveTab('workspace')}>
-                <span className="home-menu-icon"><ClipboardList/></span><span className="home-menu-copy"><b>Ordens e produção</b><small>Histórico, edição e status</small></span><ChevronRight/>
-              </button>
-              <button type="button" className="home-menu-card" onClick={handleExportBackup}>
-                <span className="home-menu-icon"><Download/></span><span className="home-menu-copy"><b>Exportar backup</b><small>Salvar uma cópia dos registros</small></span><ChevronRight/>
-              </button>
-              <button type="button" className="home-menu-card" onClick={() => importInputRef.current?.click()}>
-                <span className="home-menu-icon"><Upload/></span><span className="home-menu-copy"><b>Restaurar backup</b><small>Importar um arquivo JSON</small></span><ChevronRight/>
-              </button>
-              <button type="button" className="home-menu-card" onClick={() => setActiveTab('about')}>
-                <span className="home-menu-icon"><BookOpen/></span><span className="home-menu-copy"><b>Projeto e créditos</b><small>Conheça o projeto e seus recursos</small></span><ChevronRight/>
-              </button>
-            </div>
+
+          <section className="dashboard-trust-band"><div><span className="dashboard-eyebrow">FEITO PARA O DIA A DIA DA GRÁFICA</span><h3>Informação certa, na hora certa.</h3><p>Uma rotina mais clara entre atendimento, arte-final e impressão.</p></div><div className="trust-points"><div><strong>01</strong><span>Cadastro centralizado</span></div><div><strong>02</strong><span>Ficha técnica padronizada</span></div><div><strong>03</strong><span>Impressão A4 pronta</span></div><div><strong>04</strong><span>Backup dos registros</span></div></div></section>
+
+          <section className="dashboard-section recent-section">
+            <div className="dashboard-section-heading"><div><span className="dashboard-eyebrow">CONTINUE DE ONDE PAROU</span><h3>Ordens recentes</h3><p>Abra uma ordem para continuar a edição.</p></div><button type="button" className="text-link" onClick={() => setActiveTab('workspace')}>Ver todas <ChevronRight className="w-4 h-4"/></button></div>
+            <div className="recent-orders-grid">{orders.slice(0,3).map((order) => <button type="button" key={order.id} className="recent-order-card" onClick={() => { setActiveOSId(order.id); setActiveTab('workspace'); }}><div className="recent-order-top"><span>{order.osNumber}</span><span className={'recent-status status-'+order.status}>{order.status === 'concluido' ? 'Concluída' : order.status === 'producao' ? 'Em produção' : 'Rascunho'}</span></div><strong>{order.clienteNome || 'Cliente não cadastrado'}</strong><small>{order.material} · {order.largura.toFixed(2)} × {order.altura.toFixed(2)} m</small><span className="recent-order-open">Abrir ordem <ChevronRight/></span></button>)}</div>
           </section>
           <input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup} />
-          <section className="home-feature-grid">
-            <article><span className="home-feature-icon blue"><FileText/></span><h3>Ordens organizadas</h3><p>Cliente, responsáveis, prazo e status em um histórico pesquisável.</p></article>
-            <article><span className="home-feature-icon violet"><Layers/></span><h3>Ficha técnica completa</h3><p>Materiais, dimensões, quantidade, acabamento e aplicação.</p></article>
-            <article><span className="home-feature-icon green"><PrinterCheck/></span><h3>Pronta para produção</h3><p>Referência visual, prévia A4, impressão e exportação em PDF.</p></article>
-          </section>
-          <section className="home-bottom-row"><div><span className="home-kicker">SUA BASE, SUAS REGRAS</span><h3>Feito para o ritmo de uma gráfica.</h3><p>Seus registros ficam salvos neste navegador. Exporte backups regularmente para manter uma cópia segura.</p></div><button type="button" onClick={() => setActiveTab('workspace')}>Começar agora <ChevronRight className="w-4 h-4"/></button></section>
         </main>
       )}
 
@@ -623,101 +572,31 @@ export default function App() {
         </main>
       )}
 
-      {activeTab === 'workspace' && <main className="flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-7 flex flex-col gap-6">
-        <section className="no-print flex flex-col md:flex-row md:items-end justify-between gap-3 pt-1">
-          <div><p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600 mb-2">CENTRAL DE OPERAÇÕES</p><h2 className="text-2xl md:text-[28px] font-extrabold tracking-tight text-slate-950">Sua produção, em ordem.</h2><p className="text-sm text-slate-500 mt-1">Gerencie serviços, acompanhe prazos e prepare a ficha para a equipe.</p></div>
-          <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 rounded-full px-3.5 py-2 shadow-sm"><ShieldCheck className="w-4 h-4 text-emerald-600"/> Seus dados ficam neste navegador</div>
+      {activeTab === 'workspace' && <main className="workspace-page app-page">
+        <section className="workspace-heading no-print"><div><span className="dashboard-eyebrow">PAINEL DE PRODUÇÃO</span><h2>Ordens de serviço</h2><p>Gerencie os trabalhos e prepare cada ficha para a equipe.</p></div><button type="button" className="workspace-new-button" onClick={handleCreateNew}><FileText className="w-4 h-4"/> Nova ordem</button></section>
+        <section className="workspace-stats no-print">
+          <div><span>Ordens cadastradas</span><strong>{counts.total}</strong><small>Todos os registros</small></div>
+          <div><span>Em rascunho</span><strong>{counts.draft}</strong><small>Aguardando produção</small></div>
+          <div><span>Na produção</span><strong>{counts.production}</strong><small>Em andamento</small></div>
+          <div><span>Concluídas</span><strong>{counts.completed}</strong><small>Finalizadas</small></div>
+          <div><span>Prazo vencido</span><strong>{counts.overdue}</strong><small>Verificar entrega</small></div>
         </section>
-
-        <section className="no-print grid grid-cols-2 xl:grid-cols-5 gap-3">
-          {[
-            { label: 'Ordens cadastradas', value: counts.total, icon: FileText, tone: 'text-indigo-600 bg-indigo-50' },
-            { label: 'Em rascunho', value: counts.draft, icon: Clipboard, tone: 'text-slate-600 bg-slate-100' },
-            { label: 'Na produção', value: counts.production, icon: Layers, tone: 'text-amber-600 bg-amber-50' },
-            { label: 'Concluídas', value: counts.completed, icon: CheckCircle2, tone: 'text-emerald-600 bg-emerald-50' },
-            { label: 'Prazo vencido', value: counts.overdue, icon: Clock3, tone: counts.overdue ? 'text-rose-600 bg-rose-50' : 'text-slate-500 bg-slate-100' }
-          ].map((item) => { const Icon = item.icon; return <div key={item.label} className="bg-white border border-slate-200/80 rounded-2xl p-4 md:p-5 shadow-[0_3px_14px_rgba(15,23,42,0.035)] flex items-center gap-3.5 hover:-translate-y-0.5 hover:shadow-md transition-all"><div className={'w-9 h-9 rounded-lg flex items-center justify-center ' + item.tone}><Icon className="w-4 h-4" /></div><div><div className="text-xl font-black text-slate-900 leading-none">{item.value}</div><div className="text-[10px] text-slate-500 font-semibold mt-1">{item.label}</div></div></div>; })}
+        <section className="workspace-toolbar no-print">
+          <div><ShieldCheck className="w-4 h-4"/><span>Seus registros ficam salvos neste navegador.</span></div>
+          <div><button type="button" onClick={handleExportBackup}><Save className="w-4 h-4"/> Exportar backup</button><button type="button" onClick={() => importInputRef.current?.click()}><Upload className="w-4 h-4"/> Restaurar</button><input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup}/></div>
         </section>
-
-        <section className="no-print flex flex-wrap items-center justify-between gap-3 bg-white border border-slate-200/80 rounded-2xl px-5 py-4 shadow-[0_3px_14px_rgba(15,23,42,0.035)]">
-          <div><p className="text-xs font-bold text-slate-800">Segurança dos seus registros</p><p className="text-[11px] text-slate-500 mt-0.5">Exporte uma cópia ou restaure um backup salvo anteriormente.</p></div>
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={handleExportBackup} className="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5"><Save className="w-3.5 h-3.5" /> Exportar backup</button>
-            <button type="button" onClick={() => importInputRef.current?.click()} className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5"><Upload className="w-3.5 h-3.5" /> Restaurar backup</button>
-            <input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup} />
-          </div>
-        </section>
-        {storageError && <div className="no-print rounded-lg border border-rose-200 bg-rose-50 text-rose-800 px-4 py-3 text-xs font-semibold">O navegador não conseguiu salvar as alterações. Exporte um backup e libere espaço antes de continuar.</div>}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 xl:gap-6 items-start">
-
-        
-        {/* SIDEBAR Column 1: DB History & Actions (col-span-3) */}
-        <section className="no-print lg:col-span-3 space-y-4 h-full min-w-0">
-          {orders.length > 0 && (
-            <OSHistory
-              orders={historyOrders.length ? historyOrders : orders}
-              activeId={activeOSId}
-              onSelect={handleSelectOS}
-              onCreateNew={handleCreateNew}
-              onDelete={handleDeleteOS}
-              onDuplicate={handleDuplicateOS}
-            />
-          )}
-
-          {/* Quick instructions widget card */}
-          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-              <Clipboard className="w-3.5 h-3.5 text-indigo-500" />
-              Agilidade na Fábrica
-            </h4>
-            <p className="text-[11px] leading-relaxed text-slate-500">
-              Gerar a folha A4 com a <b>referência visual</b> e as <b>especificações preenchidas</b> ajuda a equipe a conferir medidas, materiais e acabamentos antes de iniciar a produção.
-            </p>
-            <div className="bg-indigo-50/50 p-2.5 rounded-lg text-[10px] text-indigo-950 flex items-center gap-2 border border-indigo-100">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-              <span>O.S. Pronta para fixar no material físico!</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Column 2: O.S Dynamic Inputs Editor (col-span-5) */}
-        <section className="no-print lg:col-span-9 space-y-4 min-w-0">
-          {activeOS ? (
-            <OSForm 
-              activeOS={activeOS} 
-              onChange={handleOSChange} 
-            />
-          ) : (
-            <div className="bg-white p-8 text-center rounded-2xl border text-slate-400">
-              Carregando dados do sistema...
-            </div>
-          )}
-        </section>
-
-        <div className="compact-preview-control no-print"><button type="button" onClick={() => setShowCompactPreview((value) => !value)} aria-expanded={showCompactPreview}>{showCompactPreview ? "Ocultar prévia A4" : "Visualizar ficha A4"}<span>{showCompactPreview ? "−" : "+"}</span></button></div>
-
-        {/* Column 3: Live Printable A4 Simulation Preview Panel (col-span-4) */}
-        <section className={"workspace-preview lg:col-span-12 bg-[#e9edf5] p-3 md:p-5 rounded-2xl border border-slate-200 w-full min-w-0 flex flex-col items-center " + (showCompactPreview ? "workspace-preview-open" : "")}>
-          <div className="no-print mb-2.5 text-center">
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest bg-slate-200 px-2 py-1 rounded">
-              📃 GABARITO IMPRESSÃO A4 (100%)
-            </span>
-          </div>
-          {activeOS ? (
-            <div className="preview-viewport w-full flex justify-center">
-              <div className="preview-scaled-page w-[794px] shrink-0">
-                {/* Printable Area component */}
-                <OSPreview activeOS={previewOS?.id === activeOS.id ? previewOS : activeOS} />
-              </div>
-            </div>
-          ) : (
-            <div className="bg-white p-8 text-center rounded-2xl border text-slate-400">
-              Nenhuma O.S. ativa.
-            </div>
-          )}
-        </section>
-
-      </div>
+        {storageError && <div className="no-print storage-warning"><AlertTriangle className="w-4 h-4"/> O navegador não conseguiu salvar as alterações. Exporte um backup e libere espaço antes de continuar.</div>}
+        <div className="workspace-columns">
+          <aside className="workspace-history no-print">{orders.length > 0 && <OSHistory orders={historyOrders.length ? historyOrders : orders} activeId={activeOSId} onSelect={handleSelectOS} onCreateNew={handleCreateNew} onDelete={handleDeleteOS} onDuplicate={handleDuplicateOS}/>}</aside>
+          <section className="workspace-editor no-print">
+            <div className="panel-section-heading"><div><span className="dashboard-eyebrow">EDIÇÃO DA ORDEM</span><h3>Dados do trabalho</h3></div>{activeOS && <span className="order-number-tag">{activeOS.osNumber}</span>}</div>
+            {activeOS ? <OSForm activeOS={activeOS} onChange={handleOSChange}/> : <div className="empty-panel">Carregando dados do sistema...</div>}
+          </section>
+          <section className={"workspace-preview-panel " + (showCompactPreview ? "workspace-preview-open" : "")}>
+            <div className="preview-panel-heading no-print"><div><span className="dashboard-eyebrow">DOCUMENTO</span><h3>Prévia da ficha A4</h3></div><button type="button" onClick={() => setShowCompactPreview((value) => !value)} aria-expanded={showCompactPreview}>{showCompactPreview ? 'Ocultar' : 'Mostrar'} <ChevronRight className={showCompactPreview ? 'rotate-90' : ''}/></button></div>
+            <div className="preview-panel-content">{activeOS ? <div className="preview-viewport"><div className="preview-scaled-page"><OSPreview activeOS={previewOS?.id === activeOS.id ? previewOS : activeOS}/></div></div> : <div className="empty-panel">Nenhuma O.S. ativa.</div>}</div>
+          </section>
+        </div>
       </main>}
 
       {/* Bottom Status Bar */}
