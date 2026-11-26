@@ -411,7 +411,7 @@ export default function App() {
         <nav className="app-header-nav flex items-center gap-2 md:gap-3 flex-wrap" aria-label="Navegação principal">
           <button type="button" onClick={() => setActiveTab('home')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'home' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Início</button>
           <button type="button" onClick={() => setActiveTab('workspace')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'workspace' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Painel</button>
-          <button type="button" onClick={() => setActiveTab('about')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'about' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Pokédex / Projeto</button>
+          <button type="button" onClick={() => setActiveTab('about')} className={`app-nav-button rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'about' ? 'app-nav-active bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Projeto / Créditos</button>
           <button type="button" onClick={() => setDarkMode((value) => !value)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} title={darkMode ? "Modo claro" : "Modo escuro"} className="theme-toggle inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition">{darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}</button>
         </nav>
 
@@ -480,13 +480,13 @@ export default function App() {
         </div>
       )}
 
-      {/* HOME / POKEMON LANDING PAGE */}
+      {/* HOME / TRAÇO OS LANDING PAGE */}
       {activeTab === 'home' && (
         <main className="traco-home flex-1 w-full max-w-[1380px] mx-auto px-4 py-7 md:px-8 md:py-10">
           <section className="home-hero relative overflow-hidden rounded-[2rem] p-7 md:p-12">
             <div className="home-hero-copy relative z-10 max-w-2xl">
               <span className="home-kicker">TRAÇO OS · CENTRAL DE PRODUÇÃO</span>
-              <h2>Organize sua produção.<br/><span>Entre para a liga.</span></h2>
+              <h2>Organize sua produção.<br/><span>Tudo no seu ritmo.</span></h2>
               <p>Ordens de serviço, materiais, medidas e referências visuais em um só lugar. Menos retrabalho entre atendimento, arte-final e produção.</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <button type="button" onClick={() => setActiveTab('workspace')} className="home-primary">Abrir painel <ChevronRight className="w-4 h-4"/></button>
@@ -494,10 +494,13 @@ export default function App() {
               </div>
               <div className="home-stats"><span><b>{counts.total}</b> ordens registradas</span><span><b>{counts.production}</b> em produção</span><span><b>{counts.completed}</b> concluídas</span></div>
             </div>
-            <div className="home-pokemon home-pokemon-one" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="" /></div>
-            <div className="home-pokemon home-pokemon-two" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/6.gif" alt="" /></div>
-            <div className="home-pokemon home-pokemon-three" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="" /></div>
-            <div className="home-pokeball" aria-hidden="true"></div>
+            <div className="home-hero-art" aria-hidden="true">
+              <div className="home-art-ring home-art-ring-one"></div>
+              <div className="home-art-ring home-art-ring-two"></div>
+              <div className="home-art-icon"><PrinterCheck /></div>
+              <div className="home-art-chip home-art-chip-one"><ClipboardList /></div>
+              <div className="home-art-chip home-art-chip-two"><Layers /></div>
+            </div>
           </section>
           <section className="home-menu-section">
             <div className="home-menu-heading"><div><span className="home-kicker">MENU PRINCIPAL</span><h3>O que você precisa fazer?</h3><p>Acesse direto as ferramentas do Traço OS.</p></div></div>
@@ -515,7 +518,7 @@ export default function App() {
                 <span className="home-menu-icon"><Upload/></span><span className="home-menu-copy"><b>Restaurar backup</b><small>Importar um arquivo JSON</small></span><ChevronRight/>
               </button>
               <button type="button" className="home-menu-card" onClick={() => setActiveTab('about')}>
-                <span className="home-menu-icon"><BookOpen/></span><span className="home-menu-copy"><b>Pokédex e créditos</b><small>Conheça o projeto e seus recursos</small></span><ChevronRight/>
+                <span className="home-menu-icon"><BookOpen/></span><span className="home-menu-copy"><b>Projeto e créditos</b><small>Conheça o projeto e seus recursos</small></span><ChevronRight/>
               </button>
             </div>
           </section>
@@ -543,7 +546,7 @@ export default function App() {
                 <a href="https://github.com/polar4851/geradordeos" target="_blank" rel="noreferrer" className="rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-xs font-bold text-white hover:bg-white/15 transition">Ver código no GitHub ↗</a>
               </div>
             </div>
-            <div className="about-hero-pokemon" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="" /></div>
+            <div className="about-hero-mark" aria-hidden="true"><Layers /></div>
           </section>
 
           <section className="mt-8 grid gap-4 md:grid-cols-3">
@@ -577,30 +580,17 @@ export default function App() {
               <div className="flex items-center justify-between gap-3"><span className="about-eyebrow">NA PRÁTICA</span><span className="text-2xl">⚡</span></div>
               <h4 className="mt-2 text-xl font-black">Feito para quem produz.</h4>
               <p className="mt-2 text-sm leading-6 about-muted">Menos informação perdida no caminho. Mais clareza para quem vai imprimir, recortar, aplicar, montar e finalizar.</p>
-              <div className="about-gif-strip mt-5">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="Eevee em pixel art" loading="lazy" />
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif" alt="Jigglypuff animado em pixel art" loading="lazy" />
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Gengar em pixel art" loading="lazy" />
+              <div className="about-resource-list mt-5">
+                <div><ClipboardList /><span><b>Organização</b><small>Ordens e histórico em um só lugar.</small></span></div>
+                <div><PrinterCheck /><span><b>Produção</b><small>Ficha técnica pronta para a equipe.</small></span></div>
+                <div><Database /><span><b>Segurança local</b><small>Backup para guardar seus registros.</small></span></div>
               </div>
-              <p className="mt-3 text-[10px] about-muted">Pokémon em pixel art animado com fundo transparente.</p>
             </aside>
           </section>
 
           <section className="mt-6 rounded-2xl border border-indigo-400/20 bg-indigo-500/5 p-5 md:p-6">
             <h3 className="text-sm font-black">Tecnologia e transparência</h3>
             <p className="mt-2 text-sm leading-6 about-muted">Interface construída com React, TypeScript, Tailwind CSS e Vite. Os dados de ordens são mantidos no localStorage do navegador. Isso significa que não há sincronização automática entre computadores: mantenha backups atualizados para evitar perda de informações.</p>
-          </section>
-
-          <section className="about-gif-gallery mt-8">
-            <div className="mb-4 flex flex-wrap items-end justify-between gap-3"><div><p className="about-eyebrow">PAUSA PARA O CAFÉ</p><h3 className="mt-1 text-2xl font-black">Pokémon em pixel art também entrou na produção.</h3></div><span className="text-xs font-semibold text-indigo-500">GIFs animados · pixel art</span></div>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pikachu em pixel art" loading="lazy" /><span>Pikachu no ritmo</span></div>
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="Eevee animado em pixel art" loading="lazy" /><span>Energia para produzir</span></div>
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif" alt="Jigglypuff em pixel art" loading="lazy" /><span>Acabamento caprichado</span></div>
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Eevee dançando" loading="lazy" /><span>Ordem finalizada!</span></div>
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif" alt="Bulbasaur em pixel art" loading="lazy" /><span>Conferência final</span></div>
-              <div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/150.gif" alt="Mewtwo em pixel art" loading="lazy" /><span>Missão cumprida</span></div>
-            </div>
           </section>
 
           <section className="about-credit-callout mt-8">
