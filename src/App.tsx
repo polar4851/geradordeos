@@ -69,7 +69,7 @@ export default function App() {
   const [previewOS, setPreviewOS] = useState<ServiceOrder | null>(null);
   const [historyOrders, setHistoryOrders] = useState<ServiceOrder[]>([]);
   const [showCompactPreview, setShowCompactPreview] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth > 900);
 
   useEffect(() => {
     localStorage.setItem('traco-os-theme', darkMode ? 'dark' : 'light');
@@ -395,9 +395,9 @@ export default function App() {
   }
 
   return (
-    <div className={`app-shell min-h-screen flex flex-col font-sans text-slate-800 ${darkMode ? 'dark' : ''}`}>
+    <div className={`app-shell min-h-screen flex flex-col font-sans text-slate-800 ${darkMode ? 'dark' : ''} ${sidebarOpen ? 'sidebar-expanded' : 'sidebar-collapsed'}`}>
       {sidebarOpen && <button type="button" aria-label="Fechar menu" className="sidebar-backdrop no-print" onClick={() => setSidebarOpen(false)} />}
-      <aside className={`app-sidebar no-print ${sidebarOpen ? 'is-open' : ''}`} aria-label="Menu principal">
+      <aside id="traco-sidebar" className={`app-sidebar no-print ${sidebarOpen ? 'is-open' : 'is-closed'}`} aria-label="Menu principal">
         <div className="sidebar-brand">
           <div className="sidebar-brand-mark"><PenTool /></div>
           <div><strong>Traço<span>OS</span></strong><small>GESTÃO DE PRODUÇÃO</small></div>
@@ -420,7 +420,7 @@ export default function App() {
       {/* HEADER PRINCIPAL */}
       <header className="app-header no-print">
         <div className="app-header-brand">
-          <button type="button" className="sidebar-mobile-toggle" aria-label={sidebarOpen ? "Fechar menu" : "Abrir menu"} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <X /> : <Menu />}</button>
+          <button type="button" className="sidebar-mobile-toggle" aria-label={sidebarOpen ? "Fechar menu lateral" : "Abrir menu lateral"} aria-expanded={sidebarOpen} aria-controls="traco-sidebar" onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <X /> : <Menu />}</button>
           <div className="header-wordmark"><span className="header-mark"><PenTool /></span><div><h1>Traço<span>OS</span></h1><p>{activeTab === 'home' ? 'Visão geral' : activeTab === 'workspace' ? 'Painel de produção' : 'Sobre o projeto'}</p></div></div>
         </div>
         <div className="app-header-tools">

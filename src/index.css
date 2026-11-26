@@ -2099,3 +2099,82 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell { padding-left:0 !important; background:#fff !important; }
   .app-shell>footer,.app-sidebar,.app-header,.traco-home,.about-page { display:none !important; }
 }
+
+
+/* Correções solicitadas: sidebar recolhível em desktop e mobile + A4 sem corte. */
+.app-shell { padding-left:250px !important; transition:padding-left .2s ease; }
+.app-shell.sidebar-collapsed { padding-left:0 !important; }
+.app-shell .app-sidebar { transform:translateX(0); transition:transform .2s ease; }
+.app-shell .app-sidebar.is-closed { transform:translateX(-105%); }
+.app-shell .app-sidebar.is-open { transform:translateX(0); }
+.app-shell .sidebar-mobile-toggle {
+  display:grid !important;
+  flex:0 0 36px;
+  place-items:center;
+  width:36px;
+  height:36px;
+  margin-right:10px;
+  border:1px solid var(--t-line);
+  border-radius:7px;
+  background:var(--t-panel);
+  color:var(--t-text);
+  cursor:pointer;
+}
+.app-shell .sidebar-mobile-toggle svg { width:17px; height:17px; }
+.app-shell .sidebar-backdrop { display:none; }
+@media (max-width:900px) {
+  .app-shell,.app-shell.sidebar-collapsed { padding-left:0 !important; }
+  .app-shell .app-sidebar { transform:translateX(-105%); z-index:60; }
+  .app-shell .app-sidebar.is-open { transform:translateX(0); }
+  .app-shell .sidebar-backdrop { display:block; position:fixed; inset:0; z-index:55; border:0; background:rgba(8,7,12,.58); }
+}
+@media (min-width:901px) {
+  .app-shell .app-sidebar { z-index:40; }
+  .app-shell .app-header { z-index:30; }
+}
+
+/* A4: escala conforme a largura real disponível, sem limitar a 58%,
+   e deixa a área crescer pela altura integral da folha. */
+.workspace-preview-panel .preview-panel-content {
+  container-type:inline-size;
+  min-width:0;
+  overflow:visible !important;
+}
+.workspace-preview-panel .preview-viewport {
+  width:100%;
+  min-width:0;
+  height:auto !important;
+  min-height:0;
+  overflow-x:auto !important;
+  overflow-y:visible !important;
+  padding:0;
+  box-sizing:border-box;
+}
+.workspace-preview-panel .preview-scaled-page {
+  width:794px !important;
+  max-width:none !important;
+  height:auto !important;
+  flex:0 0 794px;
+  transform:none !important;
+  transform-origin:top left !important;
+  zoom:clamp(.25, calc((100cqw - 2px) / 794), 1) !important;
+}
+.workspace-preview-panel #a4-job-ticket {
+  width:794px !important;
+  min-width:794px !important;
+  max-width:794px !important;
+  height:1123px !important;
+  min-height:1123px !important;
+  max-height:1123px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+@media (max-width:1250px) {
+  .workspace-preview-panel .preview-scaled-page {
+    zoom:clamp(.25, calc((100cqw - 2px) / 794), 1) !important;
+  }
+}
+@media print {
+  .app-shell,.app-shell.sidebar-collapsed { padding-left:0 !important; }
+  .app-shell .sidebar-mobile-toggle,.app-shell .sidebar-backdrop { display:none !important; }
+}
