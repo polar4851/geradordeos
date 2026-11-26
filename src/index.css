@@ -1563,3 +1563,283 @@ body { margin: 0; overflow-x: hidden; }
 .app-header-brand h1 { font-size:18px !important; color:#292332 !important; letter-spacing:-.5px !important; }
 .app-header-brand h1 span { display:inline !important; }
 .app-shell.dark .app-header-brand h1 { color:#f2edf7 !important; }
+
+
+/* ------------------------------------------------------------------
+   TRAÇO OS · UI refinada
+   Mantém a estrutura e os componentes existentes; altera somente a
+   apresentação. Sem glow, blur pesado ou gradientes decorativos.
+------------------------------------------------------------------- */
+.app-shell {
+  --ui-accent: #6d28d9;
+  --ui-accent-hover: #5b21b6;
+  --ui-accent-soft: #f3edfc;
+  --ui-bg: #f7f7f9;
+  --ui-surface: #ffffff;
+  --ui-surface-muted: #faf9fc;
+  --ui-border: #e8e5ed;
+  --ui-text: #211d29;
+  --ui-muted: #777181;
+  padding-left: 252px !important;
+  min-height: 100vh;
+  background: var(--ui-bg) !important;
+  color: var(--ui-text) !important;
+  transition: background-color .18s ease, color .18s ease;
+}
+.app-shell.dark {
+  --ui-accent: #a78bfa;
+  --ui-accent-hover: #c4b5fd;
+  --ui-accent-soft: #292139;
+  --ui-bg: #101014;
+  --ui-surface: #18181e;
+  --ui-surface-muted: #202027;
+  --ui-border: #303039;
+  --ui-text: #f1eff5;
+  --ui-muted: #a39eae;
+  background: var(--ui-bg) !important;
+  color: var(--ui-text) !important;
+  background-image: none !important;
+}
+
+/* Sidebar */
+.app-sidebar {
+  width: 252px;
+  padding: 24px 16px 18px;
+  background: var(--ui-surface) !important;
+  border-right: 1px solid var(--ui-border) !important;
+  box-shadow: none !important;
+}
+.sidebar-brand { padding-bottom: 30px; }
+.sidebar-brand-mark { background: var(--ui-accent) !important; border-radius: 10px; }
+.sidebar-brand strong, .sidebar-profile strong { color: var(--ui-text) !important; }
+.sidebar-brand strong span { color: var(--ui-accent) !important; }
+.sidebar-brand small, .sidebar-caption, .sidebar-profile small { color: var(--ui-muted) !important; }
+.sidebar-nav { gap: 4px; }
+.sidebar-nav button {
+  min-height: 42px;
+  border-radius: 8px;
+  color: var(--ui-muted) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.sidebar-nav button svg { color: inherit !important; }
+.sidebar-nav button:hover { color: var(--ui-text) !important; background: var(--ui-surface-muted) !important; }
+.sidebar-nav button.active {
+  color: var(--ui-accent) !important;
+  background: var(--ui-accent-soft) !important;
+  box-shadow: inset 2px 0 0 var(--ui-accent) !important;
+}
+.sidebar-divider, .sidebar-profile { border-color: var(--ui-border) !important; }
+.sidebar-create {
+  min-height: 42px;
+  border: 1px solid var(--ui-accent) !important;
+  border-radius: 8px;
+  background: var(--ui-accent) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.sidebar-create:hover { background: var(--ui-accent-hover) !important; }
+.sidebar-status, .sidebar-theme { color: var(--ui-muted) !important; }
+.sidebar-theme:hover { background: var(--ui-surface-muted) !important; }
+.sidebar-avatar { background: var(--ui-accent-soft) !important; color: var(--ui-accent) !important; }
+
+/* Header and page canvas */
+.app-shell .app-header {
+  min-height: 68px;
+  padding: 12px 28px;
+  background: var(--ui-surface) !important;
+  border-bottom: 1px solid var(--ui-border) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.app-header-tools button {
+  min-height: 36px;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-weight: 650 !important;
+}
+.app-header-tools button:last-child {
+  background: var(--ui-accent) !important;
+  border-color: var(--ui-accent) !important;
+  color: #fff !important;
+}
+.app-header-tools button:last-child:hover { background: var(--ui-accent-hover) !important; }
+.app-shell main, .app-shell footer { min-width: 0; }
+.app-shell > main.traco-home { max-width: 1440px; padding: 32px 36px 44px; }
+
+/* Cards, forms and controls: one consistent surface system */
+.app-shell .os-form > div,
+.app-shell .workspace-preview,
+.app-shell main:not(.about-page):not(.traco-home) > section > .bg-white,
+.app-shell main:not(.about-page):not(.traco-home) > section.bg-white,
+.app-shell main:not(.about-page):not(.traco-home) > .grid > section > .bg-white,
+.app-shell .about-info-card,
+.app-shell .about-content-card,
+.app-shell .home-menu-card,
+.app-shell .home-feature-grid article,
+.app-shell .home-bottom-row {
+  background: var(--ui-surface) !important;
+  color: var(--ui-text) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+.app-shell .os-form > div { overflow: visible; }
+.app-shell .os-form > div::before { display: none !important; }
+.app-shell input, .app-shell select, .app-shell textarea {
+  border-color: var(--ui-border) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+.app-shell input:focus, .app-shell select:focus, .app-shell textarea:focus {
+  border-color: var(--ui-accent) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ui-accent) 14%, transparent) !important;
+}
+.app-shell button { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+.app-shell button:hover { filter: none !important; }
+.app-shell .theme-toggle {
+  background: var(--ui-surface) !important;
+  color: var(--ui-muted) !important;
+  border-color: var(--ui-border) !important;
+  box-shadow: none !important;
+}
+
+/* Home: keep its existing content and layout, with a quieter visual hierarchy */
+.app-shell .home-hero {
+  min-height: 330px !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 14px !important;
+  background: #17131f !important;
+  box-shadow: none !important;
+}
+.app-shell .home-hero h2 { color: #fff !important; text-shadow: none !important; }
+.app-shell .home-hero h2 span { color: #c4a5fd !important; }
+.app-shell .home-hero-copy > p { color: #d0cbd8 !important; }
+.app-shell .home-hero-art { opacity: .28 !important; filter: none !important; }
+.app-shell .home-art-ring { border-color: rgba(255,255,255,.12) !important; }
+.app-shell .home-art-icon { background: #382052 !important; border-color: #594071 !important; box-shadow: none !important; }
+.app-shell .home-art-chip { background: #f6f2fb !important; box-shadow: none !important; }
+.app-shell .home-primary {
+  background: #7135c5 !important;
+  border: 1px solid #7135c5 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+.app-shell .home-secondary { border-radius: 8px !important; box-shadow: none !important; }
+.app-shell .home-menu-heading h3 { color: var(--ui-text) !important; }
+.app-shell .home-menu-card, .app-shell .home-feature-grid article, .app-shell .home-bottom-row {
+  border-radius: 11px !important;
+  box-shadow: none !important;
+}
+.app-shell .home-menu-card:hover { transform: none !important; border-color: var(--ui-accent) !important; }
+.app-shell .home-menu-icon { background: var(--ui-accent-soft) !important; color: var(--ui-accent) !important; box-shadow: none !important; }
+.app-shell .home-menu-copy b, .app-shell .home-feature-grid h3, .app-shell .home-bottom-row h3 { color: var(--ui-text) !important; }
+.app-shell .home-menu-copy small, .app-shell .home-feature-grid p, .app-shell .home-bottom-row p { color: var(--ui-muted) !important; }
+
+/* About / project page */
+.app-shell .about-hero {
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  background: #21152f !important;
+}
+.app-shell .about-info-card, .app-shell .about-content-card { box-shadow: none !important; }
+.app-shell .about-icon { background: var(--ui-accent-soft) !important; color: var(--ui-accent) !important; box-shadow: none !important; }
+.app-shell .about-side-panel { background: var(--ui-surface-muted) !important; border-color: var(--ui-border) !important; color: var(--ui-text) !important; }
+.app-shell .about-credit-callout { background: var(--ui-accent-soft) !important; border-color: var(--ui-border) !important; color: var(--ui-text) !important; }
+
+/* Dark theme */
+.app-shell.dark .app-sidebar,
+.app-shell.dark .app-header,
+.app-shell.dark .os-form > div,
+.app-shell.dark .workspace-preview,
+.app-shell.dark main:not(.about-page):not(.traco-home) > section > .bg-white,
+.app-shell.dark main:not(.about-page):not(.traco-home) > section.bg-white,
+.app-shell.dark main:not(.about-page):not(.traco-home) > .grid > section > .bg-white,
+.app-shell.dark .about-info-card,
+.app-shell.dark .about-content-card,
+.app-shell.dark .home-menu-card,
+.app-shell.dark .home-feature-grid article,
+.app-shell.dark .home-bottom-row {
+  background: var(--ui-surface) !important;
+  border-color: var(--ui-border) !important;
+  color: var(--ui-text) !important;
+  box-shadow: none !important;
+}
+.app-shell.dark .sidebar-nav button.active { background: var(--ui-accent-soft) !important; color: #d8c5ff !important; box-shadow: inset 2px 0 0 #a78bfa !important; }
+.app-shell.dark .sidebar-nav button:hover, .app-shell.dark .sidebar-theme:hover { background: var(--ui-surface-muted) !important; }
+.app-shell.dark .sidebar-create, .app-shell.dark .app-header-tools button:last-child { background: #7135c5 !important; border-color: #7135c5 !important; color: #fff !important; }
+.app-shell.dark .app-header-tools button:not(:last-child) { background: var(--ui-surface-muted) !important; border-color: var(--ui-border) !important; color: var(--ui-text) !important; }
+.app-shell.dark .app-header-brand h1 { color: var(--ui-text) !important; }
+.app-shell.dark .app-header-brand h1 span { color: #b99af2 !important; text-shadow: none !important; }
+.app-shell.dark .home-menu-heading h3, .app-shell.dark .home-menu-copy b,
+.app-shell.dark .home-feature-grid h3, .app-shell.dark .home-bottom-row h3 { color: var(--ui-text) !important; }
+.app-shell.dark .home-menu-copy small, .app-shell.dark .home-feature-grid p,
+.app-shell.dark .home-bottom-row p, .app-shell.dark .about-muted { color: var(--ui-muted) !important; }
+.app-shell.dark .home-menu-icon, .app-shell.dark .about-icon { background: var(--ui-accent-soft) !important; color: #c4a5fd !important; box-shadow: none !important; }
+.app-shell.dark .about-side-panel { background: var(--ui-surface-muted) !important; border-color: var(--ui-border) !important; color: var(--ui-text) !important; }
+.app-shell.dark .about-credit-callout { background: var(--ui-accent-soft) !important; border-color: var(--ui-border) !important; color: var(--ui-text) !important; }
+.app-shell.dark .os-form input, .app-shell.dark .os-form select, .app-shell.dark .os-form textarea,
+.app-shell.dark main:not(.about-page):not(.traco-home) input,
+.app-shell.dark main:not(.about-page):not(.traco-home) select,
+.app-shell.dark main:not(.about-page):not(.traco-home) textarea {
+  background: #111117 !important;
+  border-color: #393642 !important;
+  color: #f0edf5 !important;
+  box-shadow: none !important;
+}
+.app-shell.dark .os-form input::placeholder, .app-shell.dark .os-form textarea::placeholder { color: #827c8c !important; }
+.app-shell.dark .os-form label, .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-500,
+.app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-400 { color: var(--ui-muted) !important; }
+.app-shell.dark .os-form h2, .app-shell.dark .os-form h3,
+.app-shell.dark main:not(.about-page):not(.traco-home) h2,
+.app-shell.dark main:not(.about-page):not(.traco-home) h3 { color: var(--ui-text) !important; }
+.app-shell.dark main:not(.about-page):not(.traco-home) .bg-slate-50,
+.app-shell.dark main:not(.about-page):not(.traco-home) .bg-slate-100,
+.app-shell.dark .os-form .bg-slate-50,
+.app-shell.dark .os-form .bg-slate-100 { background: var(--ui-surface-muted) !important; border-color: var(--ui-border) !important; }
+.app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-950,
+.app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-900,
+.app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-800,
+.app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-700,
+.app-shell.dark .os-form .text-slate-950,
+.app-shell.dark .os-form .text-slate-900,
+.app-shell.dark .os-form .text-slate-800,
+.app-shell.dark .os-form .text-slate-700 { color: var(--ui-text) !important; }
+.app-shell.dark .no-print footer, .app-shell.dark footer.no-print { background: #0b0b0f !important; border-color: var(--ui-border) !important; color: var(--ui-muted) !important; }
+.app-shell.dark .theme-toggle { background: var(--ui-surface) !important; border-color: var(--ui-border) !important; color: #c4a5fd !important; box-shadow: none !important; }
+
+/* Mobile sidebar and responsive workspace */
+@media (max-width: 900px) {
+  .app-shell { padding-left: 0 !important; }
+  .app-sidebar {
+    width: min(282px, 86vw);
+    transform: translateX(-105%);
+    transition: transform .2s ease;
+    box-shadow: none !important;
+  }
+  .app-sidebar.is-open { transform: translateX(0); box-shadow: 12px 0 28px rgba(0,0,0,.16) !important; }
+  .sidebar-backdrop { display: block; position: fixed; inset: 0; z-index: 45; border: 0; background: rgba(12,10,18,.42); }
+  .sidebar-mobile-toggle { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--ui-border); border-radius: 8px; background: var(--ui-surface); color: var(--ui-text); }
+  .app-shell .app-header { min-height: 62px; padding: 10px 16px; gap: 10px; }
+  .app-header-tools { gap: 6px; }
+  .app-header-tools button { padding: 9px 11px !important; font-size: 10px !important; }
+  .app-shell > main.traco-home { padding: 22px 18px 34px; }
+}
+@media (max-width: 600px) {
+  .app-shell .app-header { align-items: center; padding: 9px 12px; }
+  .app-header-brand { gap: 9px; }
+  .app-header-tools { flex-wrap: wrap; justify-content: flex-end; }
+  .app-header-tools button:first-child { display: none; }
+  .app-header-tools button { min-height: 35px; padding: 8px !important; font-size: 9px !important; }
+  .app-shell > main.traco-home { padding: 16px 12px 26px; }
+  .app-shell .home-hero { min-height: 390px !important; padding: 24px 20px !important; }
+  .app-shell .home-hero h2 { font-size: clamp(30px, 9vw, 38px) !important; }
+  .app-shell .home-hero-art { width: 42%; right: -7%; bottom: -10%; opacity: .2 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell, .app-sidebar, .sidebar-nav button, .sidebar-create { transition: none !important; }
+}
+@media print {
+  .app-shell { padding-left: 0 !important; }
+  .app-sidebar, .app-header { display: none !important; }
+}
