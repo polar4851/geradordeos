@@ -68,7 +68,6 @@ export default function App() {
   });
   const [previewOS, setPreviewOS] = useState<ServiceOrder | null>(null);
   const [historyOrders, setHistoryOrders] = useState<ServiceOrder[]>([]);
-  const [showCompactPreview, setShowCompactPreview] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => typeof window !== 'undefined' && window.innerWidth > 900);
 
   useEffect(() => {
@@ -598,11 +597,11 @@ export default function App() {
             <div className="panel-section-heading"><div><span className="dashboard-eyebrow">EDIÇÃO DA ORDEM</span><h3>Dados do trabalho</h3></div>{activeOS && <span className="order-number-tag">{activeOS.osNumber}</span>}</div>
             {activeOS ? <OSForm activeOS={activeOS} onChange={handleOSChange}/> : <div className="empty-panel">Carregando dados do sistema...</div>}
           </section>
-          <section className={"workspace-preview-panel " + (showCompactPreview ? "workspace-preview-open" : "")}>
-            <div className="preview-panel-heading no-print"><div><span className="dashboard-eyebrow">DOCUMENTO</span><h3>Prévia da ficha A4</h3></div><button type="button" onClick={() => setShowCompactPreview((value) => !value)} aria-expanded={showCompactPreview}>{showCompactPreview ? 'Ocultar' : 'Mostrar'} <ChevronRight className={showCompactPreview ? 'rotate-90' : ''}/></button></div>
-            <div className="preview-panel-content">{activeOS ? <div className="preview-viewport"><div className="preview-scaled-page"><OSPreview activeOS={previewOS?.id === activeOS.id ? previewOS : activeOS}/></div></div> : <div className="empty-panel">Nenhuma O.S. ativa.</div>}</div>
-          </section>
         </div>
+        <section className="workspace-preview-panel">
+          <div className="preview-panel-heading no-print"><div><span className="dashboard-eyebrow">DOCUMENTO</span><h3>Prévia da ficha A4</h3><p>Folha completa, em escala proporcional, abaixo dos dados da ordem.</p></div></div>
+          <div className="preview-panel-content">{activeOS ? <div className="preview-viewport"><div className="preview-scaled-page"><OSPreview activeOS={previewOS?.id === activeOS.id ? previewOS : activeOS}/></div></div> : <div className="empty-panel">Nenhuma O.S. ativa.</div>}</div>
+        </section>
       </main>}
 
       {/* Bottom Status Bar */}
