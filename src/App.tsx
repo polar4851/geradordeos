@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { ServiceOrder, MaterialType } from './types';
 import OSForm from './components/OSForm';
 import OSPreview from './components/OSPreview';
@@ -122,18 +122,6 @@ export default function App() {
     return () => window.clearTimeout(timeoutId);
   }, [orders]);
 
-  // Keep expensive secondary views off the keystroke-by-keystroke render path.
-  useEffect(() => {
-    if (!activeOS) return;
-    const timer = window.setTimeout(() => setPreviewOS(activeOS), 220);
-    return () => window.clearTimeout(timer);
-  }, [activeOS]);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setHistoryOrders(orders), 280);
-    return () => window.clearTimeout(timer);
-  }, [orders]);
-
   // 3. LISTEN TO GLOBAL PASTE (CTRL+V) EVENT
   useEffect(() => {
     const handleGlobalPaste = (e: ClipboardEvent) => {
@@ -225,13 +213,27 @@ export default function App() {
   // Find active Service Order payload
   const activeOS = orders.find((ord) => ord.id === activeOSId) || orders[0];
 
+  // Keep expensive secondary views off the keystroke-by-keystroke render path.
+  useEffect(() => {
+    if (!activeOS) return;
+    const timer = window.setTimeout(() => setPreviewOS(activeOS), 220);
+    return () => window.clearTimeout(timer);
+  }, [activeOS]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHistoryOrders(orders), 280);
+    return () => window.clearTimeout(timer);
+  }, [orders]);
+
   // Helper updating the active O.S. details
-  const handleOSChange = (updated: ServiceOrder) => {
+  const handleOSChange = useCallback((updated: ServiceOrder) => {
     setOrders((prev) => prev.map((o) => (o.id === updated.id ? updated : o)));
-  };
+  }, []);
+
+  const handleSelectOS = useCallback((id: string) => setActiveOSId(id), []);
 
   // Create a brand new blank Service Order
-  const handleCreateNew = () => {
+  const handleCreateNew = useCallback(() => {
     const timestamp = Date.now();
     const nextNum = orders.length > 0 
       ? `OS-${1000 + orders.length + 1}`
@@ -270,10 +272,10 @@ export default function App() {
 
     setOrders((prev) => [newOS, ...prev]);
     setActiveOSId(newOS.id);
-  };
+  }, [orders.length, activeOS]);
 
   // Delete Service Order from local state
-  const handleDeleteOS = (id: string) => {
+  const handleDeleteOS = useCallback((id: string) => {
     if (orders.length <= 1) {
       alert('Você deve manter no mínimo 1 Ordem de Serviço cadastrada.');
       return;
@@ -284,10 +286,10 @@ export default function App() {
       setOrders(remaining);
       setActiveOSId(remaining[0].id);
     }
-  };
+  }, [orders]);
 
   // Duplicate Service Order to quick draft matching specifications/client
-  const handleDuplicateOS = (id: string) => {
+  const handleDuplicateOS = useCallback((id: string) => {
     const target = orders.find((o) => o.id === id);
     if (!target) return;
 
@@ -301,7 +303,7 @@ export default function App() {
 
     setOrders((prev) => [duplicated, ...prev]);
     setActiveOSId(duplicated.id);
-  };
+  }, [orders]);
 
   // EXPORT TO HIGH-DENSITY A4 PDF
   const handleExportPDF = async () => {
@@ -613,7 +615,7 @@ export default function App() {
             <OSHistory
               orders={historyOrders.length ? historyOrders : orders}
               activeId={activeOSId}
-              onSelect={(id) => setActiveOSId(id)}
+              onSelect={handleSelectOS}
               onCreateNew={handleCreateNew}
               onDelete={handleDeleteOS}
               onDuplicate={handleDuplicateOS}
