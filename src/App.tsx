@@ -4,7 +4,7 @@ import OSForm from './components/OSForm';
 import OSPreview from './components/OSPreview';
 import OSHistory from './components/OSHistory';
 import { 
-  FileText, 
+  FileText, Menu, X, Home, LayoutDashboard,
   Printer, 
   Download, 
   Clipboard, 
@@ -69,6 +69,7 @@ export default function App() {
   const [previewOS, setPreviewOS] = useState<ServiceOrder | null>(null);
   const [historyOrders, setHistoryOrders] = useState<ServiceOrder[]>([]);
   const [showCompactPreview, setShowCompactPreview] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('traco-os-theme', darkMode ? 'dark' : 'light');
@@ -395,9 +396,31 @@ export default function App() {
 
   return (
     <div className={`app-shell min-h-screen flex flex-col font-sans text-slate-800 ${darkMode ? 'dark' : ''}`}>
+      {sidebarOpen && <button type="button" aria-label="Fechar menu" className="sidebar-backdrop no-print" onClick={() => setSidebarOpen(false)} />}
+      <aside className={`app-sidebar no-print ${sidebarOpen ? 'is-open' : ''}`} aria-label="Menu principal">
+        <div className="sidebar-brand">
+          <div className="sidebar-brand-mark"><PenTool /></div>
+          <div><strong>Traço<span>OS</span></strong><small>GESTÃO DE PRODUÇÃO</small></div>
+        </div>
+        <div className="sidebar-caption">ESPAÇO DE TRABALHO</div>
+        <nav className="sidebar-nav">
+          <button type="button" className={activeTab === 'home' ? 'active' : ''} onClick={() => { setActiveTab('home'); setSidebarOpen(false); }}><Home />Visão geral</button>
+          <button type="button" className={activeTab === 'workspace' ? 'active' : ''} onClick={() => { setActiveTab('workspace'); setSidebarOpen(false); }}><LayoutDashboard />Painel de produção</button>
+          <button type="button" className={activeTab === 'about' ? 'active' : ''} onClick={() => { setActiveTab('about'); setSidebarOpen(false); }}><BookOpen />Sobre o projeto</button>
+        </nav>
+        <div className="sidebar-divider" />
+        <button type="button" className="sidebar-create" onClick={() => { handleCreateNew(); setActiveTab('workspace'); setSidebarOpen(false); }}><FileText />Nova ordem de serviço</button>
+        <div className="sidebar-spacer" />
+        <div className="sidebar-status"><span className="status-dot" />Sistema neste navegador</div>
+        <button type="button" className="sidebar-theme" onClick={() => setDarkMode((value) => !value)}>
+          {darkMode ? <Sun /> : <Moon />}<span>{darkMode ? 'Modo claro' : 'Modo escuro'}</span>
+        </button>
+        <div className="sidebar-profile"><div className="sidebar-avatar">W</div><div><strong>Warleandro</strong><small>Administrador</small></div></div>
+      </aside>
       {/* NAVIGATION HEADER BAR */}
       <header className="app-header no-print sticky top-0 z-30 px-5 md:px-8 py-3 bg-white/95 border-b border-slate-200/80">
         <div className="app-header-brand flex items-center gap-3.5">
+          <button type="button" className="sidebar-mobile-toggle" aria-label={sidebarOpen ? "Fechar menu" : "Abrir menu"} onClick={() => setSidebarOpen((value) => !value)}>{sidebarOpen ? <X /> : <Menu />}</button>
           <div className="w-11 h-11 bg-slate-950 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-900/15">
             <PenTool className="w-5 h-5" strokeWidth={2.2} />
           </div>
