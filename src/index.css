@@ -1557,3 +1557,9 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell { padding-left:0 !important; }
   .app-sidebar { display:none !important; }
 }
+
+/* Keep the top bar useful without duplicating the sidebar navigation. */
+.app-header-brand > div:nth-child(2) { display:none !important; }
+.app-header-brand h1 { font-size:18px !important; color:#292332 !important; letter-spacing:-.5px !important; }
+.app-header-brand h1 span { display:inline !important; }
+.app-shell.dark .app-header-brand h1 { color:#f2edf7 !important; }
