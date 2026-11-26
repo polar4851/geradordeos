@@ -412,7 +412,7 @@ export default function App() {
         <button type="button" className="sidebar-create" onClick={() => { handleCreateNew(); setActiveTab('workspace'); setSidebarOpen(false); }}><FileText />Nova ordem de serviço</button>
         <div className="sidebar-spacer" />
         <div className="sidebar-status"><span className="status-dot" />Sistema neste navegador</div>
-        <button type="button" className="sidebar-theme" onClick={() => setDarkMode((value) => !value)}>
+        <button type="button" className="sidebar-theme" aria-pressed={darkMode} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} onClick={() => setDarkMode((current) => !current)}>
           {darkMode ? <Sun /> : <Moon />}<span>{darkMode ? 'Modo claro' : 'Modo escuro'}</span>
         </button>
         <div className="sidebar-profile"><div className="sidebar-avatar">W</div><div><strong>Warleandro</strong><small>Administrador</small></div></div>
@@ -430,7 +430,7 @@ export default function App() {
             <button type="button" onClick={handleDirectPrint} className="header-quiet-action"><Printer className="w-4 h-4"/> Imprimir</button>
             <button type="button" disabled={isGenerating} onClick={handleExportPDF} className="header-primary-action">{isGenerating ? <RotateCw className="w-4 h-4 animate-spin"/> : <Download className="w-4 h-4"/>}{isGenerating ? 'Gerando...' : 'Exportar PDF'}</button>
           </>}
-          <button type="button" onClick={() => setDarkMode((value) => !value)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} className="theme-toggle">{darkMode ? <Sun className="w-4 h-4"/> : <Moon className="w-4 h-4"/>}</button>
+          <button type="button" onClick={() => setDarkMode((current) => !current)} aria-label={darkMode ? "Ativar modo claro" : "Ativar modo escuro"} aria-pressed={darkMode} title={darkMode ? "Mudar para tema claro" : "Mudar para tema escuro"} className="theme-toggle">{darkMode ? <Sun className="w-4 h-4"/> : <Moon className="w-4 h-4"/>}</button>
         </div>
       </header>
 
