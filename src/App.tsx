@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { ServiceOrder, MaterialType } from './types';
 import OSForm from './components/OSForm';
 import OSPreview from './components/OSPreview';
@@ -56,18 +56,31 @@ const SHOW_LOCK_SCREEN = false;
 
 export default function App() {
   const [orders, setOrders] = useState<ServiceOrder[]>([]);
-  const [activeOSId, setActiveOSId] = useState<string>('');
+  const [activeOSId, setActiveOSId] = useState<string>(() => localStorage.getItem('traco-os-active-id') || '');
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const importInputRef = useRef<HTMLInputElement>(null);
   const [storageError, setStorageError] = useState(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => localStorage.getItem('traco-os-theme') === 'dark');
-  const [activeTab, setActiveTab] = useState<'workspace' | 'about'>('workspace');
+  const [activeTab, setActiveTab] = useState<'home' | 'workspace' | 'about'>(() => {
+    const saved = localStorage.getItem('traco-os-active-tab');
+    return saved === 'workspace' || saved === 'about' ? saved : 'home';
+  });
+  const [previewOS, setPreviewOS] = useState<ServiceOrder | null>(null);
+  const [historyOrders, setHistoryOrders] = useState<ServiceOrder[]>([]);
   const [showCompactPreview, setShowCompactPreview] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('traco-os-theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
+
+  useEffect(() => {
+    localStorage.setItem('traco-os-active-tab', activeTab);
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (activeOSId) localStorage.setItem('traco-os-active-id', activeOSId);
+  }, [activeOSId]);
 
   // 1. Load data from localStorage on startup
   useEffect(() => {
@@ -77,7 +90,8 @@ export default function App() {
         const parsed = JSON.parse(stored) as ServiceOrder[];
         if (parsed.length > 0) {
           setOrders(parsed);
-          setActiveOSId(parsed[0].id);
+          const savedId = localStorage.getItem('traco-os-active-id');
+          setActiveOSId(parsed.some((order) => order.id === savedId) ? savedId! : parsed[0].id);
         } else {
           setOrders(DEFAULT_ORDERS);
           setActiveOSId(DEFAULT_ORDERS[0].id);
@@ -106,6 +120,18 @@ export default function App() {
       }
     }, 350);
     return () => window.clearTimeout(timeoutId);
+  }, [orders]);
+
+  // Keep expensive secondary views off the keystroke-by-keystroke render path.
+  useEffect(() => {
+    if (!activeOS) return;
+    const timer = window.setTimeout(() => setPreviewOS(activeOS), 220);
+    return () => window.clearTimeout(timer);
+  }, [activeOS]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHistoryOrders(orders), 280);
+    return () => window.clearTimeout(timer);
   }, [orders]);
 
   // 3. LISTEN TO GLOBAL PASTE (CTRL+V) EVENT
@@ -188,13 +214,13 @@ export default function App() {
     };
     reader.readAsText(file);
   };
-  const counts = {
+  const counts = useMemo(() => ({
     total: orders.length,
     draft: orders.filter((order) => order.status === 'rascunho').length,
     production: orders.filter((order) => order.status === 'producao').length,
     completed: orders.filter((order) => order.status === 'concluido').length,
     overdue: orders.filter((order) => order.status !== 'concluido' && order.dataEntrega && new Date(order.dataEntrega + 'T23:59:59') < new Date()).length
-  };
+  }), [orders]);
 
   // Find active Service Order payload
   const activeOS = orders.find((ord) => ord.id === activeOSId) || orders[0];
@@ -353,8 +379,14 @@ export default function App() {
           <div className="hidden md:flex items-center gap-2 ml-5 pl-5 border-l border-slate-200 text-[11px] text-slate-500 font-medium"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Ambiente local</div>
         </div>
 
+        <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+          <button type="button" onClick={() => setActiveTab('home')} className={`rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'home' ? 'bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Início</button>
+          <button type="button" onClick={() => setActiveTab('workspace')} className={`rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'workspace' ? 'bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Painel</button>
+          <button type="button" onClick={() => setActiveTab('about')} className={`rounded-xl px-3 py-2 text-xs font-bold transition ${activeTab === 'about' ? 'bg-indigo-600 text-white' : 'border border-slate-200 text-slate-600 hover:bg-slate-50'}`}>Pokédex / Projeto</button>
+        </div>
+
         {/* Core App Actions */}
-        {activeOS && (
+        {activeOS && activeTab !== 'home' && (
           <div className="flex items-center gap-2 md:gap-3">
             <button
               type="button"
@@ -438,6 +470,34 @@ export default function App() {
         </div>
       )}
 
+      {/* HOME / POKEMON LANDING PAGE */}
+      {activeTab === 'home' && (
+        <main className="traco-home flex-1 w-full max-w-[1380px] mx-auto px-4 py-7 md:px-8 md:py-10">
+          <section className="home-hero relative overflow-hidden rounded-[2rem] p-7 md:p-12">
+            <div className="home-hero-copy relative z-10 max-w-2xl">
+              <span className="home-kicker">TRAÇO OS · CENTRAL DE PRODUÇÃO</span>
+              <h2>Organize sua produção.<br/><span>Entre para a liga.</span></h2>
+              <p>Ordens de serviço, materiais, medidas e referências visuais em um só lugar. Menos retrabalho entre atendimento, arte-final e produção.</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <button type="button" onClick={() => setActiveTab('workspace')} className="home-primary">Abrir painel <ChevronRight className="w-4 h-4"/></button>
+                <button type="button" onClick={() => setActiveTab('about')} className="home-secondary">Conhecer o projeto</button>
+              </div>
+              <div className="home-stats"><span><b>{counts.total}</b> ordens registradas</span><span><b>{counts.production}</b> em produção</span><span><b>{counts.completed}</b> concluídas</span></div>
+            </div>
+            <div className="home-pokemon home-pokemon-one" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="" /></div>
+            <div className="home-pokemon home-pokemon-two" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/6.gif" alt="" /></div>
+            <div className="home-pokemon home-pokemon-three" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="" /></div>
+            <div className="home-pokeball" aria-hidden="true"></div>
+          </section>
+          <section className="home-feature-grid">
+            <article><span className="home-feature-icon blue"><FileText/></span><h3>Ordens organizadas</h3><p>Cliente, responsáveis, prazo e status em um histórico pesquisável.</p></article>
+            <article><span className="home-feature-icon violet"><Layers/></span><h3>Ficha técnica completa</h3><p>Materiais, dimensões, quantidade, acabamento e aplicação.</p></article>
+            <article><span className="home-feature-icon green"><PrinterCheck/></span><h3>Pronta para produção</h3><p>Referência visual, prévia A4, impressão e exportação em PDF.</p></article>
+          </section>
+          <section className="home-bottom-row"><div><span className="home-kicker">SUA BASE, SUAS REGRAS</span><h3>Feito para o ritmo de uma gráfica.</h3><p>Seus registros ficam salvos neste navegador. Exporte backups regularmente para manter uma cópia segura.</p></div><button type="button" onClick={() => setActiveTab('workspace')}>Começar agora <ChevronRight className="w-4 h-4"/></button></section>
+        </main>
+      )}
+
       {/* DETAILED SERVICE WORKSPACE BOARD */}
 
       {activeTab === 'about' && (
@@ -519,7 +579,7 @@ export default function App() {
         </main>
       )}
 
-      <main className={`${activeTab === 'about' ? 'hidden' : ''} flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-7 flex flex-col gap-6 overflow-y-auto`}>
+      {activeTab === 'workspace' && <main className="flex-1 max-w-[1720px] w-full mx-auto p-4 md:p-7 flex flex-col gap-6">
         <section className="no-print flex flex-col md:flex-row md:items-end justify-between gap-3 pt-1">
           <div><p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600 mb-2">CENTRAL DE OPERAÇÕES</p><h2 className="text-2xl md:text-[28px] font-extrabold tracking-tight text-slate-950">Sua produção, em ordem.</h2><p className="text-sm text-slate-500 mt-1">Gerencie serviços, acompanhe prazos e prepare a ficha para a equipe.</p></div>
           <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 rounded-full px-3.5 py-2 shadow-sm"><ShieldCheck className="w-4 h-4 text-emerald-600"/> Seus dados ficam neste navegador</div>
@@ -551,7 +611,7 @@ export default function App() {
         <section className="no-print lg:col-span-3 space-y-4 h-full min-w-0">
           {orders.length > 0 && (
             <OSHistory
-              orders={orders}
+              orders={historyOrders.length ? historyOrders : orders}
               activeId={activeOSId}
               onSelect={(id) => setActiveOSId(id)}
               onCreateNew={handleCreateNew}
@@ -603,7 +663,7 @@ export default function App() {
             <div className="preview-viewport w-full flex justify-center">
               <div className="preview-scaled-page w-[794px] shrink-0">
                 {/* Printable Area component */}
-                <OSPreview activeOS={activeOS} />
+                <OSPreview activeOS={previewOS?.id === activeOS.id ? previewOS : activeOS} />
               </div>
             </div>
           ) : (
@@ -614,7 +674,7 @@ export default function App() {
         </section>
 
       </div>
-      </main>
+      </main>}
 
       {/* Bottom Status Bar */}
       <footer className="no-print px-6 py-3 bg-slate-950 text-slate-400 flex flex-wrap gap-2 justify-between items-center text-[10px] font-medium border-t border-slate-900 mt-auto">
