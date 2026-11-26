@@ -467,7 +467,7 @@ export default function App() {
               <h2>Produção organizada.<br/><span>Do atendimento à impressão.</span></h2>
               <p>Centralize ordens, acompanhe cada etapa e entregue informações claras para quem está na produção.</p>
               <div className="dashboard-hero-actions">
-                <button type="button" onClick={() => { handleCreateNew(); setActiveTab('workspace'); }} className="dashboard-primary"><PlusIconFallback/> Criar ordem de serviço</button>
+                <button type="button" onClick={() => { handleCreateNew(); setActiveTab('workspace'); }} className="dashboard-primary"><FileText className="w-4 h-4"/> Criar ordem de serviço</button>
                 <button type="button" onClick={() => setActiveTab('workspace')} className="dashboard-secondary">Abrir painel <ChevronRight className="w-4 h-4"/></button>
               </div>
             </div>
