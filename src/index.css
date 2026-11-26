@@ -1435,3 +1435,125 @@ body { margin: 0; overflow-x: hidden; }
   .home-hero-copy { max-width:100%; }
   .about-hero-mark { width:100px; right:4%; top:auto; bottom:4%; transform:none; opacity:.32; }
 }
+
+
+/* Traço OS · interface refinada com navegação lateral */
+.app-shell { min-height:100vh; padding-left:252px; background:#f7f7fa; color:#211d2b; }
+.app-sidebar { position:fixed; z-index:50; inset:0 auto 0 0; width:252px; display:flex; flex-direction:column; padding:25px 17px 18px; background:#fff; border-right:1px solid #e9e6ef; }
+.sidebar-brand { display:flex; align-items:center; gap:11px; padding:0 9px 29px; }
+.sidebar-brand-mark { width:39px; height:39px; display:grid; place-items:center; border-radius:11px; background:#6d28d9; color:#fff; }
+.sidebar-brand-mark svg { width:19px; height:19px; }
+.sidebar-brand strong { display:block; color:#211d2b; font-size:19px; line-height:1.1; letter-spacing:-.7px; font-weight:800; }
+.sidebar-brand strong span { color:#7136d4; }
+.sidebar-brand small { display:block; margin-top:4px; color:#9892a3; font-size:8px; letter-spacing:1.15px; font-weight:800; }
+.sidebar-caption { padding:0 11px 10px; color:#a39dad; font-size:9px; font-weight:800; letter-spacing:1.05px; }
+.sidebar-nav { display:grid; gap:5px; }
+.sidebar-nav button { width:100%; display:flex; align-items:center; gap:12px; min-height:43px; padding:0 12px; border:0; border-radius:8px; background:transparent; color:#696273; text-align:left; font-size:12px; font-weight:650; transition:background .15s,color .15s; }
+.sidebar-nav button svg { width:17px; height:17px; color:#91899f; stroke-width:1.8; }
+.sidebar-nav button:hover { background:#f6f2fc; color:#5720b7; }
+.sidebar-nav button.active { background:#f0e9fb; color:#5d24bd; font-weight:750; }
+.sidebar-nav button.active svg { color:#6d28d9; }
+.sidebar-divider { height:1px; background:#eeeaf2; margin:19px 5px 16px; }
+.sidebar-create { display:flex; align-items:center; justify-content:center; gap:9px; min-height:42px; border:1px solid #6d28d9; border-radius:8px; background:#6d28d9; color:#fff; font-size:11px; font-weight:750; }
+.sidebar-create:hover { background:#5b21b6; }
+.sidebar-create svg { width:16px; height:16px; }
+.sidebar-spacer { flex:1; min-height:30px; }
+.sidebar-status { display:flex; align-items:center; gap:8px; padding:12px 9px; color:#8a8493; font-size:10px; }
+.status-dot { width:7px; height:7px; border-radius:50%; background:#20a36b; }
+.sidebar-theme { display:flex; align-items:center; gap:10px; min-height:39px; padding:0 10px; border:0; border-radius:8px; background:transparent; color:#716a7d; text-align:left; font-size:11px; font-weight:650; }
+.sidebar-theme:hover { background:#f6f3fa; }
+.sidebar-theme svg { width:16px; height:16px; }
+.sidebar-profile { display:flex; align-items:center; gap:10px; margin-top:10px; padding:14px 7px 0; border-top:1px solid #eeeaf2; }
+.sidebar-avatar { width:33px; height:33px; display:grid; place-items:center; border-radius:50%; background:#eee7fa; color:#6527c4; font-size:12px; font-weight:800; }
+.sidebar-profile strong { display:block; color:#302a39; font-size:10px; }
+.sidebar-profile small { display:block; margin-top:3px; color:#9a94a2; font-size:9px; }
+.sidebar-mobile-toggle { display:none; }
+.sidebar-backdrop { display:none; }
+.app-shell .app-header { position:sticky; top:0; z-index:30; display:flex; justify-content:space-between; min-height:76px; padding:13px 30px; background:rgba(255,255,255,.96); border-bottom:1px solid #ece9f0; backdrop-filter:none; }
+.app-header-brand > div:first-child:not(.sidebar-mobile-toggle) { display:none; }
+.app-header-brand h1 { font-size:0 !important; }
+.app-header-brand h1 span { display:none; }
+.app-header-brand > div:nth-child(2) p { display:none; }
+.app-header-brand > div:last-child { display:none !important; }
+.app-header-nav { display:none !important; }
+.app-header-tools { margin-left:auto; }
+.app-header-tools button { border-radius:8px !important; box-shadow:none !important; }
+.app-shell > main, .app-shell > footer { min-width:0; }
+.app-shell > main.traco-home { max-width:1440px; padding:34px 38px 48px; }
+.home-hero { min-height:340px !important; padding:48px !important; border:1px solid #302044 !important; border-radius:13px !important; background:#17131f !important; }
+.home-kicker { border:0 !important; border-radius:5px !important; background:#2a2038 !important; color:#cbb3f5 !important; font:750 9px/1.2 inherit !important; letter-spacing:.9px !important; }
+.home-hero h2 { font-size:clamp(34px,4vw,52px) !important; line-height:1.08 !important; letter-spacing:-1.8px !important; }
+.home-hero h2 span { color:#b68af2 !important; }
+.home-hero-copy > p { color:#c2bacd !important; font-size:13px !important; line-height:1.75 !important; }
+.home-primary { background:#6d28d9 !important; border:1px solid #6d28d9 !important; color:#fff !important; border-radius:7px !important; box-shadow:none !important; }
+.home-secondary { background:transparent !important; border:1px solid #655a70 !important; color:#f5f0fa !important; border-radius:7px !important; }
+.home-primary:hover,.home-secondary:hover { transform:none !important; filter:brightness(1.08); }
+.home-stats { color:#b6adbf !important; font-family:inherit !important; }
+.home-stats b { color:#fff !important; }
+.home-hero-art { opacity:.48; }
+.home-art-icon { border-radius:20px !important; background:#4c2390 !important; transform:none !important; box-shadow:none !important; }
+.home-art-chip { border-radius:12px !important; box-shadow:none !important; }
+.home-menu-heading h3 { color:#241f2d !important; font-size:22px !important; }
+.home-menu-card,.home-feature-grid article,.home-bottom-row { border:1px solid #e8e3ed !important; border-radius:10px !important; background:#fff !important; box-shadow:none !important; }
+.home-menu-card { min-height:76px; }
+.home-menu-card:hover { transform:none !important; border-color:#c9b5e8 !important; background:#fcfaff !important; }
+.home-menu-icon { border-radius:9px !important; background:#f1eafa !important; color:#6d28d9 !important; }
+.home-menu-create { border-color:#c9b5e8 !important; background:#faf7ff !important; }
+.home-menu-create .home-menu-icon { background:#6d28d9 !important; color:#fff !important; }
+.home-menu-copy b { color:#292332 !important; }
+.home-menu-copy small { color:#827b8c !important; }
+.app-shell.dark { background:#111015; color:#eeeaf3; }
+.app-shell.dark .app-sidebar { background:#17141c; border-color:#2b2632; }
+.app-shell.dark .sidebar-brand strong,.app-shell.dark .sidebar-profile strong { color:#f2edf7; }
+.app-shell.dark .sidebar-caption,.app-shell.dark .sidebar-brand small { color:#8f879a; }
+.app-shell.dark .sidebar-nav button { color:#b7afc2; }
+.app-shell.dark .sidebar-nav button svg { color:#9b91a8; }
+.app-shell.dark .sidebar-nav button.active { background:#30223f; color:#d8baff; }
+.app-shell.dark .sidebar-nav button.active svg { color:#c39af4; }
+.app-shell.dark .sidebar-nav button:hover,.app-shell.dark .sidebar-theme:hover { background:#28212f; }
+.app-shell.dark .sidebar-divider,.app-shell.dark .sidebar-profile { border-color:#302a38; }
+.app-shell.dark .sidebar-create { background:#7135c5; border-color:#7135c5; }
+.app-shell.dark .sidebar-status,.app-shell.dark .sidebar-theme { color:#a99fb4; }
+.app-shell.dark .sidebar-avatar { background:#39294b; color:#dfc5ff; }
+.app-shell.dark .app-header { background:#17141c; border-color:#302a38; }
+.app-shell.dark .app-header-brand h1 { color:#f3edf8 !important; }
+.app-shell.dark .home-menu-heading h3 { color:#f0eaf6 !important; }
+.app-shell.dark .home-menu-card,.app-shell.dark .home-feature-grid article,.app-shell.dark .home-bottom-row { background:#19161f !important; border-color:#342d3d !important; }
+.app-shell.dark .home-menu-copy b,.app-shell.dark .home-feature-grid h3,.app-shell.dark .home-bottom-row h3 { color:#eee8f4 !important; }
+.app-shell.dark .home-menu-copy small,.app-shell.dark .home-feature-grid p,.app-shell.dark .home-bottom-row p { color:#a69bad !important; }
+.app-shell.dark .home-menu-icon { background:#30223f !important; color:#c39af4 !important; }
+.app-shell.dark .home-menu-create { background:#211a2c !important; }
+.app-shell.dark .app-header-tools button { border-color:#403649 !important; color:#ddd3e7 !important; background:#211c28 !important; }
+.app-shell.dark .app-header-tools button:last-child { background:#7135c5 !important; border-color:#7135c5 !important; color:#fff !important; }
+.app-shell.dark .app-header-tools button:hover { filter:brightness(1.12); }
+.app-shell.dark .traco-home { color:#eeeaf3; }
+@media (max-width:900px) {
+  .app-shell { padding-left:0; }
+  .app-sidebar { transform:translateX(-102%); transition:transform .2s ease; box-shadow:none; }
+  .app-sidebar.is-open { transform:translateX(0); box-shadow:12px 0 34px rgba(20,12,30,.16); }
+  .sidebar-backdrop { display:block; position:fixed; inset:0; z-index:45; border:0; background:rgba(20,15,28,.38); }
+  .sidebar-mobile-toggle { display:grid; place-items:center; width:36px; height:36px; border:1px solid #e8e2ed; border-radius:8px; background:#fff; color:#51475c; }
+  .sidebar-mobile-toggle svg { width:17px; height:17px; }
+  .app-shell .app-header { min-height:66px; padding:10px 16px; gap:10px; }
+  .app-header-brand { gap:10px; }
+  .app-header-tools { gap:6px; }
+  .app-header-tools button { padding:9px 11px !important; font-size:10px !important; }
+  .app-shell > main.traco-home { padding:22px 18px 36px; }
+  .home-hero { min-height:370px !important; padding:32px 26px !important; }
+}
+@media (max-width:600px) {
+  .app-header-tools button:first-child { display:none; }
+  .app-header-tools button { min-height:36px; }
+  .app-shell > main.traco-home { padding:17px 13px 28px; }
+  .home-hero { min-height:410px !important; padding:25px 20px !important; }
+  .home-hero h2 { font-size:34px !important; }
+  .home-hero-art { width:42%; right:-7%; bottom:-11%; opacity:.24; }
+  .home-stats { max-width:100%; flex-direction:column; gap:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .app-sidebar,.sidebar-nav button,.sidebar-create { transition:none !important; }
+}
+@media print {
+  .app-shell { padding-left:0 !important; }
+  .app-sidebar { display:none !important; }
+}
