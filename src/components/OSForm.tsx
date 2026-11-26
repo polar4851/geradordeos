@@ -481,6 +481,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 <option value="Bastão Pendurado">📎 Pendurar com Gancho (Bastão)</option>
                 <option value="Direto em Fachada de Prédio">🧱 Chumbado ou amarrado em fachada</option>
                 <option value="Painel Luminoso Interno">💡 Painel Backlight Interno</option>
+                <option value="Painel em lona esticado no metalon">🧱 Painel em lona esticado no metalon</option>
+                <option value="Painel em lona colado">📌 Painel em lona colado</option>
                 <option value="Liso sem estrutura">📄 Liso / Somente Impresso</option>
               </select>
             </div>
