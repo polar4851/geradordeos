@@ -498,6 +498,27 @@ export default function App() {
             <div className="home-pokemon home-pokemon-three" aria-hidden="true"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" alt="" /></div>
             <div className="home-pokeball" aria-hidden="true"></div>
           </section>
+          <section className="home-menu-section">
+            <div className="home-menu-heading"><div><span className="home-kicker">MENU PRINCIPAL</span><h3>O que você precisa fazer?</h3><p>Acesse direto as ferramentas do Traço OS.</p></div></div>
+            <div className="home-menu-grid">
+              <button type="button" className="home-menu-card home-menu-create" onClick={() => { handleCreateNew(); setActiveTab('workspace'); }}>
+                <span className="home-menu-icon"><FileText/></span><span className="home-menu-copy"><b>Nova ordem de serviço</b><small>Começar uma ficha do zero</small></span><ChevronRight/>
+              </button>
+              <button type="button" className="home-menu-card" onClick={() => setActiveTab('workspace')}>
+                <span className="home-menu-icon"><ClipboardList/></span><span className="home-menu-copy"><b>Ordens e produção</b><small>Histórico, edição e status</small></span><ChevronRight/>
+              </button>
+              <button type="button" className="home-menu-card" onClick={handleExportBackup}>
+                <span className="home-menu-icon"><Download/></span><span className="home-menu-copy"><b>Exportar backup</b><small>Salvar uma cópia dos registros</small></span><ChevronRight/>
+              </button>
+              <button type="button" className="home-menu-card" onClick={() => importInputRef.current?.click()}>
+                <span className="home-menu-icon"><Upload/></span><span className="home-menu-copy"><b>Restaurar backup</b><small>Importar um arquivo JSON</small></span><ChevronRight/>
+              </button>
+              <button type="button" className="home-menu-card" onClick={() => setActiveTab('about')}>
+                <span className="home-menu-icon"><BookOpen/></span><span className="home-menu-copy"><b>Pokédex e créditos</b><small>Conheça o projeto e seus recursos</small></span><ChevronRight/>
+              </button>
+            </div>
+          </section>
+          <input ref={importInputRef} type="file" accept="application/json,.json" className="hidden" onChange={handleImportBackup} />
           <section className="home-feature-grid">
             <article><span className="home-feature-icon blue"><FileText/></span><h3>Ordens organizadas</h3><p>Cliente, responsáveis, prazo e status em um histórico pesquisável.</p></article>
             <article><span className="home-feature-icon violet"><Layers/></span><h3>Ficha técnica completa</h3><p>Materiais, dimensões, quantidade, acabamento e aplicação.</p></article>
