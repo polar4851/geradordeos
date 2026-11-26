@@ -184,7 +184,7 @@ function OSPreview({ activeOS }: OSPreviewProps) {
               <span className="font-mono text-[8px]">PROPORÇÃO REAL A4</span>
             </div>
             
-            <div className="border border-slate-205 bg-slate-50/70 rounded-b-lg h-[380px] max-h-[380px] flex items-center justify-center p-3 relative overflow-hidden shadow-inner">
+            <div className="border border-slate-205 bg-slate-50/70 rounded-b-lg h-[460px] max-h-[460px] flex items-center justify-center p-3 relative overflow-hidden shadow-inner">
               {activeOS.pastedImage ? (
                 <div className="w-full h-full flex items-center justify-center transition-all">
                   <img
