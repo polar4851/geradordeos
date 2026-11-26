@@ -477,13 +477,9 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 onChange={(e) => updateDetail('aplicacao', e.target.value)}
                 className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-2.5 py-2 text-slate-800 transition focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium"
               >
-                <option value="Estrutura de Metal / Cavalete">🏗️ Fixação em Metal/Cavalete por Enforcagato</option>
-                <option value="Bastão Pendurado">📎 Pendurar com Gancho (Bastão)</option>
-                <option value="Direto em Fachada de Prédio">🧱 Chumbado ou amarrado em fachada</option>
-                <option value="Painel Luminoso Interno">💡 Painel Backlight Interno</option>
-                <option value="Painel em lona esticado no metalon">🧱 Painel em lona esticado no metalon</option>
-                <option value="Painel em lona colado">📌 Painel em lona colado</option>
-                <option value="Liso sem estrutura">📄 Liso / Somente Impresso</option>
+                <option value="Painel em lona esticado no metalon">Painel em lona esticado no metalon</option>
+                <option value="Painel em lona colado">Painel em lona colado</option>
+                <option value="Liso sem estrutura">Lona sem estrutura / somente impressa</option>
               </select>
             </div>
           </div>
