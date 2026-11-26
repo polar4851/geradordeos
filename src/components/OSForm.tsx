@@ -470,6 +470,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
               </select>
             </div>
 
+            {activeOS.material === 'Lona' && (
             <div>
               <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Aplicação / Fixação</label>
               <select
@@ -481,7 +482,8 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
                 <option value="Painel em lona colado">Painel em lona colado</option>
                 <option value="Liso sem estrutura">Lona sem estrutura / somente impressa</option>
               </select>
-            </div>
+            </div>            )}
+
           </div>
         )}
 
