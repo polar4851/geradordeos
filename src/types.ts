@@ -18,6 +18,7 @@ export interface ServiceOrder {
   clienteContato: string; // Telefone, Email, etc.
   vendedor: string;       // Quem vendeu
   designer: string;       // Arte-finalista responsável
+  impressor?: string;      // Operador responsável pela impressão
   
   // Especificação do Material
   material: MaterialType;
