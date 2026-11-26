@@ -1200,3 +1200,15 @@ body { margin: 0; overflow-x: hidden; }
   .home-feature-grid article { padding: 17px; }
   .home-bottom-row { align-items: flex-start; flex-direction: column; padding: 19px; }
 }
+
+
+.app-shell.dark header .app-nav-active {
+  background: linear-gradient(110deg,#315fe0,#7545d6) !important;
+  border-color: #6688ed !important;
+  color: #fff !important;
+}
+.app-shell.dark header .app-nav-button:not(.app-nav-active) {
+  background: #0c1220 !important;
+  border-color: #2a3a57 !important;
+  color: #bdcbed !important;
+}
