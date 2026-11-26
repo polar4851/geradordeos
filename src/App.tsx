@@ -277,6 +277,7 @@ export default function App() {
       clienteContato: '',
       vendedor: currentOS?.vendedor || '',
       designer: currentOS?.designer || '',
+      impressor: currentOS?.impressor || '',
       material: 'Adesivo',
       largura: 1.0,
       altura: 1.0,
