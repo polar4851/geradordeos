@@ -397,7 +397,7 @@ export default function App() {
   return (
     <div className={`app-shell min-h-screen flex flex-col font-sans text-slate-800 ${darkMode ? 'dark' : ''} ${sidebarOpen ? 'sidebar-expanded' : 'sidebar-collapsed'}`}>
       {sidebarOpen && <button type="button" aria-label="Fechar menu" className="sidebar-backdrop no-print" onClick={() => setSidebarOpen(false)} />}
-      <aside className={`app-sidebar no-print ${sidebarOpen ? 'is-open' : 'is-closed'}`} aria-label="Menu principal">
+      <aside id="traco-sidebar" className={`app-sidebar no-print ${sidebarOpen ? 'is-open' : 'is-closed'}`} aria-label="Menu principal">
         <div className="sidebar-brand">
           <div className="sidebar-brand-mark"><PenTool /></div>
           <div><strong>Traço<span>OS</span></strong><small>GESTÃO DE PRODUÇÃO</small></div>
