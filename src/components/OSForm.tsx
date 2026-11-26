@@ -155,7 +155,7 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-1">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 pt-1">
           <div>
             <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Número da O.S.</label>
             <input 
@@ -183,6 +183,16 @@ export default function OSForm({ activeOS, onChange }: OSFormProps) {
               onChange={(e) => updateField('designer', e.target.value)}
               className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-3 py-2 text-slate-850 transition focus:outline-none focus:ring-1 focus:ring-indigo-500"
               placeholder="Criado por..."
+            />
+          </div>
+          <div>
+            <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Impressor</label>
+            <input
+              type="text"
+              value={activeOS.impressor || ""}
+              onChange={(e) => updateField("impressor", e.target.value)}
+              className="w-full text-xs bg-slate-50 hover:bg-slate-100/50 border border-slate-200 focus:border-indigo-500 rounded-lg px-3 py-2 text-slate-850 transition focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              placeholder="Impressor"
             />
           </div>
           <div>
