@@ -382,7 +382,7 @@ body { margin: 0; overflow-x: hidden; }
 .app-shell main { min-width: 0; }
 .app-shell > header { width: 100%; min-width: 0; }
 .app-shell > header > div:last-child { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; min-width:0; }
-.app-shell > main:not(.about-page) { overflow-y: visible; }
+.app-shell > main:not(.about-page):not(.traco-home) { overflow-y: visible; }
 .os-form { width:100%; min-width:0; }
 .os-form > div { min-width:0; }
 .os-form input, .os-form select, .os-form textarea { min-width:0; max-width:100%; }
@@ -400,9 +400,9 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell > header { position:relative; align-items:flex-start; }
   .app-shell > header > div:first-child { width:100%; }
   .app-shell > header > div:last-child { width:100%; justify-content:flex-start; }
-  .app-shell > main:not(.about-page) { padding:1rem; }
-  .app-shell > main:not(.about-page) > .grid.grid-cols-1.lg\\:grid-cols-12 { grid-template-columns:minmax(0,1fr); }
-  .app-shell > main:not(.about-page) > .grid > section { grid-column:1 / -1; width:100%; }
+  .app-shell > main:not(.about-page):not(.traco-home) { padding:1rem; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid.grid-cols-1.lg\\:grid-cols-12 { grid-template-columns:minmax(0,1fr); }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section { grid-column:1 / -1; width:100%; }
   .about-page { padding:1.25rem; }
   .about-gif-gallery > div:last-child { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
@@ -412,9 +412,9 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell > header > div:last-child { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
   .app-shell > header > div:last-child button { width:100%; min-height:42px; justify-content:center; padding:.6rem .5rem; font-size:11px; }
   .app-shell > header > div:last-child .theme-toggle { width:100%; }
-  .app-shell > main:not(.about-page) { padding:.75rem; gap:1rem; }
-  .app-shell > main:not(.about-page) > section:first-child h2 { font-size:1.45rem; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .app-shell > main:not(.about-page):not(.traco-home) { padding:.75rem; gap:1rem; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:first-child h2 { font-size:1.45rem; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .os-form > div { padding:1rem; border-radius:1rem; }
   .os-form .grid.grid-cols-2,
   .os-form .grid.grid-cols-3 { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -439,9 +439,9 @@ body { margin: 0; overflow-x: hidden; }
   .os-form .grid.grid-cols-2 > *,
   .os-form .grid.grid-cols-3 > * { grid-column:1 / -1; }
   .os-form .grid.grid-cols-2.sm\\:grid-cols-4 { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .app-shell > main:not(.about-page) > section:nth-child(2) { grid-template-columns:1fr 1fr; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) > div { padding:.75rem; gap:.5rem; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) > div > div:first-child { width:2rem; height:2rem; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) { grid-template-columns:1fr 1fr; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) > div { padding:.75rem; gap:.5rem; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:first-child { width:2rem; height:2rem; }
   .about-gif-gallery img { height:110px; }
 }
 
@@ -455,13 +455,13 @@ body { margin: 0; overflow-x: hidden; }
 .compact-preview-control { display:none; }
 .workspace-preview { min-width:0; }
 @media (min-width:768px) and (max-width:1100px) {
-  .app-shell > main:not(.about-page) { padding:14px; gap:14px; }
-  .app-shell > main:not(.about-page) > .grid.grid-cols-1.lg\\:grid-cols-12 { display:grid; grid-template-columns:minmax(230px,30%) minmax(0,1fr); gap:14px; }
-  .app-shell > main:not(.about-page) > .grid > section:first-child { grid-column:1; }
-  .app-shell > main:not(.about-page) > .grid > section:nth-child(2) { grid-column:2; }
-  .app-shell > main:not(.about-page) > .grid > .workspace-preview { grid-column:1 / -1; }
-  .app-shell > main:not(.about-page) > .grid > section:first-child > div:first-child { max-height:390px; padding:12px; }
-  .app-shell > main:not(.about-page) > .grid > section:first-child > div:first-child > div.flex-1 { min-height:0; max-height:245px; }
+  .app-shell > main:not(.about-page):not(.traco-home) { padding:14px; gap:14px; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid.grid-cols-1.lg\\:grid-cols-12 { display:grid; grid-template-columns:minmax(230px,30%) minmax(0,1fr); gap:14px; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:first-child { grid-column:1; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:nth-child(2) { grid-column:2; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > .workspace-preview { grid-column:1 / -1; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:first-child > div:first-child { max-height:390px; padding:12px; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:first-child > div:first-child > div.flex-1 { min-height:0; max-height:245px; }
   .os-form { gap:12px !important; }
   .os-form > div { padding:14px !important; border-radius:14px !important; gap:12px !important; }
   .os-form h3 { font-size:12px !important; }
@@ -481,24 +481,24 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell > header > div:last-child { display:grid !important; width:100% !important; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px !important; }
   .app-shell > header > div:last-child button { min-width:0 !important; min-height:34px !important; height:auto !important; padding:6px 4px !important; border-radius:8px !important; font-size:9px !important; line-height:1.15 !important; white-space:normal !important; }
   .app-shell > header > div:last-child button svg { width:13px !important; height:13px !important; }
-  .app-shell > main:not(.about-page) { padding:10px !important; gap:10px !important; overflow:visible !important; }
-  .app-shell > main:not(.about-page) > section:first-child { gap:6px !important; }
-  .app-shell > main:not(.about-page) > section:first-child h2 { font-size:18px !important; line-height:1.2 !important; }
-  .app-shell > main:not(.about-page) > section:first-child p:last-child { font-size:11px !important; }
-  .app-shell > main:not(.about-page) > section:first-child > div:last-child { font-size:9px !important; padding:6px 9px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:7px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) > div { min-width:0; padding:9px !important; gap:7px !important; border-radius:11px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) > div > div:first-child { width:28px !important; height:28px !important; border-radius:8px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) > div > div:nth-child(2) { font-size:17px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(2) > div > div:last-child { font-size:9px !important; line-height:1.2 !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(3) { padding:10px !important; gap:8px !important; border-radius:11px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(3) > div:nth-child(2) { width:100%; display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px !important; }
-  .app-shell > main:not(.about-page) > section:nth-child(3) button { min-width:0; justify-content:center; padding:8px 5px !important; font-size:9px !important; }
-  .app-shell > main:not(.about-page) > .grid.grid-cols-1.lg\\:grid-cols-12 { display:flex !important; flex-direction:column !important; gap:10px !important; }
-  .app-shell > main:not(.about-page) > .grid > section { width:100% !important; }
-  .app-shell > main:not(.about-page) > .grid > section:first-child > div:first-child { height:auto !important; max-height:none !important; padding:11px !important; border-radius:12px !important; }
-  .app-shell > main:not(.about-page) > .grid > section:first-child > div:first-child > div.flex-1 { min-height:0 !important; max-height:190px !important; overflow:auto !important; }
-  .app-shell > main:not(.about-page) > .grid > section:first-child > div:nth-child(2) { display:none !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) { padding:10px !important; gap:10px !important; overflow:visible !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:first-child { gap:6px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:first-child h2 { font-size:18px !important; line-height:1.2 !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:first-child p:last-child { font-size:11px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:first-child > div:last-child { font-size:9px !important; padding:6px 9px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:7px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) > div { min-width:0; padding:9px !important; gap:7px !important; border-radius:11px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:first-child { width:28px !important; height:28px !important; border-radius:8px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:nth-child(2) { font-size:17px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:last-child { font-size:9px !important; line-height:1.2 !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(3) { padding:10px !important; gap:8px !important; border-radius:11px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(3) > div:nth-child(2) { width:100%; display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > section:nth-child(3) button { min-width:0; justify-content:center; padding:8px 5px !important; font-size:9px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid.grid-cols-1.lg\\:grid-cols-12 { display:flex !important; flex-direction:column !important; gap:10px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section { width:100% !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:first-child > div:first-child { height:auto !important; max-height:none !important; padding:11px !important; border-radius:12px !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:first-child > div:first-child > div.flex-1 { min-height:0 !important; max-height:190px !important; overflow:auto !important; }
+  .app-shell > main:not(.about-page):not(.traco-home) > .grid > section:first-child > div:nth-child(2) { display:none !important; }
   .compact-preview-control { display:block; width:100%; }
   .compact-preview-control button { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 13px; border:1px solid #c7d2fe; border-radius:10px; background:#eef2ff; color:#3730a3; font-size:11px; font-weight:800; }
   .compact-preview-control button span { font-size:17px; line-height:1; }
@@ -643,23 +643,23 @@ body { margin: 0; overflow-x: hidden; }
     border-color: rgba(153,190,255,.5) !important;
     box-shadow: 0 0 22px rgba(82,105,255,.25) !important;
   }
-  .app-shell.dark main:not(.about-page) {
+  .app-shell.dark main:not(.about-page):not(.traco-home) {
     color: var(--amoled-text);
   }
-  .app-shell.dark main:not(.about-page) > section:first-child h2 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:first-child h2 {
     color: #f4f8ff !important;
     letter-spacing: -.035em;
   }
-  .app-shell.dark main:not(.about-page) > section:first-child p {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:first-child p {
     color: #94a8c8 !important;
   }
-  .app-shell.dark main:not(.about-page) > section > .bg-white,
-  .app-shell.dark main:not(.about-page) > section.bg-white,
-  .app-shell.dark main:not(.about-page) > .grid > section > .bg-white,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section > .bg-white,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section.bg-white,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > .grid > section > .bg-white,
   .app-shell.dark .os-form > div,
   .app-shell.dark .workspace-preview,
   .app-shell.dark .os-form,
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) {
     background: linear-gradient(145deg, #0c111c 0%, #070a10 100%) !important;
     border-color: var(--amoled-line) !important;
     color: var(--amoled-text) !important;
@@ -679,43 +679,43 @@ body { margin: 0; overflow-x: hidden; }
   }
   .app-shell.dark .os-form h3,
   .app-shell.dark .os-form h2,
-  .app-shell.dark main:not(.about-page) h2,
-  .app-shell.dark main:not(.about-page) h3 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) h2,
+  .app-shell.dark main:not(.about-page):not(.traco-home) h3 {
     color: #eaf2ff !important;
   }
   .app-shell.dark .os-form label,
-  .app-shell.dark main:not(.about-page) .text-slate-500,
-  .app-shell.dark main:not(.about-page) .text-slate-400 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-500,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-400 {
     color: #8fa2c1 !important;
   }
   .app-shell.dark .os-form input,
   .app-shell.dark .os-form select,
   .app-shell.dark .os-form textarea,
-  .app-shell.dark main:not(.about-page) input,
-  .app-shell.dark main:not(.about-page) select,
-  .app-shell.dark main:not(.about-page) textarea {
+  .app-shell.dark main:not(.about-page):not(.traco-home) input,
+  .app-shell.dark main:not(.about-page):not(.traco-home) select,
+  .app-shell.dark main:not(.about-page):not(.traco-home) textarea {
     color: #edf5ff !important;
     background: #05080e !important;
     border-color: rgba(111,145,205,.28) !important;
     box-shadow: inset 0 2px 8px rgba(0,0,0,.35);
   }
   .app-shell.dark .os-form input::placeholder,
-  .app-shell.dark main:not(.about-page) input::placeholder,
-  .app-shell.dark main:not(.about-page) textarea::placeholder {
+  .app-shell.dark main:not(.about-page):not(.traco-home) input::placeholder,
+  .app-shell.dark main:not(.about-page):not(.traco-home) textarea::placeholder {
     color: #586985 !important;
   }
   .app-shell.dark .os-form input:focus,
   .app-shell.dark .os-form select:focus,
   .app-shell.dark .os-form textarea:focus,
-  .app-shell.dark main:not(.about-page) input:focus {
+  .app-shell.dark main:not(.about-page):not(.traco-home) input:focus {
     border-color: #398bff !important;
     box-shadow: 0 0 0 3px rgba(57,139,255,.16), 0 0 20px rgba(57,139,255,.1) !important;
   }
   .app-shell.dark .os-form option { background: #080d18; color: #edf5ff; }
   .app-shell.dark .os-form .bg-slate-50,
   .app-shell.dark .os-form .bg-slate-100,
-  .app-shell.dark main:not(.about-page) .bg-slate-50,
-  .app-shell.dark main:not(.about-page) .bg-slate-100 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .bg-slate-50,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .bg-slate-100 {
     background: #101827 !important;
     border-color: var(--amoled-line) !important;
     color: #d8e6ff !important;
@@ -725,11 +725,11 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell.dark .os-form .text-slate-850,
   .app-shell.dark .os-form .text-slate-800,
   .app-shell.dark .os-form .text-slate-700,
-  .app-shell.dark main:not(.about-page) .text-slate-950,
-  .app-shell.dark main:not(.about-page) .text-slate-900,
-  .app-shell.dark main:not(.about-page) .text-slate-850,
-  .app-shell.dark main:not(.about-page) .text-slate-800,
-  .app-shell.dark main:not(.about-page) .text-slate-700 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-950,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-900,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-850,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-800,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .text-slate-700 {
     color: #dce8fc !important;
   }
   .app-shell.dark .os-form .text-indigo-600,
@@ -738,7 +738,7 @@ body { margin: 0; overflow-x: hidden; }
     color: #8daeff !important;
   }
   .app-shell.dark .os-form .bg-indigo-50,
-  .app-shell.dark main:not(.about-page) .bg-indigo-50 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .bg-indigo-50 {
     background: rgba(49,91,190,.17) !important;
     border-color: rgba(89,139,255,.3) !important;
     color: #c7dcff !important;
@@ -760,7 +760,7 @@ body { margin: 0; overflow-x: hidden; }
     color: #fff !important;
   }
   .app-shell.dark .os-form .bg-rose-50,
-  .app-shell.dark main:not(.about-page) .bg-rose-50 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .bg-rose-50 {
     background: rgba(190,35,80,.14) !important;
     border-color: rgba(255,91,132,.28) !important;
     color: #ff9db5 !important;
@@ -768,47 +768,47 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell.dark .os-form .text-rose-700,
   .app-shell.dark .os-form .text-rose-600 { color: #ff8ca9 !important; }
   .app-shell.dark .os-form .bg-emerald-50,
-  .app-shell.dark main:not(.about-page) .bg-emerald-50 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .bg-emerald-50 {
     background: rgba(16,185,129,.13) !important;
     border-color: rgba(66,245,161,.25) !important;
     color: #75f5ba !important;
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div {
     background: linear-gradient(145deg,#0d1421,#070a10) !important;
     border-color: rgba(104,145,220,.2) !important;
     box-shadow: 0 10px 28px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.035) !important;
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(1) > div:first-child {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div:nth-child(1) > div:first-child {
     color: #8fb6ff !important; background: rgba(59,130,246,.17) !important;
     box-shadow: 0 0 20px rgba(59,130,246,.12);
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(2) > div:first-child {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div:nth-child(2) > div:first-child {
     color: #c4a5ff !important; background: rgba(168,85,247,.16) !important;
     box-shadow: 0 0 20px rgba(168,85,247,.12);
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(3) > div:first-child {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div:nth-child(3) > div:first-child {
     color: #65edbd !important; background: rgba(16,185,129,.15) !important;
     box-shadow: 0 0 20px rgba(16,185,129,.1);
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div:nth-child(4) > div:first-child {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div:nth-child(4) > div:first-child {
     color: #ff8aa7 !important; background: rgba(244,63,94,.15) !important;
     box-shadow: 0 0 20px rgba(244,63,94,.1);
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div > div:nth-child(2) {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:nth-child(2) {
     color: #f2f7ff !important;
     text-shadow: 0 0 18px rgba(77,141,255,.13);
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) {
     background: linear-gradient(105deg,#0b1322,#0b0b18) !important;
     border-color: rgba(77,141,255,.23) !important;
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) button {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) button {
     background: linear-gradient(130deg,#174a9e,#5130a8) !important;
     border: 1px solid rgba(113,164,255,.34) !important;
     color: #fff !important;
     box-shadow: 0 0 18px rgba(62,115,255,.14);
   }
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) button:hover {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) button:hover {
     filter: brightness(1.22);
     box-shadow: 0 0 24px rgba(36,215,242,.2);
   }
@@ -835,8 +835,8 @@ body { margin: 0; overflow-x: hidden; }
     color: #7889a6 !important;
   }
   .app-shell.dark .os-form > div .border-slate-200,
-  .app-shell.dark main:not(.about-page) .border-slate-200,
-  .app-shell.dark main:not(.about-page) .border-slate-300 {
+  .app-shell.dark main:not(.about-page):not(.traco-home) .border-slate-200,
+  .app-shell.dark main:not(.about-page):not(.traco-home) .border-slate-300 {
     border-color: var(--amoled-line) !important;
   }
   .app-shell.dark ::selection {
@@ -882,7 +882,7 @@ body { margin: 0; overflow-x: hidden; }
   /* Keep gradients and neon accents; limit large blurred shadows to compact halos. */
   .app-shell.dark .os-form > div,
   .app-shell.dark .workspace-preview,
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div,
   .app-shell.dark .about-info-card,
   .app-shell.dark .about-content-card {
     box-shadow: 0 4px 14px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.025) !important;
@@ -896,28 +896,28 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell.dark .theme-toggle,
   .app-shell.dark .about-tab-active,
   .app-shell.dark .os-form button[class*="bg-slate-950"],
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) button,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) button,
   .app-shell.dark .compact-preview-control button {
     box-shadow: 0 0 7px rgba(70,130,255,.18) !important;
   }
 
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div > div:first-child {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:first-child {
     box-shadow: 0 0 6px currentColor !important;
   }
 
   .app-shell.dark .os-form input:focus,
   .app-shell.dark .os-form select:focus,
   .app-shell.dark .os-form textarea:focus,
-  .app-shell.dark main:not(.about-page) input:focus {
+  .app-shell.dark main:not(.about-page):not(.traco-home) input:focus {
     box-shadow: 0 0 0 2px rgba(57,139,255,.18) !important;
   }
 
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) button:hover {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) button:hover {
     filter: none !important;
     box-shadow: 0 0 9px rgba(36,215,242,.22) !important;
   }
 
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div > div:nth-child(2) {
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div > div:nth-child(2) {
     text-shadow: none !important;
   }
 
@@ -958,7 +958,7 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell.dark .about-tab-active,
   .app-shell.dark .compact-preview-control button,
   .app-shell.dark .os-form button,
-  .app-shell.dark main:not(.about-page) button {
+  .app-shell.dark main:not(.about-page):not(.traco-home) button {
     box-shadow: none !important;
     filter: none !important;
   }
@@ -970,8 +970,8 @@ body { margin: 0; overflow-x: hidden; }
 
   .app-shell.dark .os-form > div,
   .app-shell.dark .workspace-preview,
-  .app-shell.dark main:not(.about-page) > section:nth-child(2) > div,
-  .app-shell.dark main:not(.about-page) > section:nth-child(3),
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(2) > div,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3),
   .app-shell.dark .about-info-card,
   .app-shell.dark .about-content-card,
   .app-shell.dark .about-hero,
@@ -988,7 +988,7 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell.dark .os-form input:focus,
   .app-shell.dark .os-form select:focus,
   .app-shell.dark .os-form textarea:focus,
-  .app-shell.dark main:not(.about-page) input:focus {
+  .app-shell.dark main:not(.about-page):not(.traco-home) input:focus {
     box-shadow: none !important;
     outline: 2px solid #398bff !important;
     outline-offset: 1px;
@@ -997,7 +997,7 @@ body { margin: 0; overflow-x: hidden; }
   .app-shell.dark .theme-toggle,
   .app-shell.dark .about-tab-active,
   .app-shell.dark .os-form button[class*="bg-slate-950"],
-  .app-shell.dark main:not(.about-page) > section:nth-child(3) button,
+  .app-shell.dark main:not(.about-page):not(.traco-home) > section:nth-child(3) button,
   .app-shell.dark .compact-preview-control button {
     border: 1px solid rgba(120,165,255,.55) !important;
   }
