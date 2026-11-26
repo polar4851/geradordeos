@@ -1002,3 +1002,201 @@ body { margin: 0; overflow-x: hidden; }
     border: 1px solid rgba(120,165,255,.55) !important;
   }
 }
+
+
+/* HOME · Pokémon league-inspired start screen. Flat color blocks, pixel sprites, no neon glow. */
+.traco-home { color: #172033; }
+.home-hero {
+  isolation: isolate;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(115deg, #111b3c 0%, #182c60 52%, #263e83 100%);
+  border: 1px solid #344b91;
+  color: #fff;
+}
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .22;
+  background-image: radial-gradient(#b8c9ff 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(90deg, #000, transparent 78%);
+}
+.home-hero-copy { width: 100%; }
+.home-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 7px;
+  background: rgba(255,255,255,.09);
+  color: #c9d8ff;
+  font: 800 10px/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .13em;
+}
+.home-hero h2 {
+  margin-top: 20px;
+  color: #fff;
+  font: 900 clamp(2.4rem, 5vw, 4.6rem)/.98 "Outfit", sans-serif;
+  letter-spacing: -.055em;
+}
+.home-hero h2 span { color: #ffd34e; }
+.home-hero-copy > p {
+  max-width: 570px;
+  margin-top: 18px;
+  color: #d2dcf7;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.home-primary, .home-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.home-primary { background: linear-gradient(110deg,#ffcb3d,#ff9d31); color: #20243a; border: 1px solid #ffe18a; }
+.home-secondary { background: #263d78; color: #f3f6ff; border: 1px solid #637dbd; }
+.home-primary:hover, .home-secondary:hover { transform: translateY(-2px); }
+.home-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 32px;
+  color: #aebfe9;
+  font: 600 10px "JetBrains Mono", monospace;
+  text-transform: uppercase;
+}
+.home-stats b { color: #fff; font-size: 15px; margin-right: 4px; }
+.home-pokemon {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.home-pokemon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.home-pokemon-one { width: 150px; height: 150px; right: 17%; top: 16%; }
+.home-pokemon-two { width: 190px; height: 190px; right: 4%; bottom: 7%; }
+.home-pokemon-three { width: 110px; height: 110px; right: 34%; bottom: 5%; }
+.home-pokeball {
+  position: absolute;
+  z-index: -1;
+  width: 340px;
+  height: 340px;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 22px solid rgba(255,255,255,.055);
+  border-radius: 50%;
+  background: linear-gradient(to bottom, rgba(239,76,76,.12) 0 48%, rgba(255,255,255,.06) 48% 52%, rgba(255,255,255,.035) 52%);
+}
+.home-pokeball::after {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border: 16px solid rgba(255,255,255,.07);
+  border-radius: 50%;
+  background: #1b2e60;
+}
+.home-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+.home-feature-grid article {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #dce3f0;
+  border-radius: 17px;
+  background: #fff;
+}
+.home-feature-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+}
+.home-feature-icon svg { width: 19px; height: 19px; }
+.home-feature-icon.blue { background: #e7efff; color: #3568dc; }
+.home-feature-icon.violet { background: #f0eaff; color: #8755d9; }
+.home-feature-icon.green { background: #e4f8ee; color: #159b62; }
+.home-feature-grid h3 { margin-top: 15px; color: #18223a; font-size: 14px; font-weight: 900; }
+.home-feature-grid p { margin-top: 6px; color: #69758d; font-size: 12px; line-height: 1.7; }
+.home-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+  padding: 22px 24px;
+  border: 1px solid #dce3f0;
+  border-radius: 17px;
+  background: #fff;
+}
+.home-bottom-row h3 { margin-top: 8px; color: #172033; font: 800 22px "Outfit",sans-serif; }
+.home-bottom-row p { margin-top: 5px; color: #69758d; font-size: 12px; }
+.home-bottom-row button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #315fe0;
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+}
+.app-shell.dark .traco-home { color: #eaf0ff; }
+.app-shell.dark .home-hero { border-color: #344b91; }
+.app-shell.dark .home-feature-grid article,
+.app-shell.dark .home-bottom-row {
+  background: #0d1421;
+  border-color: #263650;
+}
+.app-shell.dark .home-feature-grid h3,
+.app-shell.dark .home-bottom-row h3 { color: #edf3ff; }
+.app-shell.dark .home-feature-grid p,
+.app-shell.dark .home-bottom-row p { color: #9baac4; }
+.app-shell.dark .home-bottom-row button { background: linear-gradient(110deg,#315fe0,#7545d6); }
+@media (max-width: 850px) {
+  .home-hero { min-height: 490px; }
+  .home-pokemon-one { width: 115px; height: 115px; right: 12%; top: 8%; opacity: .82; }
+  .home-pokemon-two { width: 140px; height: 140px; right: 2%; bottom: 4%; }
+  .home-pokemon-three { width: 85px; height: 85px; right: 34%; bottom: 3%; }
+  .home-pokeball { width: 260px; height: 260px; right: 2%; }
+}
+@media (max-width: 640px) {
+  .home-hero { min-height: 570px; padding: 25px 21px; align-items: flex-start; }
+  .home-hero h2 { font-size: clamp(2.25rem, 12vw, 3.4rem); }
+  .home-hero-copy > p { max-width: 100%; font-size: 13px; }
+  .home-stats { gap: 8px 14px; margin-top: 23px; }
+  .home-pokemon-one { width: 90px; height: 90px; top: auto; bottom: 22%; right: 8%; }
+  .home-pokemon-two { width: 112px; height: 112px; bottom: 2%; right: 1%; }
+  .home-pokemon-three { width: 75px; height: 75px; right: 39%; bottom: 1%; }
+  .home-pokeball { width: 210px; height: 210px; right: -7%; top: 70%; }
+  .home-feature-grid { grid-template-columns: 1fr; gap: 10px; }
+  .home-feature-grid article { padding: 17px; }
+  .home-bottom-row { align-items: flex-start; flex-direction: column; padding: 19px; }
+}
